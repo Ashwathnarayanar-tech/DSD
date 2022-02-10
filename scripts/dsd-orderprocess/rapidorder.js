@@ -119,7 +119,7 @@ require([
                     }    
                 }else{  
                     window.testmydata(lineItemNum,"next"); 
-                    api.request("post","/rof/get_dates",{data:productId}).then(function(productDetails){
+                    api.request("post","/rof/get_dates",{data:productId,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(productDetails){
                         if(productDetails==="item not found"){
                             self.removerow(lineItemNum);
                                 lineNumber = parseInt($(document).find('.m-rapidordertable').find('.m-rapidinput').last().attr('dsd-lineitemumber'),10);
@@ -138,11 +138,7 @@ require([
                         }else{
                             var futureDate,
                                 stockavaillabel = (productDetails.data.inventoryInfo.manageStock) ? productDetails.data.inventoryInfo.onlineStockAvailable : 4,
-                                isHeatSensitive = _.find(productDetails.data.properties, function(property) {
-                                    if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                        return property.values[0].value;
-                                    }
-                                });
+                                isHeatSensitive = productDetails.data.isHeatSensitiveEnable;
                             if(productDetails.data.futureDate.FirstShipDate){  
                                 if (isHeatSensitive && Hypr.getThemeSetting('heatSensitive')) {
                                     futureDate = self.heatSensitvieDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);
@@ -385,7 +381,7 @@ require([
                         self.removerow(event.currentTarget.getAttribute('dsd-lineitemumber', true));
                     }*/
                 } else {
-                    api.request("post","/rof/get_dates",{data:productId}).then(function(productDetails){
+                    api.request("post","/rof/get_dates",{data:productId,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(productDetails){
                         if(productDetails==="item not found"){
                             self.removerow(lineItemNum);
                             $('[data-mz-name][dsd-lineitemumber="' + lineItemNum + '"]').css({
@@ -396,11 +392,7 @@ require([
                         }else{
                             var futureDate,
                                 stockavaillabel = (productDetails.data.inventoryInfo.manageStock) ? productDetails.data.inventoryInfo.onlineStockAvailable : 4,
-                                isHeatSensitive = _.find(productDetails.data.properties, function(property) {
-                                    if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                        return property.values[0].value;
-                                    }
-                                });
+                                isHeatSensitive = productDetails.data.isHeatSensitiveEnable;
                             if(productDetails.data.futureDate.FirstShipDate){    
                                 if (isHeatSensitive && Hypr.getThemeSetting('heatSensitive')) {
                                     futureDate = self.heatSensitvieDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);

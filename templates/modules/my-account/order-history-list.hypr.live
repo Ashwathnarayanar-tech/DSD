@@ -184,15 +184,12 @@
 		            </td>
 		            <td class="ord-price">{{item.product.price.price|currency}}</td>  
 		            <td class="ord-cold-pack">
-		                {% if themeSettings.heatSensitive %}    
-		                    {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
-                                {% with aliasName.values|findwhere('value',true) as checkVal %}
-                                    {% if checkVal %}
-                                         <img src="../resources/images/coldpack-tick.png" alt="Yes" />
-                                    {% endif %}
-                                {% endwith %}
-                            {% endwith %}</td>
+		                {% if themeSettings.heatSensitive %}
+		                {% if  item.product.isHeatSensitiveDatas %}
+		                	<img src="../resources/images/coldpack-tick.png" alt="Yes" />
+		                {% endif %}    
                         {% endif %}    
+		            </td>
 		            <td class="ord-qty">{{item.quantity}}</td>
 		        </tr>
 		       <!--Table row for desktop end-->
@@ -218,13 +215,11 @@
 		        <tr class="mobile row2" data-mz-orderNumber="{{ orders.orderNumber }}">
 		         
 		         <td class="ord-price">{{item.product.price.price|currency}}</td>
-		         <td class="ord-cold-pack">{% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %} 
-                                {% with aliasName.values|findwhere('value',true) as checkVal %}
-                                    {% if checkVal %}
-                                        <font>Cold Pack</font>
-                                    {% endif %}
-                                {% endwith %}
-                            {% endwith %}</td>
+		         <td class="ord-cold-pack">
+		         	{% if  item.product.isHeatSensitiveDatas %}
+                        <font>Cold Pack</font>
+                    {% endif %}
+                 </td>
                  <td class="ord-qty" data-mz-productCode="{{item.product.productCode}}">{{item.quantity}}</td>
                  <td class="ord-price">{{item.product.price.price|currency}}</td>
 		        </tr>
