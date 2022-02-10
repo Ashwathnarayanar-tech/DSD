@@ -354,7 +354,15 @@ require([
             orderStaus: function() {
                 var self = this;
                 api.request('GET', ' api/commerce/orders/?filter=Status ne Created and Status ne Validated and Status ne Pending and Status ne Abandoned and Status ne Errored&startIndex=0&pageSize=5&receiverVersion=2&responseFields=items(orderNumber,billingInfo,status,total,subtotal,items,fulfillmentInfo,submittedDate)').then(function(resp) {
-                    getProductDates(resp,self.dateCallBack);
+                    if(resp.items.length) {
+                        api.request("post","/rof/get_coldpackDetails",{data:resp,customerId:require.mozuData('user').accountId}).then(function(productDetails){
+                            getProductDates(productDetails.data,self.dateCallBack);
+                        }).catch(function(e) { 
+                        }).then(function() {
+                        });
+                    } else {
+                        getProductDates(resp,self.dateCallBack);
+                    }
                     
                 });
             },

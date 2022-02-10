@@ -189,6 +189,7 @@ define([
             updateReviewCart:function(){
                 cartModel.apiGet();
             },
+            
             notifyOrderAmount: function(e){
                 e.preventDefault();
                 $('.cart-modal').show();
@@ -276,7 +277,7 @@ define([
                     }
                 //return new Promise(function(resolve,reject){
                     if(productCodes.length>0){
-                        api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
+                        api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').accountId}).then(function(resp) {
                             window.futureDates = resp;
                             self.callback(self.assignFutureDates(resp,res));
                         },function(err){
@@ -522,12 +523,12 @@ define([
             }
         });
         
-        var cartModel = new CartModels.Cart(),
-        miniCartView = new MiniCartView({ 
+        var cartModel = new CartModels.Cart();
+        var miniCartView = new MiniCartView({ 
             el: $('#review-your-order'),
             model: cartModel
         });
-           window.cart = miniCartView; 
+        window.cart = miniCartView; 
         var storeadress = new storeAdress({
             el: $('#store-address'),
             model: cartModel

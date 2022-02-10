@@ -201,6 +201,7 @@ define([
                         businessdays--;
                     }
                 }
+                console.log(" final date ",date);
                 return date;
             },
             getFutureDate:function(heat){
@@ -232,7 +233,7 @@ define([
                 }   
             },
             isHeatSensitive:function(){
-                var items = this.model.get('items').models;
+                /*var items = this.model.get('items').models;
                 var itemsLength = items.length;
                 var i=0;
                 for(i;i<itemsLength;i++ ){
@@ -248,7 +249,8 @@ define([
                         }
                     }
                 }    
-                return false;
+                return false;*/
+                return window.carthasHeatsensitiveItem;
             },
             createCalendar:function(finalShipDate,heat){
                     // Date Picker 
@@ -354,17 +356,22 @@ define([
             },
             getProductDates:function(res){
                 var productCodes=[],itemsLen = res.get('items').length,j=0,self = this;
+                var fetchData = [];
                     for(j;j<itemsLen;j++){
                         var code = res.get('items').models[j].get('product.productCode');
                         if(productCodes.length>0 && productCodes.indexOf(code)<0){
+                            fetchData.push({"productCode": code,quantity:1 });
                             productCodes.push(code);
                         }else if(productCodes.length<1){
+                            fetchData.push({"productCode": code,quantity:1 });
                             productCodes.push(code);
                         }
                     }
                 //return new Promise(function(resolve,reject){
                     if(productCodes.length>0){
-                        api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
+                        api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').accountId}).then(function(resp) {
+                            window.finalHeatShipDate = resp.FirstShipDate;
+                            self.checkHeatSensitive();
                             self.callback(resp.FirstShipDate);
                         },function(err){
                             self.callback(res,self);
@@ -979,10 +986,51 @@ define([
                 // });  
         },
         updateOrder:function(){
+            /*this.model.apiGet().then(function(){
+                this.checkHeatSensitive();
+            });*/
             this.model.apiGet();
-            this.render();
+            this.checkHeatSensitive();
+           // this.render();
          
-        }
+        },
+        checkHeatSensitive:function(){
+            var _this = this;
+            var items = [];
+                $.each(_this.model.get('items').models,function(i,v){
+                    var obj = {
+                        productcode:v.get('product.productCode'),
+                        quantity:v.get('quantity')
+                    };
+                    items.push(obj);
+                });
+                console.log("window.finalHeatShipDate---",window.finalHeatShipDate);
+                if(window.finalHeatShipDate){
+                    var reqBody = {customerId:require.mozuData('user').lastName,
+                                    items:items,
+                                    shipDate:window.finalHeatShipDate};
+                                    window.carthasHeatsensitiveItem = false;
+                    api.request('POST','svc/verifyHeatsensitiveProducts',reqBody).then(function(resp){
+                        $.each(_this.model.get('items').models,function(i,v){
+                                for(var k=0;k<resp.length;k++){
+                                    if(v.get('product.productCode') === resp[k].productCode){
+                                        v.set("isHeatsensitive",resp[k].isHeatSensitive);
+                                        _this.model.get('items').models[k].set("isHeatsensitive",resp[k].isHeatSensitive);
+                                        if(resp[k].isHeatSensitive){
+                                            window.carthasHeatsensitiveItem = true;
+                                        }
+                                    }
+                                }
+                        });
+                        setTimeout(function(){
+                            console.log("render");
+                            _this.render();
+                        // window.cart && window.cart.render();
+                            console.log("_this.model.get('items').models ---",_this.model.get('items').models);
+                        },2000);
+                    });
+                }    
+        },
     });
     var cartModel = new CartModels.Cart();
     var submitOrder = new submitOrderView({

@@ -507,8 +507,30 @@ require([
         var orderobj = {
             orderStaus: function() {
                 var self = this;
-                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=fulfillmentstatus+eq+fulfilled&sortBy=submittedDate desc').then(function(resp) {
-                    getProductDates(resp,self.dateCallBack);
+                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=status+eq+Completed&sortBy=submittedDate desc').then(function(resp) {
+                    if(resp.items.length) {
+                        api.request("post","/rof/get_coldpackDetails",{data:resp,customerId:require.mozuData('user').accountId}).then(function(productDetails){
+                            getProductDates(productDetails.data,self.dateCallBack);
+                        }).catch(function(e) { 
+                        }).then(function() {
+                        });
+                    } else {
+                        getProductDates(resp,self.dateCallBack);
+                    }
+                        // console.log(resp.items);
+                        // var items = resp.items;
+                        // var itemLength = resp.items.length;
+                        // var i;
+                        // $.each(items,function(i,v){
+                        //     var item = items[i].items;
+                        //     // var itemCLength = resp.items.length;
+                        //     // var j;
+                        //     $.each(item,function(j,v){
+                        //         var getProductCode = item[j].product.productCode;
+                        //         console.log(getProductCode);
+                        //     }); 
+                        // });
+                        // getProductDates(resp,self.dateCallBack);
                 },function(err){
                     console.log(err);
                 });
@@ -565,17 +587,23 @@ require([
 
     var getProductDates = function(res,callback){
         var ordersLen =  res.items.length,i=0,productCodes=[];
+        var fetchData = [];
         for(i;i<ordersLen;i++){
             var itemsLen = res.items[i].items.length,j=0;
+
             for(j;j<itemsLen;j++){
                 var code = res.items[i].items[j].product.productCode;
                 if(productCodes.length>0 && productCodes.indexOf(code)<0){
+                    fetchData.push({"productCode": code,quantity:1 });
                     productCodes.push(code);
                 }else if(productCodes.length<1){
+                    fetchData.push({"productCode": code,quantity:1 });
                     productCodes.push(code);
                 }
             }
         }
+        console.log(fetchData);
+        console.log("silpa");
         if(productCodes.length>0){
             api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
                 var d =  assignFutureDates(res,resp);
