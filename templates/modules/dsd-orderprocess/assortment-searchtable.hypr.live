@@ -1,0 +1,63 @@
+<div id="search-result-table-container">
+    <table class="cart-table mz-productlist-list">
+        <thead class="desktop">
+            <tr class="desktop">
+                <th class="item">Item #</th>
+                <th class="desc">Description</th>
+                <th class="price">Price</th>
+                <th class="coldpack">Cold pack</th>
+                <th class="qnty">Order Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="desktop"> 
+                <td class="item">0</td>
+                <td class="desc">
+                <div class="description">description of the product</div>
+                <div class="stock-info"></div> 
+                </td>
+                <td class="price">$0</td>
+                <td class="is-coldpack"></td>
+                <td  class="qnty">
+                    <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option> 
+                    </select>
+                </td> 
+            </tr>
+             <tr class="mobile itemno">
+                <td >
+                    <div style="color:initial;"><font>Item # </font><strong class="item">{{ prod.productCode }}</strong></div>
+                </td>
+            </tr>
+            <tr class="mobile row1"> 
+                <td class="desc" colspan="4">
+                <div class="description">description of the product</div>
+                <div class="stock-info"></div> 
+                </td>
+            </tr>
+             
+            <tr class="mobile row2">  
+                <td  style="display: none" class="item">0</td>
+                <td class="price">$0.00</td>
+                <td class="is-coldpack"></td>
+                <td  class="qnty">
+                    <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select> 
+                </td>
+                <td class="price">$0.00</td>
+            </tr>
+        </tbody>  
+    </table>
+    <div class="buttons-searchtable"><button class="remove-item">Remove Item</button><button class="atc-btn atc-cust">{{ labels.addToCart }}</button><button class="notify-button">Notify Me</button></div>
+</div>
+<div class="alerts search-table-message"></div>
+
+
+

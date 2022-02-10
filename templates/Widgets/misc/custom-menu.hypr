@@ -1,0 +1,12 @@
+{% if model.config.data %}
+<ul class="mz-sitenav-list" >
+{% partial_cache %}
+{% for menu in model.config.data %}
+<li class="mz-sitenav-item">
+          <div class="mz-sitenav-item-inner">
+            <a class="mz-sitenav-link" href="{{ menu.labellnk }}">{{ menu.labeltxt|upper }}</a>
+</li>
+{% endfor %}
+ {% endpartial_cache %}
+</ul>
+{% endif %}

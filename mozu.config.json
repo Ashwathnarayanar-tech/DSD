@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://home.mozu.com",
+  "developerAccountId": 6363,
+  "developerAccount": {
+    "emailAddress": "amit.p@echidnainc.com",
+    "password" : "7411512954amit"
+  },
+  "workingApplicationKey": "jbelly.PP_DSD_001.1.0.7.Release"
+}

@@ -1,0 +1,59 @@
+.mz-l-pagewrapper {
+   // max-width: 1008px;
+    margin: 0 auto;
+    //padding: 0px 10px 0px 10px;
+    background: white;
+    max-width: 92%;
+    overflow: hidden;
+    min-height: 80%;
+    > * {
+        .clearfix();
+    }
+}
+body {
+    font-family: Trebuchet MS,Verdana,sans-serif; 
+    background: url('../resources/images/mainBG2.jpg') no-repeat fixed center top;
+     
+ }
+ body * {
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@media (max-width: 768px) {  
+    .mz-l-pagewrapper { 
+        max-width: 100%; 
+        }
+}
+/* Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+      .mz-l-pagewrapper{
+        max-width:97%;
+        overflow: hidden;
+      }
+      
+  }
+   
+/* Ipad Portrait mode*/
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait)  { 
+      .mz-l-pagewrapper{
+        max-width: 100%; 
+        overflow: hidden; 
+      }
+    }
+
+
+
+
+
+
+
+
+

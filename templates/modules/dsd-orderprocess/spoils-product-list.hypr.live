@@ -1,0 +1,400 @@
+<div class="product-top-section-1">
+    <ul class="ul-item">
+        <li class="mz-list-head">
+            <div class="form-label-name">Packaged Items</div> 
+        </li>
+        <li>
+            <div class="form-id-sec">
+                <label class="form-id-label">Search Items</label>
+                <input type="text" name="search-item" class="search-field" value="{{model.queryString}}" onfocus="this.value = this.value;"/> 
+                <div class="autosuggest">
+                    <ul>
+                    {% if model.sugessions.suggestions %}
+                        {% for myvalue in model.sugessions.suggestions %}
+                            {% comment %}
+                                <li class="search-result-select" unit-cost="{{myvalue.suggestion.price.unitcost}}" data-name="{{myvalue.suggestion.content.productName}}" data-case-cost="{% if myvalue.suggestion.price.salePrice %}{{myvalue.suggestion.price.salePrice}}{% else %}{{myvalue.suggestion.price.price}}{% endif %}" data-id={{myvalue.suggestion.productCode}}>{{myvalue.suggestion.content.productName}} - {{myvalue.suggestion.productCode}}</li>
+                            {% endcomment %}
+                        {% endfor %}
+                        {% comment %}
+                            {% else %}
+                                <li class="search-result-select" data-name="{{myvalue.suggestion.content.productName}}"> Item not found</li>
+                        {% endcomment %}
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+{% if model.searchlist %}
+<div class="search-result-table desktop"> 
+    <table class="search-res">
+        <thead>
+            <tr>
+                <th>Item #</th>
+                <th>Description</th>
+                <th>Case Cost</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div>{{model.searchlist.prodId}}</div></td>
+                <td><div>{{model.searchlist.prodName}}</div></td>
+                <td><div>{{model.searchlist.prodCast|currency}}</div></td>
+                <td>
+                    <div>
+                        <ul>
+                            <li><button class="add-item-list" data-id="{{model.searchlist.prodId}}">Add to List</button></li>
+                            <li><div class="remove-item-list" data-id="{{model.searchlist.prodId}}">Clear Item</div></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="search-result-table mobile"> 
+    <div class="mob-serach-res">
+        <div class="mob-product-code">
+        
+        <div><label>Item &#35;: <strong>{{model.searchlist.prodId}}</strong></label></div><div><label class="remove-item-list" data-id="{{model.searchlist.prodId}}">&#10006</label></div>
+        
+        </div> 
+        <div class="mob-product-name">
+            <div>{{model.searchlist.prodName}}</div>
+        </div>
+        <div class="mob-prod-cost">
+            <div><lable>Case Cost</label>: {{model.searchlist.prodCast|currency}}</div>
+            <div><lable>Unit Cost</label>: {{model.searchlist.unitcost|currency}}</div>   
+        </div> 
+        <div class="mob-btn-addtolist"><button class="add-item-list" data-id="{{model.searchlist.prodId}}">Add to List</button></div>  
+    </div>
+</div>
+{% endif %}
+<div class="product-list-div desktop">
+    <table class="particular-prod-tab">
+        <thead>
+            <tr>
+                <th>Item No. <sup> *</sup></th>
+                <th>Spoils Type <sup> *</sup></th>
+                <th>Qty <sup> *</sup></th>
+                <th>Description</th>
+                <th><label class="mytooltip">&#63;<span class="tooletiptext">CR - Consumer Reject <br>CL - Store Closing/Fixture Removal <br>EO - Error in Order <br>SF - Seasonal <br>OE - Did not Order <br>MC - Other</span></label>Reason Code <sup> *</sup></th>
+                <th>Case Cost</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody> 
+            {% for spoillist in model.addedspoilslist %}    
+            <tr row-count="{{spoillist.rowCount}}">
+            
+                <td class="itemnumber"><div><input type="text" name="itemNumber[]" placeholder="Enter Item #" value="{{spoillist.prodId}}"/></div><div class="error">Item Not Found</div></td>
+                <td class="itemtype">
+                    <select data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" data-id="{{spoillist.prodId}}">
+                        <option value=""{% if spoillist.itemtype %}{% if spoillist.itemtype == ''%}selected {% endif %}{% endif %}></option>
+                        <option value="Each" {% if spoillist.itemtype %}{% if spoillist.itemtype == 'Each'%}selected {% endif %}{% endif %}>Each</option>
+                        <option value="Case" {% if spoillist.itemtype == 'Case'%}selected {% endif %}>Case</option>
+                    </select>
+                </td>
+                <td class="quntity"><input data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}"  data-id="{{spoillist.prodId}}" type="number" name="qtn[]" min="1" placeholder="" value="{{spoillist.quentity}}"></td>
+                <td class="decraption"><div>{{spoillist.prodName}}</div></td>
+                <td class="reasoncode"> 
+                    <select data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" data-id="{{spoillist.prodId}}">
+                        <option value=""{% if spoillist.reasoncode == ''%}selected {% endif %}></option>
+                        <option value="CR" {% if spoillist.reasoncode %}{% if spoillist.reasoncode == 'CR'%}selected {% endif %} {% endif %}>CR</option>
+                        <option value="CL" {% if spoillist.reasoncode == 'CL'%}selected {% endif %}>CL</option>
+                        <option value="EO" {% if spoillist.reasoncode == 'EO'%}selected {% endif %}>EO</option>
+                        <option value="SF" {% if spoillist.reasoncode == 'SF'%}selected {% endif %}>SF</option>
+                        <option value="OE" {% if spoillist.reasoncode == 'OE'%}selected {% endif %}>OE</option>
+                        <option value="MC" {% if spoillist.reasoncode == 'MC'%}selected {% endif %}>MC</option>
+                    </select>
+                </td>
+                <td class="casecost-td"><input type="text" name="casecost[]" placeholder="" value="{{spoillist.prodCast | currency}}" readonly/></td>
+                <td class="total-td"><input type="text" name="total[]" placeholder="" value="{{spoillist.total | currency }}" readonly/></td>
+                <td class="remove"><label class="remove-item-list" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" data-id="{{spoillist.prodId}}">&#10006</label></td>
+            </tr>
+            {% endfor %}
+            {% for myval in model.emptyobjct  %}
+                <tr>
+                    <td class="itemnumber"><div><input type="text" name="itemNumber[]" placeholder="Enter Item #" value=""/></div><div class="error">Item Not Found</div></td>  
+                    <td class="itemtype">
+                        <select>
+                            <option value="" selected></option>
+                            <option value="Each">Each</option>
+                            <option value="Case">Case</option>
+                        </select>
+                    </td>
+                    <td class="quntity"><input  type="number" min="1" name="qtn[]" placeholder="" value=""></td>
+                    <td class="decraption"><div></div></td>
+                    <td class="reasoncode">
+                        <select>
+                            <option value="" selected></option>
+                            <option value="CR">CR</option>
+                            <option value="CL">CL</option>
+                            <option value="EO">EO</option>
+                            <option value="SF">SF</option>
+                            <option value="OE">OE</option>
+                            <option value="MC">MC</option>
+                        </select>
+                    </td>
+                    <td class="casecost-td"><input type="text" name="casecost[]" placeholder="" value="" readonly/></td>
+                    <td class="total-td"><input type="text" name="total[]" placeholder="" value="" readonly/></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="product-list-div mobile">
+    <div class="mob-reson-code-tooltip"><label><span class="mytooltip">&#63;</span> Reason Code</label><br><span class="mobtooletiptext">CR - Consumer Reject <br>CL - Store Closing/Fixture Removal <br>EO - Error in Order <br>SF - Seasonal <br>OE - Did not Order <br>MC - Other</span></div>
+    {% for spoillist in model.addedspoilslist %}
+    <div class="mob-added-res" row-count="{{ spoillist.rowCount }}">
+        <div class="mob-product-code">
+        <div><label>Item &#35;: <strong>{{spoillist.prodId}}</strong></label></div><div><label class="remove-item-list" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" data-id="{{spoillist.prodId}}">&#10006</label></div>
+        </div> 
+        
+        <div class="mob-product-name">
+            <div>{{spoillist.prodName}}</div>
+            
+        </div>
+        <div class="mob-prod-details">
+            <div class="label-head-RC-TYPE">
+                <label>Type</label>
+                <label>Qty</label>
+                <label>Code</label>
+                <label>Case $</label>
+                <label>Total</label>
+                <label class="clear"></label>
+            </div> 
+            <div class="itemtype common-field-class">
+                <select data-id="{{spoillist.prodId}}" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" >
+                    <option value="" {% if spoillist.itemtype %}{% if spoillist.itemtype === ''%}selected {% endif %}{% endif %}></option>
+                    <option value="Each" {% if spoillist.itemtype %}{% if spoillist.itemtype === 'Each'%}selected {% endif %}{% endif %}>Each</option>
+                    <option value="Case" {% if spoillist.itemtype === 'Case'%}selected {% endif %}>Case</option>
+                </select>
+            </div>
+            <div class="quntity">
+                <input  data-id="{{spoillist.prodId}}" min="1" type="number" name="qtn[]" placeholder="" value="{{spoillist.quentity}}" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}"></td>
+            </div>
+            <div class="reasoncode">
+                <select data-id="{{spoillist.prodId}}" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}">
+                    <option value="" {% if spoillist.reasoncode %}{% if spoillist.reasoncode === 'CR'%}selected {% endif %} {% endif %}></option>
+                    <option value="CR" {% if spoillist.reasoncode %}{% if spoillist.reasoncode === 'CR'%}selected {% endif %} {% endif %}>CR</option>
+                    <option value="CL" {% if spoillist.reasoncode === 'CL'%}selected {% endif %}>CL</option>
+                    <option value="EO" {% if spoillist.reasoncode === 'EO'%}selected {% endif %}>EO</option>
+                    <option value="SF" {% if spoillist.reasoncode === 'SF'%}selected {% endif %}>SF</option>
+                    <option value="OE" {% if spoillist.reasoncode === 'OE'%}selected {% endif %}>OE</option>
+                    <option value="MC" {% if spoillist.reasoncode === 'MC'%}selected {% endif %}>MC</option>
+                </select>
+            </div>
+            <div><input type="text" name="casecost[]" placeholder="" value="{{spoillist.prodCast | currency }}" readonly/></div> 
+            <div><input type="text" name="total[]" placeholder="" value="{{spoillist.total | currency }}" readonly/></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="mob-hasto-add mob-sample">
+            <div class="mob-input-read">
+                <input type="text" name="mob-prodid" class="mob-input-to-add" placeholder="Enter Item #" />
+                <div><label>&#62;</label></div>
+            </div>
+            <div class="error">Item Not Found</div>
+        </div>  
+    {% for myval in model.emptyobjct  %}
+        <div class="mob-hasto-add">
+            <div class="mob-input-read">
+                <input type="text" name="mob-prodid" class="mob-input-to-add" placeholder="Enter Item #" />
+                <div><label>&#62;</label></div>
+            </div>
+            <div class="error">Item Not Found</div>
+        </div>  
+    {% endfor %}
+</div>
+<div class="add-new-line"><p>+ Add a Product Line</p></div>  
+<div class="product-top-section-2">
+    <ul class="ul-item">
+        <li>
+            <div class="form-label-name">Miscellaneous Bulk</div> 
+        </li>
+    </ul>
+</div>
+<div class="product-bulk-div">
+    <table class="bulk-prod-tab">
+        <thead>
+            <tr>
+                <th>Qty (pounds)<sup> *</sup></th>
+                <th>Reason Code<sup> *</sup></th>
+                <th>10# Case Cost</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="pounds"><input type="number" name="pound[]"/ max="48" min = "0" placeholder="" value="{% if model.miscelbulk  %}{{model.miscelbulk.weightinpounds}}{% else %}0{% endif %}"></td>
+                <td class="reasoncode">
+                    <select>
+                        <option value="" {% if model.miscelbulk  %}selected{% endif %}></option>
+                        <option value="CR" {% if model.miscelbulk.reasoncode == 'CR' %} selected {% endif %} >CR</option>
+                        <option value="CL" {% if model.miscelbulk.reasoncode == 'CL' %} selected {% endif %}>CL</option>
+                        <option value="EO" {% if model.miscelbulk.reasoncode == 'EO' %} selected {% endif %}>EO</option>
+                        <option value="SF" {% if model.miscelbulk.reasoncode == 'SF' %} selected {% endif %}>SF</option>
+                        <option value="OE" {% if model.miscelbulk.reasoncode == 'OE' %} selected {% endif %}>OE</option>
+                        <option value="MC" {% if model.miscelbulk.reasoncode == 'MC' %} selected {% endif %}>MC</option>
+                    </select>
+                </td>
+                <td class="casecost-td"><input type="text" name="casecost[]" placeholder="" value="$52.00" readonly/></td>
+                <td class="total-td"><input type="text" name="total[]" placeholder="" value="{% if model.miscelbulk  %}{{model.miscelbulk.total | currency }}{% else %}$0.00{% endif %}" readonly/></td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+{% comment %} Specific Bulk {% endcomment %}
+<div class="product-top-section-3">
+    <ul class="ul-item">
+        <li>
+            <div class="form-label-name">Specific Bulk</div> 
+        </li>
+    </ul>
+</div>
+<div class="specific-bulk-div desktop">
+    <table class="specific-prod-tab">
+        <thead>
+            <tr>
+                <th>Item No. <sup> *</sup></th>
+                <th>Qty (pounds)<sup> *</sup></th>
+                <th>Description</th>
+                <th>Reason Code <sup> *</sup></th>
+                <th>Case Cost</th> 
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody> 
+            {% for specificlist in model.addedspecificlist %}    
+            <tr row-count="{{specificlist.rowCount}}">
+            
+                <td class="itemnumber"><div><input type="text" name="itemNumber[]" placeholder="Enter Item #" value="{{specificlist.prodId}}"/></div><div class="error">Item Not Found</div></td>
+                <td class="quntity"><input data-reasoncode="{{specificlist.reasoncode}}" data-type="{{specificlist.itemtype}}"  data-id="{{specificlist.prodId}}" type="number" name="qtn[]" min="1" placeholder="" value="{{specificlist.quentity}}"></td>
+                <td class="decraption"><div>{{specificlist.prodName}}</div></td>
+                <td class="reasoncode"> 
+                    <select data-reasoncode="{{specificlist.reasoncode}}" data-type="{{specificlist.itemtype}}" data-id="{{specificlist.prodId}}">
+                        <option value=""{% if specificlist.reasoncode == ''%}selected {% endif %}></option>
+                        <option value="CR" {% if specificlist.reasoncode %}{% if specificlist.reasoncode == 'CR'%}selected {% endif %} {% endif %}>CR</option>
+                        <option value="CL" {% if specificlist.reasoncode == 'CL'%}selected {% endif %}>CL</option>
+                        <option value="EO" {% if specificlist.reasoncode == 'EO'%}selected {% endif %}>EO</option>
+                        <option value="SF" {% if specificlist.reasoncode == 'SF'%}selected {% endif %}>SF</option>
+                        <option value="OE" {% if specificlist.reasoncode == 'OE'%}selected {% endif %}>OE</option>
+                        <option value="MC" {% if specificlist.reasoncode == 'MC'%}selected {% endif %}>MC</option>
+                    </select>
+                </td>
+                <td class="casecost-td"><input type="text" name="casecost[]" placeholder="" value="{{specificlist.prodCast | currency}}" readonly/></td>
+                <td class="total-td"><input type="text" name="total[]" placeholder="" value="{{specificlist.total | currency }}" readonly/></td>
+                <td class="remove-spec"><label class="remove-item-list" data-reasoncode="{{specificlist.reasoncode}}" data-type="{{specificlist.itemtype}}" data-id="{{specificlist.prodId}}">&#10006</label></td>
+            </tr>
+            {% endfor %}
+            {% for myval in model.bulkemptyobjct  %}
+                <tr>
+                    <td class="itemnumber"><div><input type="text" name="itemNumber[]" placeholder="Enter Item #" value=""/></div><div class="error">Item Not Found</div></td>  
+                    <td class="quntity"><input  type="number" min="1" name="qtn[]" placeholder="" value=""></td>
+                    <td class="decraption"><div></div></td>
+                    <td class="reasoncode">
+                        <select>
+                            <option value="" selected></option>
+                            <option value="CR">CR</option>
+                            <option value="CL">CL</option>
+                            <option value="EO">EO</option>
+                            <option value="SF">SF</option>
+                            <option value="OE">OE</option>
+                            <option value="MC">MC</option>
+                        </select>
+                    </td>
+                    <td class="casecost-td"><input type="text" name="casecost[]" placeholder="" value="" readonly/></td>
+                    <td class="total-td"><input type="text" name="total[]" placeholder="" value="" readonly/></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="specific-bulk-div mobile">
+    {% for spoillist in model.addedspecificlist %}
+    <div class="mob-specific-added-res" row-count="{{ spoillist.rowCount }}">
+        <div class="mob-product-code">
+        <div><label>Item &#35;: <strong>{{spoillist.prodId}}</strong></label></div><div><label class="remove-item-list" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}" data-id="{{spoillist.prodId}}">&#10006</label></div>
+        </div> 
+        
+        <div class="mob-product-name">
+            <div>{{spoillist.prodName}}</div>
+            
+        </div>
+        <div class="mob-prod-details">
+            <div class="label-head-RC-TYPE">
+                <label>Qty</label>
+                <label>Code</label>
+                <label>Case Cost</label>
+                <label>Total</label>
+                <label class="clear"></label>
+            </div> 
+            <div class="quntity">
+                <input  data-id="{{spoillist.prodId}}" min="1" type="number" name="qtn[]" placeholder="" value="{{spoillist.quentity}}" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}"></td>
+            </div>
+            <div class="reasoncode">
+                <select data-id="{{spoillist.prodId}}" data-reasoncode="{{spoillist.reasoncode}}" data-type="{{spoillist.itemtype}}">
+                    <option value="" {% if spoillist.reasoncode %}{% if spoillist.reasoncode === 'CR'%}selected {% endif %} {% endif %}></option>
+                    <option value="CR" {% if spoillist.reasoncode %}{% if spoillist.reasoncode === 'CR'%}selected {% endif %} {% endif %}>CR</option>
+                    <option value="CL" {% if spoillist.reasoncode === 'CL'%}selected {% endif %}>CL</option>
+                    <option value="EO" {% if spoillist.reasoncode === 'EO'%}selected {% endif %}>EO</option>
+                    <option value="SF" {% if spoillist.reasoncode === 'SF'%}selected {% endif %}>SF</option>
+                    <option value="OE" {% if spoillist.reasoncode === 'OE'%}selected {% endif %}>OE</option>
+                    <option value="MC" {% if spoillist.reasoncode === 'MC'%}selected {% endif %}>MC</option>
+                </select>
+            </div>
+            <div><input type="text" name="casecost[]" placeholder="" value="{{spoillist.prodCast | currency }}" readonly/></div> 
+            <div><input type="text" name="total[]" placeholder="" value="{{spoillist.total | currency }}" readonly/></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="mob-hasto-add mob-sample">
+            <div class="mob-input-read">
+                <input type="text" name="mob-prodid" class="mob-input-to-add" placeholder="Enter Item #" />
+                <div><label>&#62;</label></div> 
+            </div>
+            <div class="error">Item Not Found</div>
+        </div>  
+    {% for myval in model.emptyobjct  %}
+        <div class="mob-hasto-add">
+            <div class="mob-input-read">
+                <input type="text" name="mob-prodid" class="mob-input-to-add" placeholder="Enter Item #" />
+                <div><label>&#62;</label></div>
+            </div>
+            <div class="error">Item Not Found</div>
+        </div>  
+    {% endfor %}
+</div>
+<div class="add-specific-new-line"><p>+ Add a Product Line</p></div>  
+<div class="product-list-total">
+    <div class="grand-total"><label>Grand Total</label><span class="total-in-d">{{model.grandTotal | currency }}</span></div>
+    <div class="total-msg">Maximum Store Credit <strong>$250.00</strong></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,179 @@
+<div class="review-cart-items">
+    {% if model.isEmpty %}
+        <div class="no-item-msg">No items added to the cart</div>
+    {% else %}
+    <div class="oos-error-msg"></div>
+    <div class="items-added-msg cart"> 
+        <div><font>{{ model.count  }}</font> Items</div>   
+        <span class="border"></span>  
+        <div class="total-weight"><font>{{ model.totalWeight|floatformat(2) }} lbs</font>
+        </div>    
+        <div class="future-date-msg-top"><span>{% if model.futureDates and model.futureDates !== "undefined" %}Your order will ship after:<br/><strong>{{model.futureDates}}</strong>{% endif %}</span></div>
+        <button class="checkout-button btn btn-mobile-hidden checkoutno1">Go To Checkout</button>  
+        <button  data-mz-action="placeOrder" class="btn placeorder btn-mobile-hidden order1" disabled>Submit Order</button>  
+    </div>
+    <div class="items-added-msg mobile sticky">  
+        <div><font>{{ model.count  }}</font> Items</div>   
+        <span class="border"></span>  
+        <div class="total-weight"><font>{{ model.total|currency }} </font>
+        </div>   
+        <button class="checkout-button btn  checkoutno2 mobile-checkout">Go To Checkout</button> 
+        <button data-mz-action="placeOrder" disabled class="btn placeorder mobile-order orderno1">Submit Order</button>  
+    </div>
+    <div class="cart-table-container">
+        <table class="cart-table">  
+            <thead>
+                <tr> 
+                    <th class="item">Item #</th>
+                    <th class="desc">Description</th>
+                    <th class="coldpack">Cold Pack</th> 
+                    <th class="qty">Qty</th>
+                    <th class="price">Price</th>
+                    <th> </th> 
+                </tr> 
+            </thead> 
+ 
+            <tbody>  
+                {% for item in model.items %}
+
+                <!-- For table row for desktop -->
+                    <tr class="desktop">
+                        <td class="item">{{ item.product.productCode }}</td>
+                        <td class="desc">
+                            <div class="desc-cart">{{ item.product.name }}</div>
+                            <div class="cart-error" cart-prod-code = "{{ item.product.productCode }}"></div>
+                            {% if item.product.inventory and item.product.futureDate!="undefined" %}
+                                <div class="cart-future" style="color:black">
+                                    Available on {{item.product.futureDate}}
+                                </div>
+                            {% endif %}  
+                        </td>
+                        <td class="coldpack">
+                            <span class="coldpack">
+                                {% if themeSettings.heatSensitive %}
+                                   {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
+                                        {% with aliasName.values|findwhere('value',true) as checkVal %} 
+                                            {% if checkVal %}
+                                                <img src="../resources/images/coldpack-tick.png" alt="Yes" />
+                                            {% endif %}
+                                            {% endwith %}
+                                        {% endwith %}
+                                {% endif %}    
+                            </span>
+                        </td>
+                        <td  class="qty">
+                            <select data-mz-productcode = "{{ item.product.productCode }}" data-mz-productid="{{ item.id }}">
+                                {% for qty in [1,2,3,4] %}
+                                    <option value="{{ qty }}" {% if qty == item.quantity %}selected{% endif %}>{{ qty }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="price">{{ item.total |currency }}</td>
+                        <td class="remove-item close" pcode="{{ item.product.productCode }}" data-mz-productid="{{ item.id }}"><span>X</span></td>
+                    </tr>
+                    <!-- Table row for desktop end -->
+                <!-- For table row for width <= 768px -->
+                <tr colspan="3" class="mobile cartmbl-code">
+                               <td>
+                                   <span class="cart-mblcode">Item # {{ item.product.productCode }} </span>
+                               </td>
+                </tr>
+                <tr class="mobile row1"> 
+                    <td class="desc" colspan="3">
+                    <div>{{ item.product.name }}</div> 
+                    <div class="cart-error" mob-cart-prod-code = "{{ item.product.productCode }}"></div> 
+                    {% if item.product.inventory and item.product.futureDate!="undefined" %}
+                        <div class="cart-future" style="color:black">
+                            Available on {{item.product.futureDate}}
+                        </div> 
+                    {% endif %} 
+                    </td>
+                    <td class="remove-item close" pcode="{{ item.product.productCode }}" data-mz-productid="{{ item.id }}"><span></span></td>
+                </tr>
+                    <tr class="mobile row2">
+                     
+                        <td class="unit-price">{{ item.unitPrice.saleAmount |currency }}</td>
+                        <td class="coldpack"> 
+                            <span class="coldpack">
+                               {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
+                                    {% with aliasName.values|findwhere('value',true) as checkVal %} 
+                                       {% if checkVal %} 
+                                             <font>Cold Pack</font> 
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endwith %}
+                            </span>
+                        </td>
+                        <td  class="qty">
+                            <select data-mz-productcode = "{{ item.product.productCode }}" data-mz-productid="{{ item.id }}">{% for qty in [1,2,3,4] %}<option value="{{ qty }}" {% if qty == item.quantity %}selected{% endif %}>{{ qty }}</option>{% endfor %}
+                            </select>
+                        </td> 
+                        <td class="price">{{ item.total |currency }}</td>
+                    </tr>
+                    <tr class="mobile spacer"></tr> 
+                        <!-- Table row for ipdad width <= 768px end -->
+                {% endfor %} 
+            </tbody>  
+        </table> 
+    <div class="clear-cart"><div><a href="javascript:void(0);">Clear cart</a></div>
+        <div class="future-date-msg"><span>{% if model.futureDates and model.futureDates !== "undefined" %}Your order will ship after:<br/><strong>{{model.futureDates}}</strong>{% endif %}</span></div>
+        
+        <div class="checkout-buttons">
+            <button class="checkout-button btn checkout3 mobile-checkout">Go To Checkout</button>
+            <button disabled data-mz-action="placeOrder" class="btn placeorder mobile-order order2">Submit Order</button> </div>
+        </div>
+    </div>
+    {% endif %} 
+    <div class="cart-modal">
+        <div class="cart-container">
+            <div class="cart-content">
+                <div class="cart-message">This will clear all items from your Cart.  Are you sure you want to do this?</div>
+                <div class="cart-btns">
+                    <button class="btn-no">No</button>
+                    <button class="btn-yes">Yes</button>
+                </div>
+            </div>
+        </div>
+        <div class="cart-container" style="display: none;">
+            <div class="cart-content">
+                <div class="cart-message">Your order is below the ${{ themeSettings.minimumOrderAmount }} minimum threshold. Add more products!</div>
+                <div class="cart-btns">
+                    <button class="btn-no">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

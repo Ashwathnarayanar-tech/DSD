@@ -1,0 +1,74 @@
+<footer class="mz-pagefooter">
+    <div class="mz-footer-row">
+        {% block mz-footer-row2 %}
+            <div class="mz-mobile jblogo"></div>
+        <div class="mz-footer-row2">
+            <div class="mz-wrapper">
+                <!-- FOOTER 1ST COL -->
+                    <div class="mz-column mz-column-1">
+                        <div class="mz-desktop">
+					    </div>
+					    <div class="mz-mobile">
+					    </div>
+					     {% if  user.isAuthenticated or pageContext.isEditMode %}
+					     <ul class="mz-footer-links">
+					    {% dropzone "dropzone_area_footer_1" scope="site" %}
+					    </ul>
+					    {% endif %}
+                    </div>
+                    <!-- FOOTER 2ND COL -->
+    				<div class="mz-column mz-column-2">
+    					<div class="mz-desktop">
+    					</div>
+    					<div class="mz-mobile">
+    					</div>
+    					 {% if  user.isAuthenticated or pageContext.isEditMode%}
+    					<ul class="mz-footer-links">
+    				        {% dropzone "dropzone_area_footer_2" scope="site" %}
+    					</ul>
+    					{% endif %}
+    				</div>
+				    <!-- FOOTER 3RD COL -->
+    				<div class="mz-column mz-column-3">
+    					<div class="mz-desktop"></div>
+    					<div class="mz-mobile"></div>
+    					{% if  user.isAuthenticated or pageContext.isEditMode %}
+    					<ul class="mz-footer-links">
+    					{% dropzone "dropzone_area_footer_3" scope="site" %}
+    					</ul>
+    					{% endif %}
+    				</div>
+    				<!-- FOOTER 4TH COL -->
+    				<div class="mz-column mz-column-4 dsd-borderleft">
+    					<div class="mz-desktop"></div>
+    					<div class="mz-mobile"></div>
+    					 {% if  user.isAuthenticated or  pageContext.isEditMode%}
+        					<ul class="mz-footer-links">
+
+                  {% comment %}
+        					{% dropzone "dropzone_area_footer_4" scope="site" %}
+                  {% endcomment %}
+
+                    <div class="dsd-footerright">
+                      <img src="/resources/images/new-logo-images/footerlogo.png"/>
+                      <p class="dsd-footercopytext" style="color:#a3b8c5;">&copy;  <span id="dsd-copyright-date">{% now Y %}</span> Jelly Belly Candy Company</p>
+                      <p class="dsd-footercopytext" style="color:#a3b8c5;">All rights reserved</p>
+                    </div>
+
+        					</ul>
+        				{% endif %}
+    				</div>
+    				<div class="mz-column mz-flag">
+    					<div class="mz-desktop"></div>
+    					<div class="mz-mobile"></div>
+    					{% dropzone "inernational-flag" scope="site" %}
+    				</div>
+
+                   <div class="clearfix"></div>
+                    <!-- FOOTER 2ND COL -->
+
+            </div>
+        </div>
+        {% endblock mz-footer-row2 %}
+    </div>
+</footer>

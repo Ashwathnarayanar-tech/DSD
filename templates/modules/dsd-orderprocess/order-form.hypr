@@ -1,0 +1,19 @@
+<div class="printorder"></div>
+Feature is temporarily unavailable.
+{% comment %}
+{% for category in navigation.rootCategories  %}
+    {% if not category.isEmpty %}
+        {% if category.originalId != themeSettings.misc %}
+        <div class="panel">
+        <span class="mzprintcate">{{ category.name }}</span>
+            {% with "categoryId req {0}"|string_format(category.originalId) as cid %}
+                {% include_products "modules/dsd-orderprocess/order-display" with filter=cid as_parameter   %}
+            {% endwith %}
+            </div> 
+        {% endif %}    
+    {% endif %}
+{% endfor %}
+{% endcomment %}
+   
+ 
+

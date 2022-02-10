@@ -1,0 +1,741 @@
+.order-history{
+
+    .dsd-order-history{
+        
+        .page-title-hdg {
+        padding: 10px 0px;  
+        font-size: 16px;
+        color: #0080b7;
+        }
+        .page-title-succesmsg{ 
+         
+        text-align:center;
+        
+        }
+        .page-title-succesmsg{
+            padding: 10px 0px;
+            font-size: 16px;
+            color: #747474;
+            width: 52%;
+            margin: 0 auto;
+            /* float: left; */
+            margin-left: 11%;
+            float: left;
+        .msg1{
+            margin-right: 6%;
+            /* max-height: 10px; */
+            text-align: left;
+            font-size: 14px;
+        }
+        .msg2{
+                text-align: left;
+                display: block;
+                font-size: 14px;
+        }
+        }
+        .proceedbtn{
+                margin-top: 20px;
+                text-align: right;
+                /* width: 590px; */
+                margin-right: 19.3%;
+        }
+         .acc-tab-container {
+            width: 100%;
+            border: 1px solid #ccc;
+            .collapse-icon {
+                background: url('../resources/images/plus-main.png') center center no-repeat;
+           }
+            .collapse-icon.minus{
+                    background: url('../resources/images/minus-main.png') center center no-repeat;
+            }
+            .acc-tab-link{
+                border-bottom: 1px solid #ccc;
+                cursor:pointer;
+                div.collapse-icon {
+                    width: 6%;
+                    float: left;
+                    height: 45px;
+                   
+                }  
+                div.hdg-col{
+                    width:23%;  
+                    height: 45px;
+                    float:left;
+                    padding: 13px 0px;
+                    box-sizing: border-box;
+                    div{
+                        width: 30%;
+                        text-align: right;
+                        display: inline-block;
+                        font-weight: bold;
+                    }
+                }
+            }
+            .acc-tab-content-container.active{
+                display:block;
+            }
+            .acc-tab-content-container{
+                background-color:#fbfcfc;
+                display:none;
+                &:last-child{
+                     .list-of-history-item-container, .acc-tab-link {
+                         border-bottom:none;
+                     }
+                     
+                }
+                .inner-tab-container {
+                    padding: 20px 45px;
+                    
+                    .order-details-container {
+                        padding: 15px 30px;
+                        .info-box {
+                            /* width: 47%; */
+                            border: 1px solid #ccc;
+                            background: #fff;
+                            padding: 15px;
+                            min-height:120px;
+                            margin-top:10px;
+                            .info-row div {
+                                line-height: 30px;
+                                font-size: 12px;
+                            }
+                        }
+                        .billing-info {
+                            margin-right: 4%;
+                            /* min-height: 250px; */
+                        }
+                    }
+                }
+                
+                .list-of-history-item-container {
+                    padding: 10px;
+                    font-size: 13px;
+                    border-bottom: 1px solid #ccc;
+                    
+                    .order-hdg {
+                        background: #f2f4f4;
+                        padding: 10px 20px;
+                        margin-bottom: 20px;
+                    }
+                    .order-history-lists{
+                        .list-of-order{
+                            width:100%;
+                            tr{
+                                border-bottom: 1px solid #eff2f4;
+                                height: 50px;
+                                 th{
+                                    font-weight: bold;
+                                    color: initial;
+                                  }
+                                  td{
+                                     text-align: center;
+                                     vertical-align: middle;
+                                  }
+                                td,th{
+                                  
+                                    &.checkbox{
+                                      width: 5%;      
+                                    }
+                                    &.ord-item-name{
+                                      width: 12%;
+                                    }
+                                    &.ord-desc{
+                                      width: 45%;
+                                    }
+                                    &.ord-price{
+                                       width: 9%;
+                                       text-align: right;
+                                     }
+                                     &.ord-cold-pack{ 
+                                        text-align: center;
+                                        width: 11%;
+                                        border: 0;  
+                                     }
+                                     &.ord-qty{
+                                         width: 13%;
+                                     }
+                                  }
+                                }
+                            }
+                        }
+                    
+                    
+                    .selectedd-item-details {
+                                padding: 20px 10px;
+                                width: 88%;
+                                margin:0 0 0 12%;
+                                font-size:14px;
+                                div {
+                                    text-align:center;
+                                }
+                                .ord-t-qty, .ord-t-price, .gross-weight{
+                                    width: 20%;
+                                    float: left;
+                                }
+                                .ord-submit{
+                                    width: 20%;
+                                    float: left;
+                                }
+                                .return-to-order{
+                                    width: 20%;
+                                    float: left;
+                                    .btn-proceedtocheck{
+                                        height: 30px;
+                                        width: 150px;
+                                        background: #25cc38;
+                                        background: -webkit-gradient(linear, left top, left bottom, from(#25cc38), to(#25cc38));
+                                        background: -moz-linear-gradient(top, #25cc38, #25cc38);
+                                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#25cc38', endColorstr='#25cc38');
+                                        color: white;
+                                        position: relative;
+                                        top: 3px;
+                                        margin-left: 19px;
+                                        border:none; 
+                                    }
+                                }
+                        .theme-color {
+                            font-weight: bold;
+                            color: #0080b7;
+                            /* text-align: center; */
+                            font-size: 14px;
+                        }
+                        #add-to-cart{
+                            background: #f98700;
+                            color: white;
+                            font-size: 14px;
+                            border: none;
+                            margin-top: 2%;
+                            height:30px;
+                            width: 150px;
+                            background: #f47c20;
+                            background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+                            background: -moz-linear-gradient(top, #f88e11, #f06015);
+                            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+                            &:disabled{
+                                background: #999;
+                            opacity: .5;
+                            cursor: not-allowed;
+                            }
+                        }
+                    }
+                    .proceedbtn{
+                        display:none;
+                    }
+                    .list-of-order {
+                        .font-bold{
+                            font-weight:bold;
+                        }
+                        .info-row {
+                            border-bottom: 1px solid #ccc;
+                            /* min-height: 40px; */
+                             .checkbox {
+                                 text-align: center;
+                             }
+                            .ord-qty, .checkbox, .item-name, .ord-desc, .ord-price, .cold-pack{
+                                line-height: 40px;
+                            }
+                             .ord-qty, .item-name{
+                                     text-align: center;
+                                 select{
+                                     width:50px;
+                                     height:25px;
+                                 }
+                             }
+                            
+                        }
+                       
+                    }
+                    
+                }
+                
+            }
+            
+         }
+         .width-48p{
+            width:48%;
+        }
+        .width-50p{
+            width:50%;
+        }
+        .width-10p{
+            width:10%;
+        }
+        .width-20p{
+            width:20%;
+        }
+        .width-40p{
+            width:40%;
+        }
+         .fl{ float:left;}
+         .fr{float:right;}
+        .price-change{
+            padding: 1% 0;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            clear: both;
+            width: 100%;
+        } 
+         .cl{clear:both;}
+         .capitalize {
+             text-transform:uppercase;
+         }
+        
+    }
+    #page-content{
+        padding:25px 45px;
+    }
+   
+   /*Check Box Styling*/
+   
+   .checkbox {  
+                                width: 5%;
+                                @keyframes hover-color {
+                                from {
+                                border-color: #c0c0c0; }
+                              to {
+                                border-color: #3e97eb; } 
+                                }
+                                .magic-checkbox {
+                                  position: absolute;
+                                  display: none; }
+                                
+                                .magic-checkbox[disabled] {
+                                  cursor: not-allowed; }
+                                
+                                .magic-checkbox + label {
+                                    position: relative;
+                                    display: block;
+                                    margin-left: 20px;
+                                    bottom: 4px;
+                                    cursor: pointer;
+                                    vertical-align: middle; }
+                                
+                                  .magic-checkbox + label:hover:before {
+                                    animation-duration: 0.4s;
+                                    animation-fill-mode: both;
+                                    animation-name: hover-color; }
+                                
+                                  .magic-checkbox + label:before {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    display: inline-block;
+                                    width: 11px; 
+                                    height: 11px; 
+                                    content: '';
+                                    border: 1px solid #c0c0c0; 
+                                    
+                                    }
+                                  .magic-checkbox + label:after {
+                                    position: absolute;
+                                    display: none;
+                                    content: ''; }
+                                
+                                .magic-checkbox[disabled] + label {
+                                  cursor: not-allowed;
+                                  color: #e4e4e4; }
+                                 
+                                  .magic-checkbox[disabled] + label:hover,
+                                  .magic-checkbox[disabled] + label:before,
+                                  .magic-checkbox[disabled] + label:after {
+                                    cursor: not-allowed; }
+                                
+                                  .magic-checkbox[disabled] + label:hover:before {
+                                    border: 1px solid #e4e4e4;
+                                    animation-name: none; }
+                                 
+                                  .magic-checkbox[disabled] + label:before {
+                                    border-color: #e4e4e4; }
+                                
+                                .magic-checkbox:checked + label:before {
+                                  animation-name: none; }
+                                
+                                .magic-checkbox:checked + label:after {
+                                  display: block; }
+                                
+                                
+                                .magic-checkbox + label:after {
+                                  top: 2px;
+                                  left: 4px;
+                                  box-sizing: border-box;
+                                  width: 5px;
+                                  height: 8px;
+                                  transform: rotate(45deg);
+                                  border-width: 2px;
+                                  border-style: solid;
+                                  border-color: #fff;
+                                  border-top: 0;
+                                  border-left: 0; } 
+                                
+                                .magic-checkbox:checked + label:before {
+                                  border: 1px solid #3e97eb;
+                                  background: #3e97eb; }
+                                
+                                .magic-checkbox:checked[disabled] + label:before {
+                                  border: #c9e2f9;
+                                  background: #c9e2f9; }
+    
+                                /* end .squaredFour */
+        
+                    }
+}
+
+
+/*Responsive for Ipad Device*/
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+ 
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+  .order-history {
+        .dsd-order-history {
+                .acc-tab-container {
+                    width: 100%;
+                }
+                .checkbox {
+                    .magic-checkbox + label:before {
+                        width: 15px;
+                        height: 15px;
+                    }
+                    .magic-checkbox + label:after {
+                        top: 2px;
+                        left: 4px;
+                        box-sizing: border-box;
+                        width: 7px;
+                        height: 11px;
+                    }
+                }
+        }
+    }
+}
+
+ 
+/* Ipad Portrait mode*/
+@media only screen and (max-width: 1024px) {
+    //   and (orientation: portrait)  {
+    .order-history{
+     .dsd-order-history{
+         .acc-tab-container{
+             width:100% !important;
+            .acc-tab-link{
+               font-size:11px; 
+            }
+             .acc-tab-content-container{
+                   .inner-tab-container{
+                      padding: 20px 0px;
+                      .order-details-container {
+                        .billing-info{
+                           margin-right: 0px;
+                           width:100%;
+                        }
+                        .shipping-info{
+                            margin-top:30px;
+                            width:100%;
+                        }
+                      }
+                   }
+                   .list-of-history-item-container{
+                       .order-history-lists{
+                            .list-of-order {
+                             
+                          
+                          width: 100%;
+                          thead {
+                              tr.mobile { 
+                                border: 0;   
+                              }
+                          }
+                        tr.desktop {
+                              display:none;
+                          } 
+                        .item { 
+                              display: none;   
+                            } 
+                        td {
+                            width: 25%;  
+                            
+                        }
+                        .ordermbl-code{  
+                          td{  
+                                width: 32%;  
+                                background: #dddfe0;
+                                border-right: 1px solid #d4d4d4;
+                            .ordermbl-code{   
+                                background: #dddfe0;
+                                display: inline-block;  
+                            }
+                        }
+                        
+                        }    
+                        tr.mobile { 
+                            height: 35px; 
+                            display: table-row;
+                            border: 1px solid @dsdfontcolorlightgrey; 
+                            &.spacer { 
+                                border: 0;
+                                height: 5px; 
+                            }
+                            //checkboxes including thead and tbody 
+                            .checkbox { 
+                                        text-align: right;
+                                        padding-right: 1%;
+                                        position: relative;
+                                        font {
+                                            position: absolute;
+                                            right: 30px;
+                                            top: 10px;
+                                            color: @dsdfontcolorgrey;
+                                        } 
+                                        div {
+                                            &.checkboxcustom {  
+                                                float: right;
+                                                .magic-checkbox + label:before {
+                                                        width: 20px; 
+                                                        height: 20px;  
+                                                    }
+                                                .magic-checkbox + label:after {
+                                                  top: 3px;
+                                                  left: 7px;
+                                                  width: 7px;
+                                                  height: 11px;
+                                                  }  
+                                                label {
+                                                    padding-left: 24px; 
+                                                    bottom: 9px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                              &.row1 {
+                                  
+                                    height: 35px;
+                                    font-weight: bold;
+                                    background: white;
+                                    margin-top: 5px;
+                                  
+                                  td {
+                                      text-transform: uppercase;
+                                      //vertical-align: top;  
+                                    &.ord-desc {
+                                        padding: 2% 1%;
+                                        text-align:left;
+                                    }
+                                    
+                                  }
+                                  
+                              } 
+                              &.row2 {
+                                  td { 
+                                      border: 1px solid @dsdfontcolorlightgrey; 
+                                      background: @dsdbackgroundlightgrey;
+                                      vertical-align: middle; 
+                                      text-align: center;
+                                      width: 25%;
+                                      font-weight: bold; 
+                                      &.qnty {
+                                          padding: 0; 
+                                         vertical-align: initial;
+                                        select {
+                                            padding: 0 34%;
+                                            border: 0; 
+                                            width: 100%;
+                                            height: 100%;  
+                                        } 
+                                      }
+                                      
+                                    }
+                                }
+                            }
+                  
+                            }
+                       }
+                      .selectedd-item-details{
+                       width:100%;
+                       padding: 20px 0px;
+                           margin: 0 auto;
+                       #add-to-cart{
+                           float:right;
+                               border-radius: 0;
+                       }
+                           .ord-t-qty, .ord-t-price, .gross-weight{
+                                width: 20%;
+                                float: left;
+                            }
+                            .ord-submit{
+                                width: 40%;
+                                float: left;
+                            }
+                            .return-to-order{
+                                display:none;        
+                            }
+                      }     
+                        .proceedbtn{
+                           margin-right:0px;
+                           display: block;
+                           .btn-proceedtocheck{
+                                height: 30px;
+                                width: 150px;
+                                background: #25cc38;
+                                background: -webkit-gradient(linear, left top, left bottom, from(#25cc38), to(#25cc38));
+                                background: -moz-linear-gradient(top, #25cc38, #25cc38);
+                                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#25cc38', endColorstr='#25cc38');
+                                color: white;
+                                position: relative;
+                                top: 3px;
+                                margin-left: 19px;
+                                border:none; 
+                            }
+                      } 
+                   }
+               }
+           }
+       }  
+    }
+    tbody tr.gap{
+        height: 5px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .order-history{
+        #page-content{
+            padding: 25px 4px;  
+            .dsd-order-history{
+                .acc-tab-container{
+                    width:100%;
+                   .acc-tab-link{
+                        font-size: 11px;
+                        margin-top: 20px;
+                        border: 1px solid #ccc;
+                   } 
+                   .acc-tab-content-container{
+                       .inner-tab-container{
+                          padding: 20px 0px;
+                          .order-details-container {
+                            .billing-info{
+                               margin-right: 0px;
+                            }
+                            .shipping-info{
+                                margin-top:30px;
+                            }
+                          }
+                       }
+                       .list-of-history-item-container{
+                           .selectedd-item-details{
+                                padding: 20px 0px;
+                                width: 100%;
+                                #add-to-cart{
+                                    height:42px;
+                                    border-radius:0px;
+                                    float: right;
+                                    width: 140px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .proceedbtn{
+                    margin-right: 0px;   
+                    display: block;
+                    .btn-proceedtocheck{
+                        height: 38px;
+                        width: 140px;
+                        margin-left: 0px;
+                        border:none; 
+                    }
+                }
+            }    
+        }     
+        .price-change{
+            font-size: 11px;
+        }
+    } 
+    .order-history .dsd-order-history .acc-tab-container .acc-tab-link div.collapse-icon{
+        width: 6%;
+        float: left;
+        height: 124px;
+        border-right: 1px solid #ccc;
+        vertical-align:middle;
+    }
+    .order-history .dsd-order-history .acc-tab-container .acc-tab-link div.hdg-col{
+        padding: 8px 33px;
+        /* float: right; */
+        height: auto;
+        width: auto;
+        width: 93%;
+    }
+    .dsd-order-history .acc-tab-container .acc-tab-content-container .list-of-history-item-container .order-hdg{
+      padding: 10px 4px !important;
+    }
+    .order-history .dsd-order-history .acc-tab-container .acc-tab-link div.hdg-col:nth-child(3),div.hdg-col:nth-child(5){
+        background: #f5f6f6;
+    }
+    .order-history .dsd-order-history .acc-tab-container .acc-tab-link div.hdg-col strong{
+        float:right;
+    }
+    .width-48p{
+        width:100%;  
+    }
+    .order-history .dsd-order-history .acc-tab-container{
+        border:none;
+    }
+    .order-history .dsd-order-history .acc-tab-container .acc-tab-content-container .inner-tab-container .order-details-container{
+        padding: 15px 10px;
+    }
+    .mwidthp{
+        width:35%!Important;
+    }
+    .collapse-iconformbl{
+        background: url('../resources/images/ipad-icons.png') no-repeat -8px -55px;
+        height:32px;
+        width:19px;
+        display:inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: 34%;
+        left: 2px;
+    }
+    .collapse-icon{
+        background:none!important;
+    }
+    .collapse-icon.minus{
+      .collapse-iconformbl{
+            background: url('../resources/images/ipad-icons.png') no-repeat -40px -54px;
+      }
+    }
+}
+
+@media only screen and (max-device-width: 767px) and (min-device-width: 1px) and (orientation: portrait){
+    .orderhistory-error,.orderhistory-future{
+        .notify{
+            margin:  0 0 0 2% !important;
+        }
+    }
+}
+
+//error
+
+.orderhistory-error,.orderhistory-future{
+    color: #25cc38;
+    text-align: center;
+    text-transform: initial;
+    .or-text{
+        color: #0080b7; 
+        font-weight:bold;
+    }
+    .notify{
+        margin:  0 0 0 1%;
+    }
+}
+.orderhistory-error{
+  color:red;
+}
+
+
+
+

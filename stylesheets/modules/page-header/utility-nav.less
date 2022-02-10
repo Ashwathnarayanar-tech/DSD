@@ -1,0 +1,234 @@
+
+/* utility nav */
+.mz-utilitynav {
+    color: @textColor;
+    font-size: @fontSizeSmall;
+
+    .mz-utilitynav-item {
+        &:nth-child(1) {
+            border-right: 1px solid rgba(128, 128, 128, 0.18);
+            //padding-right: 8%;
+            #mz-logout{
+                display: none;    
+            }
+        }
+        float: left; 
+        margin: 0;
+        padding: 10px;
+        //text-align: right;
+        //changing for logged in msg coz it should be aligned left
+        text-align: left;
+        font-size: 16px;
+    .profile-img {  
+        display: inline-block; 
+        //padding-right: 3%;
+        img {
+            height: 33px;
+        }
+    } 
+     
+    .loggedin-msg { 
+        display: inline-block;
+        vertical-align: middle;
+        .logged-in-as {
+            color: #747474;
+        }
+        #mz-logged-in-notice {
+        font-weight: bold;
+            a{
+                text-decoration: none;
+                cursor: auto; 
+            }
+        }
+        
+    }
+        &:last-child { 
+            //padding-left: 3%;
+            padding-top: 6%;
+            //text-align: center;
+            a {
+            color: #00a3e0;
+        }
+            //padding-right: 0;
+            //text-align: right;
+        }
+    }
+
+    .mz-utilitynav-link {
+        .permalink(@textColor);
+    }
+
+}
+
+
+
+@media screen and (max-width: 766px) {   
+ 
+    .mz-pageheader nav.mz-utilitynav { 
+        width: 57%;
+        padding: 0; 
+        .mz-utilitynav-list {
+            float: right;
+            .mz-utilitynav-item {
+                font-size: 12px; 
+                padding: 3px 0; 
+            .profile-img {   
+                img {
+                    height: 20px; 
+                }
+            } 
+             
+            .loggedin-msg { 
+                .logged-in-as {
+                    color: #747474;
+                }
+                #mz-logged-in-notice { 
+                font-weight: normal; 
+                
+                }
+                
+            }
+                &:last-child {  
+                    padding-top: 0;
+                    border: 0;
+                    a {
+                        color: initial; 
+                    }
+                   #mz-logout{
+                       display: block;
+                    a { 
+                        color: #00a3e0;
+                        font-size: 11px;
+                        font-weight: bold;
+                    }
+                }
+                }
+            }
+        }
+    
+        .mz-utilitynav-link {
+            .permalink(@textColor);
+        }
+
+    }
+   .mobile-menu{
+        position: fixed;
+        height: 100%;
+        width: 88%;
+        top: 0;
+        left: 0;
+        background-color: #fff; 
+        z-index: 1;
+        opacity: 1;
+        display:none;
+        .mbllogo{
+       img{
+           width:50%;  
+           
+       }
+    body{
+         overflow: hidden!important;
+    }
+   }
+   .mblmenu{
+       
+       padding:15px;
+   }
+     [class*='mz-cms-col-'] .mz-cms-content{
+           padding:0px;
+        ul{ 
+            padding: 0;
+            margin: 0;
+        li{
+             
+        .mz-sitenav-link{
+            text-decoration: none;
+             display: block;
+             font-size:18px;
+            padding: 13px 20px;
+             &:hover {
+                      background:#f2f2f2;
+                      color:#0079b1;
+                }
+            }
+         }
+        }
+       
+       }
+     .loggedin-msg{
+            padding: 10px;
+            font-size: 18px;
+            /*position: absolute;
+            bottom: -21px;*/
+            position: relative;
+            bottom: -22%;
+            width: 94%;
+    
+        .bor{
+        border-top:1px solid #ccc;     
+         }
+        .logged-in-as{
+        padding-top: 18px;
+        color: #999999;
+            font-size: 16px
+        }    
+        #mz-logged-in-notice{
+         display:inline-block;
+        a{
+            text-decoration:none;
+            color:#333333;
+            font-weight: bold;
+        }
+        }
+        #mz-logout{
+        display: inline-block;
+        float: right;
+        border-left: 1px solid #ccc;
+        min-height: 45px;
+        position: relative;
+        top: -24px;
+        a{
+            padding-left: 20px;
+            position: relative;
+            top: 10px;
+            color:#0079b1;
+            text-decoration:none;
+            font-weight: bold;
+         }
+        }
+     }
+   
+    .mblclose{
+        background: url('../resources/images/mblmenuclose.png') no-repeat;
+        height: 20px;
+        width: 27px;
+        display: inline-block;
+        background-size: contain;
+        float: right;
+        margin-top: 10px;
+    }   
+   }
+    
+    
+    body{ 
+        position:relative;
+       
+    }
+
+}
+
+
+.mobile-menu{
+    display:none;
+}
+
+
+
+
+
+
+
+
+
+
+

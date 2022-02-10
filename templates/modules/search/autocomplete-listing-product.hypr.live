@@ -1,0 +1,66 @@
+{% extends "modules/common/item-listing" %}
+
+{% block module-classes %}mz-itemlisting-autocomplete mz-itemlisting-autocomplete-product{% endblock module-classes %}
+
+
+{% block item-listing-image %} 
+{% comment %}
+<div class="mz-itemlisting-thumb">
+    {% with model.content.productImages|first as image %}
+    {% if image.imageUrl %}
+    <img class="mz-itemlisting-thumb-img" src="{% make_url "image" image with max=80 as_parameters %}" {% if image.altText %}alt="{{ image.altText }}"{% endif %} />
+    {% endif %}
+    {% endwith %}
+</div>  
+{% endcomment %}
+{% endblock %} 
+  
+{% block item-name %}
+ 
+    <a data-mz-stock="{% if model.inventoryInfo.manageStock %}{{ model.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}" class="mz-itemlisting-title" 
+    {% with model.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}
+        {% if aliasName %}
+            {% with aliasName.values|findwhere('value',true) as checkVal %}
+                {% if checkVal %}data-mz-iscoldpack="yes"{% else %}data-mz-iscoldpack="no"{% endif %}
+            {% endwith %}
+        {% else %} 
+            {% with model.properties|findwhere('attributeFQN','tenant~isheatsensitive') as heat %}
+                {% if heat %}
+                    {% with heat.values|findwhere('value',true) as checkVals %}
+                        {% if checkVals %}data-mz-iscoldpack="yes"{% else %}data-mz-iscoldpack="no"{% endif %}
+                    {% endwith %}
+                {% else %} 
+                    data-mz-iscoldpack="no"
+                {% endif %}
+            {% endwith %}    
+        {% endif %}
+        
+    {% endwith %} 
+    data-mz-weight="{{ model.measurements.packageWeight.value }}" 
+    data-mz-price="{{ model.price.price }}" data-mz-productcode="{{ model.productCode }}"  data-mz-productname="{{ model.content.productName }}" 
+    href="javascript:void(0);">{{ model.content.productName }}</a>
+{% endblock item-name %}  
+ 
+{% block item-details %}
+{% if model.inventoryInfo.manageStock  and model.inventoryInfo.onlineStockAvailable == 0 %}  
+<div style="color:red">Out of Stock</div> 
+{% endif %}
+{% comment %}  
+<div class="mz-itemlisting-description">
+    
+ {% with model.properties|findwhere('attributeFQN','tenant~is-heat-sensitive-product') as aliasName %}  
+                        {% with aliasName.values|findwhere('value',true) as checkVal %} 
+                   
+                            {% if checkVal %}yes{% else %}no{% endif %}{% endwith %}{% endwith %}
+</div>
+
+{% with model.properties |first as heatsensitive %}{% with heatsensitive.values| first as values  %}{% if values.value %}yes{% else %}no{% endif %}{% endwith %}{% endwith %}
+
+{% endcomment %}
+{% endblock %}
+
+ 
+
+
+
+

@@ -1,0 +1,103 @@
+
+<div class="store-search-container new-store tabs">
+    <div class="store-search-part">
+        <div class="store-label">Store Lookup</div>
+        <div class="search-field-contain">
+            <div class="search-field">  
+                <input class="search-store" type="input" id="search-store" minlength="3" placeholder="Enter a Store Name or Account Number" />
+                <div class="search-button-contain"> 
+                    <button class="search-store-submit" value="Go">Go</button>  
+                </div> 
+                <p class="before-search-msg">Type in at least 3 characters of the store name (ex:"Kand" will yield all stores with "Kandy" in the name).
+This partial-and-exact-match system means entries must exactly match at least some of the store name.</p>
+            <p class="error-search-msg"></p>
+            </div>
+            <div class="clear"></div>
+        </div> 
+    </div>
+    <div class="clear"></div>  
+    <div class="store-search-result">
+        <div class="items-range-paigination">
+            <p class="after-search-msg">Search results</p>
+            <div class="result-head">
+                <div class="pagination top">
+                    <span class="item prev"><</span><span class="item curr" name="1">1</span><font class="page-no"></font><span class="item next">></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="pagination-divider"></div>
+        <div class="acc-tab-container search-store">  
+            <!--Table for devices with width <=768 -->
+            <table class="table table-responsive">   
+                <thead>
+                    <tr>
+                        <td>Order Date</td> 
+                        <td class="store-sort-accnum">Account No.<div></div></td>
+                        <td class="store-sort-name">Store Name<div></div></td> 
+                        <td>&nbsp</td> 
+                    </tr>
+                </thead>
+                <tbody class="recent-address">
+                    {% for item in model.sortresult %}
+                        <tr class="desktop" >
+                            <td>
+                                <div style="position: relative">
+                                    <span class="collapse-icon"></span> 
+                                    <span style="padding-left: 27%"> {% if item.lastorderdate %}{{item.lastorderdate}}{% else%}N/A{% endif%}</span>
+                                </div>
+                            </td>
+                            <td class="acc-num"> 
+                                <div>{{item.accountnumber}}</div>
+                            </td>
+                            <td>
+                                <div class="new-store-name">      
+                                    <p class="str-name">{{item.storename}} - {{item.city}}</p>
+                                </div>
+                            </td>
+                            <td>   
+                                <button class="select-txt" token="{{item.token}}" host="{{item.host}}" username="{{item.username}}" >Select</button>
+                            </td> 
+                        </tr>     
+                        <tr class="desktop bg-grey address" style="display:none;">
+                            <td></td>  
+                            <td></td> 
+                            <td colspan="4">
+                                <div class="address-container">
+                                    {{ item.address1}}<br> {% if item.address2 != null %} {{item.address2}} <br> {% endif %} {% if item.address3 != null %} {{ item.address3 }} <br> {% endif %} {{item.city}}, {{item.state}}  {{item.zip}}
+                                </div> 
+                            </td>
+                        </tr>
+                        <tr class="mobile search-result" >
+                            <td colspan="5">  
+                                <div class="new-store-name"><span class="str-name">{{item.storename}}  - {{item.city}}</span></div> 
+                                <div class="address"> {{item.address1}}<br> {% if item.address2 != null %} {{item.address2}} <br> {% endif %} {% if item.address3 != null %} {{item.address3}} <br> {% endif %} {{item.city}}, {{item.state}} {{item.zip}}</div> 
+                            </td>
+                        </tr> 
+                        <!--<tr class="row2"><th colspan="2"><div >Order Date</div></th><th colspan="2"><div>Account No.</div></th></tr> -->
+                        <tr class="bg-grey mobile search-result">    
+                            <td colspan="2"> 
+                                <div >Order Date</div> 
+                                <div class="order-date"><span> {% if item.lastorderdate %}{{item.lastorderdate}}{% else%}N/A{% endif%}</span></div>
+                            </td>
+                            <td colspan="2">
+                                <div>Account No.</div>
+                                <div class="account-no">{{item.accountnumber}}</div>
+                            </td>
+                            <td colspan="2" class="store-select-td"><button class="select-txt" token="{{item.token}}"  username="{{item.username}}" host="{{item.host}}" >Select</button></td>
+                        </tr>  
+                        <tr class="spacer mobile search-result"></tr> 
+                    {% endfor %}
+                </tbody>
+            </table>
+                              <!-- Responsive table end-->
+        </div>
+        <div class="result-head">
+        <div class="pagination">
+            <span class="item prev"><</span><span class="item curr" name="1">1</span><font class="page-no"></font><span class="item next">></span>
+        </div>
+        <div class="clear"></div>
+    </div>                    
+</div>
+
+

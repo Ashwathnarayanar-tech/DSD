@@ -1,0 +1,40 @@
+<div class="mz-messagebar" data-mz-message-bar>
+    {% if model.length > 0 %}
+    <ul class="is-showing mz-errors">
+        {% for msg in model %}
+            {%if msg.message == "You should receive an email with instructions to reset your password shortly."%}
+            <li style="#36abe2">
+                {{ msg.message|safe }}</li>
+            {%else%}
+                {% if msg.message == "Missing or invalid parameter: password Password must be different from the previous 4 utilized passwords."%}
+                    <li>{{ themeSettings.differentFromPreviousPasswords }}</li>
+                {%else%}
+                    {% if msg.message == "Missing or invalid parameter: password Invalid password format."%}
+                        <li>{{ themeSettings.resetPasswordEntered}}</li>
+                    {%else%}
+                            {% if msg.message == "EmailAddress already associated with a login" %}
+                                    <li>{{ themeSettings.alreadyassociated }}</li>
+                                      {% else %}
+                            {% if msg.message == "Invalid email address." %}
+                                    <li>{{ themeSettings.validEmialSignUp }}</li>
+                                      {% else %}
+                            {% if msg.message == "Passwords must match."%}
+                                <li>{{ themeSettings.passwordNotMatch }}</li>
+                            {% else %}
+                             {% if msg.message == "Provide both password." %}
+                                    <li>{{ themeSettings.validPassword }}</li>
+                                      {% else %}
+                                <li>{{ msg.message|safe }}</li>
+                                {% endif %}
+                            {% endif %}    
+                        {%endif%} 
+                    {%endif%}
+                {%endif%}
+            {%endif%} 
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+

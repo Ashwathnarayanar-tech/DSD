@@ -1,0 +1,1238 @@
+.assortment-order{
+    .mobile {
+        /*  display: none; */ 
+    }
+    .accordion-container, .tips, .search-box {
+        padding: 2%;
+        clear: both;
+        .click-minus-msg {
+            display: none;
+        }
+    }
+    .alerts {
+        display: none;
+        clear: both;
+        padding: inherit;
+        width: 60%;
+    }
+    .stock-info {
+        color:red;
+    }
+    #searchbox {
+      position: relative;
+      .tt-dropdown-menu {
+        position: absolute; 
+        top: 100%; 
+        left: 0px; 
+        z-index: 100; 
+        display: block; 
+        right: auto;
+        height: 200px;
+        overflow-y: auto;
+        padding: 0px;
+        .tt-suggestion {
+          padding: 0px !important;
+          width: 100% !important;
+          box-sizing: border-box;
+          display: inline-block;
+          .mz-itemlisting {
+            padding: 0px 15px !important;
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            .mz-itemlisting-details {
+              display: inline-block;
+              width: 100%;
+              max-width: 100% !important;
+              padding: 5px 0px !important;
+              margin-right: 0px !important;
+            }
+            a {
+              display: inline-block;
+              width: 100%;
+              box-sizing: border-box;
+              padding: 5px 0px 5px;
+            }
+            .outofstock {
+              padding-top: 0px;
+            }
+            &:hover {
+                background: #f4f4f4;
+                a {
+                  text-decoration: underline;
+                }
+              }
+          }
+        }
+      }
+      .tt-dropdown-menu.itemsnotfound {
+        height: 60px;
+        .tt-suggestions {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            padding: 15px;
+        }
+      }
+    }     
+    #search-result-table-container {
+                display: none;
+                padding: 1%;
+                border: 1px solid silver;
+                padding: 0 0% 6% 0%;
+                .cart-table {
+                    width: 100%;
+                    thead tr {
+                        background: @dsdbackgroundlightgrey;
+                    }
+                    tr {
+                        border-bottom: 1px solid @dsdbackgroundlightgrey;
+                        height: 50px;
+                        
+                        
+                        th { 
+                            font-weight: bold;
+                            color: initial;
+                            &.qnty { 
+                                padding-top: 0;
+                                 
+                            } 
+                            td {
+                                color: initial;
+                            }
+                        }
+                        }
+                    td,th {
+                        text-align: left; 
+                        padding: 0 1%;
+                       font-size: 12px;    
+                       vertical-align: middle;
+                       word-wrap: break-word;
+                    &.qnty {
+                        width: 13%;
+                        padding-top: 2%;
+                        select {
+                    border: 1px solid #a7a7a7;
+                    padding: 0; 
+                    width: 40px;
+                    height: 25px;
+                    color: @dsdfontcolorgrey;
+                    background: inherit;
+                 } 
+                    }
+                
+                   &.is-coldpack, &.coldpack {
+                       text-align: center;
+                       width: 11%;
+                       border: 0;
+                       img {
+                           width: 30%;
+                       }
+                      
+                   }
+                   &.item {
+                       width: 12%;
+                   }
+                   &.desc {
+                           width: 45%; 
+                   }
+                   &.price {
+                        width: 9%;
+                    }
+                    
+                } 
+        }
+        .buttons-searchtable {
+            padding: 2%; 
+            .remove-item {
+                float: left;
+                font-size: large;
+                text-decoration: underline;
+                background: none;
+                border: 0;
+                color: @dsdfontcolorblue;
+            }
+                
+            
+            .atc-btn {
+                float: right;
+                font-size: large; 
+                .jb-button-bg();
+                color: white;
+                padding: 2% 4%;
+                border: 0;
+				        width: 170px;
+                display: none;
+                &.active{
+                  display: block;
+                }
+            }
+            .notify-button{  
+              float: right;
+              font-size: large;
+              color: white;
+              padding: 2% 4%;
+              border: 0;
+              width: 170px;
+              display: none;
+              background: lightgrey !important;
+              &.active{
+                display: block;
+              }
+            }
+        }
+                
+            }
+    .assortment-container {
+            color: @dsdfontcolorgrey;
+            .add-allto-cart {
+                .atc.addAllToCart {
+                    float: right;
+                    font-size: large; 
+                    .jb-button-bg();
+                    color: white;
+                    padding: 2% 4%;
+                    border: 0;
+            	    	width: 30%;
+                		margin: 2% 0;
+                }
+            }
+            button.accordion {
+            background-color: white;
+            //color: initial !important;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left; 
+            border: 1px solid silver;
+            outline: none;
+            transition: 0.4s;
+            .acc-image {
+                background: url('../resources/images/previousorder-plus.png') no-repeat;
+                background-size: 20px 20px;
+                width: 28px;
+                height: 28px;
+                padding: 4px 4%;
+            }
+            p {
+                span {
+                    color: initial;
+                }
+            }
+            
+            
+            &.active {
+                .acc-image { 
+                    background-color: @dsdbackgroundlightgrey;
+                    background: url('../resources/images/previousorder-minus.png') no-repeat;
+                    background-size: 20px 20px;
+                    width: 28px;
+                    height: 28px;
+                    padding: 4px 4%;
+                    }
+            }
+            &:hover {
+                background-color: @dsdbackgroundlightergrey;
+                transition: 0.6s ease-in-out;
+            }
+             
+        }
+        .description {
+                color: @dsdfontcolorgrey;
+                font-size: 16px;
+                font {
+                    color: initial;
+                }
+            } 
+        div.panel { 
+            padding: 0 1.5%;
+            background-color: @dsdbackgroundlightergrey;
+            color: #666;
+            max-height: 0;
+            overflow: hidden; 
+            transition: 0.3s ease-in-out;
+            opacity: 0; 
+            display: none;
+            
+                &.show {
+                    //display: block !important;
+                    opacity: 1;
+                    //max-height: initial;
+                    max-height: none;
+                    border-top: 1px solid #ccc;
+                    border-bottom: 1px solid #ccc;
+                    //transition: 0.6s ease-in-out;
+                    
+                     
+                } 
+                .cart-table {
+                   
+                    tr { 
+                        border-bottom: 1px solid @dsdbackgroundlightgrey;
+                        height: 50px;
+                            th { 
+                                font-weight: bold;
+                                color: initial;
+                                &.qnty {
+                                    padding-top: 0;
+                                    
+                                } 
+                            }
+                        }
+                    td,th {
+                        text-align: left; 
+                        padding: 0 1%;
+                       font-size: 12px;   
+                       vertical-align: middle;
+                       word-wrap: break-word;
+                        &.checkbox {
+                                width: 5%;
+                                @keyframes hover-color {
+                                from {
+                                border-color: #c0c0c0; }
+                              to {
+                                border-color: #3e97eb; } }
+    
+    
+                                .magic-checkbox {
+                                  position: absolute;
+                                  display: none; }
+                                
+                                .magic-checkbox[disabled] {
+                                  cursor: not-allowed; }
+                                
+                                .magic-checkbox + label {
+                                    position: relative;
+                                    display: block;
+                                    padding-left: 30px;
+                                    //right: 6px;
+                                    bottom: 9px;
+                                    cursor: pointer;
+                                    vertical-align: middle; }
+                                
+                                  .magic-checkbox + label:hover:before {
+                                    animation-duration: 0.4s;
+                                    animation-fill-mode: both;
+                                    animation-name: hover-color; }
+                                
+                                  .magic-checkbox + label:before {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    display: inline-block;
+                                    width: 11px; 
+                                    height: 11px; 
+                                    content: '';
+                                    border: 1px solid #c0c0c0; 
+                                    
+                                    }
+                                  .magic-checkbox + label:after {
+                                    position: absolute;
+                                    display: none;
+                                    content: ''; }
+                                
+                                .magic-checkbox[disabled] + label {
+                                  cursor: not-allowed;
+                                  color: #e4e4e4; }
+                                 
+                                  .magic-checkbox[disabled] + label:hover,
+                                  .magic-checkbox[disabled] + label:before,
+                                  .magic-checkbox[disabled] + label:after {
+                                    cursor: not-allowed; }
+                                
+                                  .magic-checkbox[disabled] + label:hover:before {
+                                    border: 1px solid #e4e4e4;
+                                    animation-name: none; }
+                                 
+                                  .magic-checkbox[disabled] + label:before {
+                                    border-color: #e4e4e4; }
+                                
+                                .magic-checkbox:checked + label:before {
+                                  animation-name: none; }
+                                
+                                .magic-checkbox:checked + label:after {
+                                  display: block; }
+                                
+                                
+                                .magic-checkbox + label:after {
+                                  top: 2px;
+                                  left: 4px;
+                                  box-sizing: border-box;
+                                  width: 5px;
+                                  height: 8px;
+                                  transform: rotate(45deg);
+                                  border-width: 2px;
+                                  border-style: solid;
+                                  border-color: #fff;
+                                  border-top: 0;
+                                  border-left: 0; } 
+                                
+                                .magic-checkbox:checked + label:before {
+                                  border: 1px solid #3e97eb;
+                                  background: #3e97eb; }
+                                
+                                .magic-checkbox:checked[disabled] + label:before {
+                                  border: #c9e2f9;
+                                  background: #c9e2f9; }
+    
+                                /* end .squaredFour */
+        
+                    }
+                    &.qnty {
+                        width: 13%;
+                        padding-top: 2%;
+                    }
+                   &.coldpack {
+                       text-align: center;
+                       width: 11%;
+                       border: 0;
+                       img {
+                           width: 30%;
+                       }
+                      
+                   }
+                   &.item {
+                       width: 12%;
+                   }
+                   &.desc {
+                           width: 45%;
+                   }
+                   &.price {
+                        width: 13%;
+                    }
+                    
+                } 
+        }
+        .summary {
+                padding: 3%;
+                table {
+                display: inline-table;
+                width:60%;
+            
+                td {
+                    text-align: left;
+                    color: @dsdfontcolorblue;
+                    font-weight: bold; 
+                    font-size: larger;
+                }
+                th { 
+                    font-weight: normal;
+                    text-align: left; 
+                    color: @dsdfontcolorgrey;
+                }
+                }
+            button {
+                font-size: large; 
+                .jb-button-bg();
+                color: white;
+                padding: 2% 8%;
+                border: 0;
+                float: right;
+            }
+        }
+                select {
+                    border: 1px solid #a7a7a7;
+                    padding: 0;
+                    width: 40px;
+                    height: 25px;
+                    color: @dsdfontcolorgrey;
+                 } 
+            }
+            
+        .message {
+            padding: 2% 1%;
+            font-size: medium;
+            
+        }
+        button.checkout-button {
+                font-size: large; 
+                .jb-button-bg();
+                color: white;
+                padding: 2% 4%;
+                border: 0;
+                //float: right;
+            }
+    
+    }
+}  
+/* Ipad Portrait mode*/
+@media only screen 
+  //and (min-width: 768px)   
+  and (max-width: 1024px) {
+    //   and (orientation: portrait)  {
+    
+    
+        .assortment-order { 
+            .assortment-container{ 
+              .add-allto-cart{ 
+                .atc.addAllToCart{
+                  width: 37%;
+                }
+              }
+            }
+
+             .accordion-container, .tips {
+                padding: 0; 
+                
+            }
+            .search-box {
+                padding: 0; 
+                margin: 4% 0; 
+                    .search-text {
+                        font-size: inherit;
+                        font-weight: bold;
+                    } 
+                
+            }
+                .assortment-container {
+                    
+                    #search-result-table-container {
+                        border: 0;
+                        padding: 0 0 10% 0;
+                        table {
+                              //apply the table styles for search table also
+                          width: 100%;
+                          thead {
+                              tr.mobile { 
+                                border: 0;   
+                              }
+                          }
+                        tr.desktop {
+                              /*  display: none; */
+                          } 
+                        .item { 
+                             /*  display: none; */   
+                            } 
+                        td {
+                            width: 25%;  
+                            
+                        }
+                           
+                        tr.mobile { 
+                            height: 35px; 
+                            display: table-row;
+                            border: 1px solid @dsdfontcolorlightgrey; 
+                            &.spacer { 
+                                border: 0;
+                                height: 5px; 
+                            }
+                             &.itemno {
+                                height: 20px;
+                                background: @dsdfontcolorlightgrey;
+                                border: 0;
+                            }
+                            //checkboxes including thead and tbody 
+                            .checkbox { 
+                                        text-align: right;
+                                        padding-right: 1%;
+                                        position: relative;
+                                        font {
+                                            position: absolute;
+                                            right: 30px;
+                                            top: 10px;
+                                            color: @dsdfontcolorgrey;
+                                        } 
+                                        div {
+                                            &.checkboxcustom {  
+                                                float: right;
+                                                .magic-checkbox + label:before {
+                                                        width: 20px; 
+                                                        height: 20px;  
+                                                    }
+                                                .magic-checkbox + label:after {
+                                                  top: 3px;
+                                                  left: 7px;
+                                                  width: 7px;
+                                                  height: 11px;
+                                                  }  
+                                                label {
+                                                    padding-left: 24px; 
+                                                    
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                              &.row1 {
+                                  
+                                    height: 35px;
+                                    font-weight: bold;
+                                    background: white;
+                                    margin-top: 5px;
+                                  td {
+                                      text-transform: initial;
+                                      //vertical-align: top;  
+                                    &.desc {
+                                        padding: 2%; 
+                                    }
+                                    
+                                  }
+                                  
+                              } 
+                              &.row2 {
+                                  td { 
+                                      border: 1px solid @dsdfontcolorlightgrey; 
+                                      background: @dsdbackgroundlightgrey;
+                                      vertical-align: middle; 
+                                      text-align: center;
+                                      width: 25%;
+                                      font-weight: bold; 
+                                      &.qnty {
+                                          padding: 0; 
+                                         vertical-align: initial;
+                                        select {
+                                            padding: 0 34%; 
+                                            background: white; 
+                                            border: 0; 
+                                            width: 100%;
+                                            height: 34px;
+                                            margin: 0;  
+                                        }
+                                      }
+                                      
+                                    }
+                                }
+                            }
+                        }
+                        .desktop {
+                          /*  display: none; */
+                        }
+                        .mobile {
+                            display: table-row; 
+                        } 
+                    }
+                    div {
+                        &.description {
+                            p {
+                                font-size: 11px;  
+                            }
+                        }
+                        .accordion {
+                          &.active {
+                              background: none; 
+                          }  
+                        }  
+                        .panel {
+                            background: none; 
+                            &.show { 
+                                border-left: 1px solid #ccc;
+                                border-right: 1px solid #ccc;
+                            }
+                .cart-table-container {
+                    clear: both;  
+                    table {
+                          
+                          width: 100%;
+                          thead {
+                              tr.mobile { 
+                                border: 0;   
+                              }
+                          }
+                        tr.desktop {
+                              /*  display: none; */
+                          } 
+                        .item { 
+                             /*  display: none; */ 
+                            } 
+                        td {
+                            width: 25%;  
+                            
+                        }
+                           
+                        tr.mobile { 
+                            height: 35px; 
+                            display: table-row;
+                            border: 1px solid @dsdfontcolorlightgrey; 
+                            &.spacer { 
+                                border: 0;
+                                height: 15px; 
+                            } 
+                            &.itemno {
+                                height: 20px;
+                                background: @dsdfontcolorlightgrey;
+                                border: 0;
+                            }
+                            //checkboxes including thead and tbody 
+                            .checkbox { 
+                                        text-align: right;
+                                        padding-right: 1%;
+                                        position: relative;
+                                        font {
+                                            position: absolute;
+                                            right: 30px;
+                                            top: 10px;
+                                            color: @dsdfontcolorgrey;
+                                        } 
+                                        div {
+                                            &.checkboxcustom {  
+                                                float: right;
+                                                .magic-checkbox + label:before {
+                                                        width: 20px; 
+                                                        height: 20px;  
+                                                    }
+                                                .magic-checkbox + label:after {
+                                                  top: 3px;
+                                                  left: 7px;
+                                                  width: 7px;
+                                                  height: 11px;
+                                                  }  
+                                                label {
+                                                    padding-left: 24px; 
+                                                    
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                              &.row1 {
+                                  
+                                    height: 35px;
+                                    font-weight: bold;
+                                    background: white;
+                                    margin-top: 5px;
+                                  td {
+                                      text-transform: initial;
+                                      //vertical-align: top;  
+                                    &.desc {
+                                        padding: 2% 0 2% 1%; 
+                                    }
+                                    
+                                  }
+                                  
+                              } 
+                              &.row2 {
+                                  td { 
+                                      border: 1px solid @dsdfontcolorlightgrey; 
+                                      background: @dsdbackgroundlightgrey;
+                                      vertical-align: middle; 
+                                      text-align: center;
+                                      width: 25%;
+                                      font-weight: bold; 
+                                      &.qnty {
+                                          padding: 0; 
+                                         vertical-align: initial;
+                                        select {
+                                            padding: 0 34%;
+                                            border: 0; 
+                                            width: 100%;
+                                            height: 34px;  
+                                            margin: 0;
+                                        } 
+                                      }
+                                      
+                                    }
+                                }
+                            }
+                    }
+                       
+                    }
+                }
+            }
+        }
+    }
+} 
+@media screen and (max-width: 760px) {
+  .assortment-order {        
+    .assortment-container {
+      div .panel .cart-table-container table tr.mobile.row2 td.qnty select {
+        height: 34px;
+        padding: 0 23%;
+        margin: 0; 
+      }   
+      button.accordion{ 
+        span.acc-image, button.accordion.active span.acc-image {
+          //padding: 2px 6%;
+        }
+        .acc-image {
+          padding: 4px 4%; 
+        }
+        &.active .acc-image{
+          padding: 4px 4%;
+        }
+      }
+      #search-result-table-container table tr.mobile.row2 td.qnty select {
+        height: 34px;
+        padding: 0 23%;
+        margin: 0;
+      }
+      div.panel{ 
+        .summary{ 
+          button{
+            margin-bottom: 6px; 
+          }
+        }
+      }
+      .add-allto-cart{ 
+        .atc.addAllToCart{
+          width: 45%;
+        }
+      }
+    }
+    .mz-searchbox .mz-searchbox-input{
+      padding: 1.8%;
+    }
+    .search-box { 
+      .search-text {
+        padding: 2px; 
+        font-size: 14px;  
+        display: block; 
+        width: 100%; 
+        text-align: left; 
+      }   
+      .mz-searchbox-field {
+        border: 1px solid silver;
+        height: 45px;
+        width: 100%;
+        border-radius: 3px; 
+      }
+    }
+  } 
+}
+
+
+// notify me
+.notify{
+    color: #0080b7;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0 0 0 2%;
+    cursor: pointer;
+}
+.assort-future{
+    .or-text{
+        color: #0080b7;
+        font-weight: bold;
+    }
+    .notify{
+        margin: 0 0 0 1%;
+    }
+} 
+@media only screen and (max-device-width: 767px) and (min-device-width: 1px) and (orientation: portrait){
+    .assort-future{
+        font-size: 11px;
+        .notify{
+            margin: 0 0 0 2% !important;
+        }
+    }    
+}
+
+//styles for lightbox
+#cboxOverlay{
+    opacity: 1;
+    cursor: pointer;
+    visibility: visible;
+    height: 100%;
+    position: fixed !important;
+    top: 0px;
+    width: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.84);
+    z-index: 1;
+}
+#colorbox {
+    display: block;
+    visibility: visible;
+    left: 32% !important;
+    position: absolute;
+    width: 36% !important;
+    height: auto !important;
+    border: none;
+    overflow: hidden;
+    z-index: 3;
+    outline: none;
+    border: none;
+	&:focus {
+        outline: 0;
+    }   
+    #cboxWrapper{
+        height: auto !important;
+         width: 100% !important;
+        #cboxContent {
+            position: relative;
+            z-index: 99;
+            float: left;
+            width: 100% !important;
+            height: auto !important;
+            border: none;
+            
+            #cboxLoadedContent {
+                border-radius: 10px;
+                width: 100% !important;
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                -moz-box-shadow: 0 0 10px 0px #81b8ef; 
+                -webkit-box-shadow: 0 0 10px 0px #81b8ef;
+                box-shadow: 0 0 10px 0px #81b8ef;
+                height: auto !important;
+                
+                #notify-me-dialog{
+                    padding: 37px 22px;
+                    
+                    #notify-me-email{
+                        margin-top: 10px;   
+                        width: 40%;
+                        box-sizing: border-box;
+                    }
+                    #notify-me-button{
+                        background: #39A857;
+                        color: #ffffff;
+                        padding: 5px 12px;
+                        margin-left: 5px;
+                        cursor: pointer;
+                    }
+                    .notify-error{
+                        color: #dc0909;
+                        display: none;
+                    }
+                }
+            }
+            #cboxClose {
+                background: url("../resources/images/close-popup.png") no-repeat scroll 0px 0px #fff !important;
+                border: 0 none;
+                box-shadow: none;
+                height: 25px;
+                position: absolute;
+                right: 11px;
+                text-indent: -9999px;
+                top: 10px;
+                width: 27px;
+                display: none;
+            }
+        }
+    }
+}
+//styles for lightbox
+#colorbox {
+    z-index: 99999;
+	&:focus {
+        outline: 0;
+    }
+
+    #cboxContent {
+        #cboxClose {
+            /* background: url("../resources/images/icons/close-popup.png") no-repeat scroll 0px 0px #fff !important; */
+            border: 0 none;
+            box-shadow: none;
+            height: 25px;
+            position: absolute;
+            right: 11px;
+            text-indent: -9999px;
+            top: 10px;
+            width: 27px;
+        }
+    }
+
+}
+
+.modal-scroll{
+    overflow: hidden;
+}
+
+@media only screen  and (min-width: 1px) and (max-width: 767px) and (orientation: portrait)  {
+    //styles for lightbox
+    #colorbox {
+        left: 2% !important;
+        width: 96% !important;
+      //  top: 35% !important;
+        #cboxWrapper{
+            #cboxContent{
+                position: absolute;
+                top:200px;
+                #cboxLoadedContent{
+                    #notify-me-dialog{
+                        padding: 37px 10px;
+                        #notify-me-email{
+                            width: 60%;
+                            box-sizing: border-box;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen  and (min-width: 1px) and (max-width: 767px) and (orientation: landscape)  {
+    //styles for lightbox
+    #colorbox {
+        left: 20% !important;
+        width: 60% !important;
+      //  top: 35% !important;
+       #cboxWrapper{
+           #cboxContent{
+                position: absolute;
+                top:100px;
+                #cboxLoadedContent{
+                    #notify-me-dialog{
+                        padding: 37px 10px;
+                        #notify-me-email{
+                            width: 50%;
+                            box-sizing: border-box;
+                        }
+                    }
+                }
+           }
+       }
+    }
+}
+
+@media only screen  and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait)  {
+    //styles for lightbox
+    #colorbox {
+        left: 20% !important;
+        width: 60% !important;
+      //  top: 35% !important;
+      
+        #cboxWrapper{
+            #cboxContent {
+                #cboxClose {
+                    right: 14px;
+                    top: 12px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen  and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)  {
+    //styles for lightbox
+    #colorbox {
+        left: 25% !important;
+        width: 50% !important;
+      //  top: 35% !important;
+    }
+}
+@media screen and (min-width: 1px) and (max-width: 380px){
+    #colorbox{ 
+        width: 96% !important;
+        left: 2% !important;
+        #cboxWrapper{
+             #cboxContent{
+                 position: static;
+                #cboxLoadedContent{
+                    #notify-me-dialog{
+                        #notify-me-email{
+                             width: 60%;
+                        }
+                    }
+                }
+            }
+        }    
+    }
+}
+
+
+
+
+
+// POP-UP FOR NOTIFY ME BUTTON IN RAPID ORDER AND ASSORTMENT SECTION
+
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-1 {
+  top: 20%;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 35%;
+  position: relative;
+  color: #000 !important;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+/* The Close Button */
+/*.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top:-10%;
+  right: 1%;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}*/
+
+
+#notify-me-email{
+  margin-top: 10px;   
+  width: 40%;
+  box-sizing: border-box;
+}
+
+#notify-me-button{
+  background: #39A857;
+  color: #ffffff;
+  padding: 5px 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.notify-error{
+  color: #dc0909;
+  display: none;
+}
+
+#notifyme-close{
+  background: url("../resources/images/close-popup.png") no-repeat scroll 0px 0px #fff !important;
+  border: 0 none;
+  box-shadow: none !important;
+  height: 25px;
+  position: absolute;
+  right: 5px !important;
+  text-indent: -9999px;
+  top: 5px !important;
+  width: 27px;
+  display: none;
+}
+
+@media screen and (max-width: 760px) and (orientation: portrait){
+  .modal-content-1 {
+    width: 88% !important;
+  }
+
+  #notify-me-email {
+    width: 60% !important;
+  }
+
+  #notify-me-email {
+    width: 66% !important;
+  }
+}
+
+@media screen and (max-width: 760px) and (orientation: landscape){
+  .modal-content-1 {
+    width: 54% !important;
+  }
+
+  #notify-me-content{
+    width: 96%;
+  }
+
+  #notify-me-email {
+    width: 60% !important;
+  }
+
+}
+
+@media only screen  and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait)  {
+  .modal-content-1 {
+    width: 55% !important;
+  }
+}
+
+@media only screen  and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)  {
+  .modal-content-1 {
+    width: 46% !important;
+  }
+}
+
+// POP-UP FOR NOTIFY ME BUTTON IN RAPID ORDER AND ASSORTMENT SECTION ----- END
+
+
+
+/* Global overlay starts here */
+.globalOverlay {
+  display:none;
+}
+.openoverlay {
+  .globalOverlay {
+      position: fixed;
+      height: 100vh;
+      z-index: 9999999999;
+      width: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.9);
+      // background-color: rgba(33, 31, 31,0.5); /* Black w/opacity */
+      overflow-x: hidden; /* Disable horizontal scroll */
+      transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+      align-items: center;
+      justify-content: center;
+      .rotate {
+        margin-left:47%;
+        width : 6%;
+        animation: rotation 2s infinite linear;
+      }
+      
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+  }
+
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) and (orientation: portrait) {
+.openoverlay {
+  .globalOverlay {
+      .rotate {
+        width : 25%;
+        margin-left:37.5%;
+      }
+  }
+}
+}
+
+@media only screen and (min-width: 1px) and (max-width: 767px) and (orientation: landscape) {
+.openoverlay {
+  .globalOverlay {
+      .rotate {
+        width : 10%;
+        margin-left:45%;
+      }
+  }
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+.openoverlay {
+  .globalOverlay {
+    .rotate {
+      width : 10%;
+      margin-left:45%;
+    }
+  }
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+.openoverlay {
+  .globalOverlay {
+    .rotate {
+      width : 10%;
+      margin-left:45%;
+    }
+  }
+}
+}
+
+/* Global overlay end here */

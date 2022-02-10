@@ -1,0 +1,330 @@
+{% autoescape on %}
+{% block doctype %}
+<!doctype html>
+{% endblock doctype %}
+
+{% comment %}
+    The comment tag lets you write comments that will be visible when editing the template file, but don't appear in the rendered HTML. It's essentially just an "ignore this" tag.
+{% endcomment %}
+
+{% comment %}
+    The conditional statements below detect if visitor is on a particular
+    version of IE and adds the appropriate classes to the HTML element. You can then target
+    these browsers in your CSS without hacks, like:
+
+        .thing {
+        padding: 10px;
+        }
+        .ie6 .thing {
+        padding: 12px;
+        }
+
+    no-js:
+    The Modernizr library we're using will replace the class "no-js" with "js" if javascript
+    available. Again you can use this as a way to make sensible fallbacks if javascript
+    is not available.
+{% endcomment %}
+
+{% block open-html-tag %}
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|(!IE) ]><!-->
+<html class="no-js" lang="en">
+
+<!--<![endif]-->
+{%endblock open-html-tag %}
+
+    {% block head-tag %}
+    <head>
+
+        {% include "modules/json-required-for-hyprlive" %}
+
+        {% block meta-tags %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=0">
+
+        <meta name="description" content="{{ PageContext.MetaDescription }}">
+        <meta name="keywords" content="{{ PageContext.MetaKeywords }}">
+        <meta name="correlationId" content="{{ pageContext.correlationId }}">
+
+        {% endblock meta-tags %}
+
+		<!--
+		::{{ user.isAuthenticated }}::
+
+		::{{ pagecontext.cmsContext.template.path }}::
+		::{{ pagecontext.cmsContext.template.path|lower }}::
+
+		::{{ pagecontext.url }}::
+		::{{ siteContext.themeSettings.themeLoginURL }}::
+
+		::{{ model.validationToken }}::
+		-->
+
+        {% if not pageContext.isEditMode %}
+            {% if not user.isAuthenticated and pagecontext.cmsContext.template.path|lower != "reset-password" and pagecontext.url == siteContext.themeSettings.dsdeastwest and not model.validationToken %}
+                <meta http-equiv="REFRESH" content="0;url={{ themeSettings.wwwSiteLink }}">
+                {% else %}
+                    {% if not user.isAuthenticated and pagecontext.cmsContext.template.path|lower != "reset-password" and pagecontext.cmsContext.template.path|lower != "contact-us" and pagecontext.cmsContext.template.path|lower != "blank-page" and pagecontext.url != siteContext.themeSettings.themeLoginURL and not model.validationToken %}
+                          <meta http-equiv="REFRESH" content="0;url={{ themeSettings.themeLoginURL }}">
+                    {% endif %}
+
+            {% endif %}
+        {% endif %}
+
+        <title>{% block title-tag-content %}{{ siteContext.generalSettings.websiteName }} {% endblock title-tag-content %}</title>
+
+        {% if PageContext.FeedUrl  %}
+        <link rel="alternate" type="application/rss+xml" title="{{ PageContext.Title }}" href="{{ PageContext.FeedUrl }}" />
+        {% endif %}
+
+		{% if PageContext.CrawlerInfo.CanonicalUrl  %}
+        <link rel="canonical" href="{{PageContext.CrawlerInfo.CanonicalUrl}}">
+        {% endif %}
+
+		{% if PageContext.CrawlerInfo.PreviousUrl  %}
+        <link rel="prev" href="{{PageContext.CrawlerInfo.PreviousUrl}}">
+        {% endif %}
+
+		{% if PageContext.CrawlerInfo.NextUrl  %}
+        <link rel="next" href="{{PageContext.CrawlerInfo.NextUrl}}">
+        {% endif %}
+
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{% make_url "stylesheet" "/stylesheets/storefront.less" %}" title="default" />
+        {% endblock stylesheets %}
+
+        {% block head-tag-scripts %}
+        <script src="{% make_url "cdn" "/scripts/vendor/modernizr.min.js" %}"></script>
+
+        {% include "modules/web-fonts-loader" %}
+        {% endblock head-tag-scripts %}
+        {% cms_resources %}
+
+
+        {%header_content%}
+        <script type = "text/javascript" >
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+        </script>
+    </head>
+
+    {% endblock head-tag %}
+
+    {% block body-tag %}
+
+    {% block open-body-tag %}
+
+    <body class="{% block body-tag-classes %}{% endblock body-tag-classes %}">
+
+
+	<style>
+		#cboxCurrent {
+			position: absolute;
+			top: -20px;
+			left: 0px;
+			color: #ffffff;
+			padding-left: 5px;
+			padding-right: 15px;
+			text-transform: uppercase;
+		}
+		#cboxNext {
+			position: absolute;
+			top: -25px;
+			left: 130px;
+			text-transform: uppercase;
+			margin-left: 10px;
+			width: 0;
+			height: 0;
+			border-top: 10px solid black;
+			border-left: 20px solid red;
+			border-bottom: 10px solid black;
+			border-right: 1px solid black;
+		}
+		#cboxPrevious {
+			position: absolute;
+			top: -25px;
+			left: 100px;
+			text-transform: uppercase;
+			width: 0;
+			height: 0;
+			border-top: 10px solid black;
+			border-right: 20px solid red;
+			border-bottom: 10px solid black;
+			border-left: 1px solid black;
+		}
+
+
+	</style>
+
+	<div id="planogram-collection" style="display: none; position: fixed; margin: 5px; background: #ffffff; border-radius: 5px; padding: 5px; z-index: 2; border: 2px solid black;">
+		<!-- images get appended to DOM here -->
+	</div>
+    <div class="overlay-full-width" ></div>
+    {% block modal-popup %}
+        <div class="modal" >
+            <div class="modal-container">
+                <div class="modal-content">
+                    <div class="modal-message">Please select a store to see its order history.</div>
+                    <div class="modal-btns">
+                        <!--<button class="btn-no">No</button>-->
+                        <button class="btn-yes">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock modal-popup %}
+    {% endblock open-body-tag %}
+
+       {% require_script "modules/common" %}
+
+        <div id="page-wrapper" class="mz-l-pagewrapper">
+            {% block progress-bar %}
+                <div class="progress-bar">
+                    <a href="/shipping-info#Free Ground Shipping" title="shipping information" target="_blank">
+                    <div class="meter blue">
+                        <p class="text-content"></p>
+                        <span style="width: 0%"></span>
+                    </div>
+                    </a>
+                </div>
+            {% endblock progress-bar %}
+            {% block page-header %}
+                    <div class="mobile-menu">
+                      <div class="mblmenu">
+                    <div class="mbllogo">
+                     <img src="../resources/images/jellybelly-logo.png" alt="profile-img" />
+                      <div class="mblclose" id="mblclose"> </div>
+                    </div>
+                    </div>
+                        {% include "modules/mobilenav" %}
+                       {% if not user.isAnonymous %}
+                            <div class="loggedin-msg">
+                                <div class="bor"></div>
+                                <div class="logged-in-as">logged in as</div>
+                                <div id="mz-logged-in-notice">
+                                    <a href="/myaccount" class="mz-utilitynav-link">{{ user.email }}</a>
+                                </div>
+
+                                <div id="mz-logout">
+                                    <a href="/logout" data-mz-action="logout" class="mz-utilitynav-link">{{ labels.logOut|upper }}</a>
+                                </div>
+                                {% comment %}
+                                    {% endif %}
+                                {% endcomment %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+            {% include "modules/page-header" %}
+            {% endblock page-header %}
+
+            {% block site-nav %}
+            {% include "modules/site-nav" %}
+            {% endblock site-nav %}
+
+            <div role="main" id="page-content" class="mz-l-pagecontent">
+                {% block future-popup %}
+                    <div class="mz-alert-popup"></div>
+                {% endblock future-popup %}
+
+                {% block breadcrumbs %}
+                {% if themeSettings.showBreadcrumbs %}
+                {% include "modules/breadcrumbs" %}
+                {% endif %}
+                {% endblock breadcrumbs %}
+
+                {% block body-content %}
+                {% dropzone "body" scope="page" %}
+                {% endblock body-content %}
+
+                {% block body-below-content %}
+                {% dropzone "body-bottom" scope="template" %}
+                {% endblock body-below-content %}
+
+            </div>
+ </div>
+            {% block page-footer %}
+            {% include "modules/page-footer" %}
+            {% endblock page-footer %}
+
+
+
+        {% block trailing-scripts %}
+        {% include "modules/trailing-scripts" %}
+        {% endblock trailing-scripts %}
+
+        {% visitor_tracking_pixel %}
+<div class="my-modal session-time">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-messages"><p class="msg3"> To keep your information secure, you've been logged out after 5 minutes of inactivity.
+                    Your shopping info is safe, so come on back and complete your order!
+                    </p></div>
+             <div class="modal-btns">
+                <button class="btn-yes continue-btn">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="my-modal timecounter">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-messages"><p class="msg1">It looks like you've been interrupted.</p>
+                    <p class="msg2">To resume your order, please click the button.
+                        Otherwise, we'll log you out (and save your order info) after
+                        <span class="time-counter"></span></div>
+            <div class="modal-btns">
+                <button class="btn-yes continue-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-modal timeout">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-messages"><p class="msg3"> To keep your information secure, you've been logged out after 15 minutes of inactivity.
+                    Your shopping info is safe, so come on back and complete your order!
+                    </p></div>
+             <div class="modal-btns">
+                <button class="btn-yes continue-btn comltlogout">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal history">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-message"><p class="msg3"> To keep your information secure, you've been logged out after 15 minutes of inactivity.
+                    Your shopping info is safe, so come on back and complete your order!
+                    </p></div>
+             <div class="modal-btns">
+                <button class="btn-yes continue-btn comltlogout">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-content-1">
+    <button type="button" id="notifyme-close" style="display: inline-block;">close</button>
+    <div id="notify-me-content"></div>
+  </div>
+
+</div>
+
+    </body>
+    {% endblock body-tag %}
+
+</html>
+{% endautoescape %}

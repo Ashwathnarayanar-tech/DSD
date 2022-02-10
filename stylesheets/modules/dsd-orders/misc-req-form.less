@@ -1,0 +1,213 @@
+.mz-misc-req{
+    .misc-req-form{
+        h3{
+            color:#4FA3E0;
+        }
+        div.sections{
+            .intro-misc-req{
+                font-size: 17px;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #e6e6e6;
+                padding-bottom: 12px;   
+            }
+            border: 1px solid #E6E6E6;
+            padding: 20px;
+            margin : 5px;
+            h4{
+                padding: 0;
+                margin: 0;
+                padding-bottom: 25px;
+                font-size: 18px;
+            }
+            table{
+                tr{
+                    td{
+                        width: 256px;;
+                        padding-bottom: 5px;
+                        position: relative;
+                        h5{
+                            padding: 0;
+                            margin: 0;
+                            font-size: 14px;
+                            padding-bottom: 10px;
+                        }
+                       /* a{
+                            color : #4FA3E0;
+                            cursor : pointer;
+                            text-decoration: underline;
+                        }*/
+                        label{
+                            cursor:auto;
+                        }
+                        label.image{
+                            position: absolute;
+                            right: 38%;
+                            top: 3px;
+                            img{
+                               width: 24px; 
+                            }
+                        }
+                        input{
+                            width: 311px;
+                            height: 21px;
+                            background-color: #EEEEEE;
+
+                        }
+                        label{
+                            font-weight: 300;
+                        }
+                        textarea{
+                            width: 311px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+            .mobile-view{
+                display: none;
+                font-size: 20px;
+                border-top: 0.5px solid #e6e6e6;
+                div{
+                    .label-div{
+                        margin: 18px 0;
+                    }
+                    .date-div{
+                        position: relative;
+                    }
+                    div{
+                        h5{
+                            padding: 0;
+                            margin-top: 18px;
+                            margin-bottom: 5px;
+                        }
+                        input{
+                            width: 85%; 
+                        }
+                        textarea{
+                            width: 85%;
+                            height: 100px;
+                        }
+                        label.image{
+                            position: absolute;
+                            right: 14%;
+                            top: 0px;
+                            img{
+                               width: 24px; 
+                            }
+                        }
+                    }
+                }
+            }
+            table.list{
+                width: 100%;
+                text-align: center;
+                tr{
+                    th{
+                        background-color:#EEEEEE;    
+                        height: 44px;
+                    }
+                    td{
+                        height : 44px;
+                        select{
+                            width: 54px;
+                            border-radius: 5px;
+                            margin: 5px;
+                        }
+                        p{
+                            margin: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.model-mics-mail-h{
+    .model-mail{
+        width: 35%;
+        margin: 0 auto;
+        padding: 18px;
+        display: none;
+        position: absolute;
+        top: 24%;
+        background: white;
+        left: 29%;
+        z-index: 100;
+        border-radius: 6px;
+        padding-bottom: 51px;
+        .model-head{
+            margin: 0 auto;
+            text-align: center;
+            padding: 8%;
+            img{
+                width: 150px;
+            }
+        }
+        .model-msg{
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .cross-parent{
+            position: relative;
+            border-radius: 5px;
+            .cross,.crossmail{
+                position: absolute;
+                cursor: pointer;
+                top: -28px;
+                background-color: #0075a8;
+                color: white;
+                width: 23px;
+                text-align: center;
+                height: 20px;
+                border-radius: 12px;
+                padding: 1px;
+                right: -27px;
+                padding-top: 5px;
+                padding-right: 2px;
+            }
+        }
+    }
+}
+@media only screen 
+  //and (min-width: 768px)   
+  and (max-width: 1024px) {
+       .mobile-view{
+            display: block !important;
+        }
+        .desktop-view{
+            display: none;
+        }
+        .model-background{
+            display: none;
+            position: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 99999;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            -webkit-backface-visibility: hidden !important;  
+        }
+  }
+
+
+.model-background{
+    display: none;
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+}
+

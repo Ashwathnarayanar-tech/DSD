@@ -1,0 +1,19 @@
+
+
+<ul>
+{% for product in model.items %}
+<li class="printdash"><span class="enternumber" style=" border:1px solid; border-top:none; border-left:none;  border-right:none;display: inline-block;width: 30px;height: 12px;"></span></li> 
+<li>{{ product.content.productName }}- {{ product.productCode }}</li>
+{% endfor %}
+
+
+</ul>
+ 
+
+
+ 
+
+ 
+
+
+

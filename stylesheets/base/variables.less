@@ -1,0 +1,56 @@
+@fontFamily:            {{ themeSettings.primaryFont }}, sans-serif;
+@fontSize:              {{ themeSettings.fontSize }};
+@fontSizeSmall:         @fontSize - 2px;
+@fontSizeLarger:        @fontSize + 2px;
+@fontSizeLarge:         @fontSize + 6px;
+@storeBrandingFontSize: 18px;
+@textColor:             {{ themeSettings.textColor }};
+//@linkColor:             #4F4F4F;
+@linkColor:             {{ themeSettings.textColor }};
+@linkHoverColor:        #666;
+//@linkVisitedColor:      #3F3F3F; 
+@linkVisitedColor:     {{ themeSettings.textColor }};
+@errorText:             #b94a48;
+@errorBackground:       #f2dede;
+@warningText:           @textColor;
+@warningBackground:     #ffefcf;
+@successText:           @textColor;
+@successBackground:     #eef2ee;
+
+@availableText:         #237e0e;
+@unavailableText:       #ae1231;
+
+@bodyBackgroundColor:   {{ themeSettings.bodyBackgroundColor }};
+
+@errorBorder:           darken(spin(@errorBackground, -10), 3%);
+@successBorder:         darken(spin(@successBackground, -10), 3%);
+@warningBorder:         darken(spin(@warningBackground, -10), 3%);
+ 
+@errorIcon:				"../resources/images/error-exclamation.png";
+@columnWidth-2col:		435px;
+@gutter:				{{themeSettings.gutterWidth}};
+@inputBorder:			#a7a7a7;
+
+@defaultTileHeight:            250px;
+@defaultTileWidth:             250px;
+@productTileHeight:            360px; 
+@productTileWidth:             @defaultTileWidth;
+@addressTileHeight:            240px;
+@addressTileWidth:             @defaultTileWidth;
+@productImagesContainerWidth:  {{ themeSettings.productImagesContainerWidth }}px;
+@orderDetailWidth:      200px;
+@itemListingThumbSize:  {{ themeSettings.itemListingThumbSize }};
+@productListingThumbSize: {{ themeSettings.listProductThumbSize }}px;
+/*Custom vars for dsd */
+@dsdbackgroundcolorlightblue: #eef8fd;
+@dsdfontcolorblue: #0080b7;
+@dsdfontcolorred: #bc0000;
+@dsdfontcolorgrey: #999;
+@dsdfontcolorlightgrey: #d4d4d4;
+@dsdbackgroundlightgrey: #eff2f4;
+@dsdbackgroundlightergrey: rgba(239, 242, 244, 0.3);
+		
+
+
+
+

@@ -1,0 +1,25 @@
+
+<div class="mz-alert-body" data-mz-alert {% if model.visible %}style="display:block;"{% endif %}>
+    <div class="mz-alert-container">
+    	<div class="mz-alert-close">
+    		<img src="../../../resources/images/close-popup.png" alt="close" />
+    	</div>
+    	<div class="mz-message-container">
+    		<div class="mz-message">{{ model.message }}</div>
+    		<div class="mz-action-btns">
+    			{% if model.futuredatebtns %} 
+    				<button class="mz-btn-reject mz-btn-subscribe">CANCEL</button> 
+	    			<button class="mz-btn-accept mz-btn-subscribe">PROCEED</button>
+    			{% else %}
+                    {% if model.futuredatesbtns %}
+                        <button class="mz-btn-reject mz-btn-backtosub">No thanks, GO BACK</button> 
+                        <button class="mz-btn-accept mz-btn-proceed">That's fine, PROCEED</button> 
+    			    {% endif %}
+                {% endif %}
+    		</div>
+    	</div>
+    </div>
+</div>
+
+
+

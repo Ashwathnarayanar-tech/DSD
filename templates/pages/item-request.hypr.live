@@ -1,0 +1,541 @@
+{% extends "page" %}
+
+
+
+{% block body-tag-classes %} contact-us {% endblock body-tag-classes %}
+
+{% block body-content %} 
+
+
+ 
+
+
+<style>
+    .column {
+        float: left;
+        position: relative;
+        width: 100%;
+    }
+
+    .column-left {
+        float: left;
+        width: 34%;
+        margin-right: 15px;
+    }
+
+    .column-right {
+        float: left;
+        width: 23%; 
+    }
+
+    .column-center {
+    float: left;
+    width: 23%;
+    margin-right: 13px;
+    margin-left: 10px;
+    }
+    .input-field {
+      width: 100%%;
+      float: left;
+      display: block;
+      position: relative;
+    }    
+    img {
+      margin:5px 0 5px 0;
+    }
+    .input-background {
+      background-color:#e8f2fa;
+      padding:10px 0 5px 10px;
+    }
+</style>
+
+<p class="page-title-hdg">Item Request Form</p>
+
+{% dropzone "item-request-dropzone" scope="template" %}
+
+
+
+{% require_script "modules/contact-form" %}
+<form id="someform">
+             <!--   <div id="address1A">Address line 1</div>
+                <p>OR</p>
+				 <div id="name"></div>
+                <div id="address1B"></div>
+				<div id="address1C"></div>
+				<div id="city"></div>
+				<div id="state"></div>
+				<div id="zip"></div> -->
+</form>
+
+ 
+
+<div class="main" id="store-details"> </div>
+
+<div class="contact-us-container">
+
+
+
+
+
+<!-- <div class="contact-hdg-bdr-bot">Send us a message </div> -->
+    <div>    
+	<form method="POST" action="//content.jellybelly.com/item-request/contact-us.aspx" id="contact-form-container">
+
+    {% if apicontext.headers.x-vol-site == "24078" %}
+		<input name="origin" value="JB-DSD-WWW" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24079" %}
+		<input name="origin" value="JB-DSD-EAST" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24080" %}
+		<input name="origin" value="JB-DSD-WEST" type="hidden">
+	{% endif %}
+
+	{% if apicontext.headers.x-vol-site == "24483" %}
+		<input name="origin" value="JB-DSD-WWW" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24484" %}
+		<input name="origin" value="JB-DSD-EAST" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24485" %}
+		<input name="origin" value="JB-DSD-WEST" type="hidden">
+	{% endif %}
+<!--	
+	<p>
+	<label for="contactusName">Name</label>
+    </p>
+    <p>
+        <input name="name" data-mz-value="contactusName" value="" type="text">
+    </p>
+    <p> 
+        <label for="contactusEmail">Email</label>
+    </p>
+    <p>
+        <input name="email" data-mz-value="contactusEmail" value="" type="text">
+    </p>
+    <p> 
+    <label for="contactusSubject">Subject</label>
+    </p>
+    <p>
+        <input name="subject" data-mz-value="contactusSubject" value="" type="text">
+    </p>
+    <p> 
+            <label for="contactusMessage">Message</label>
+    </p>
+    <p>
+        <textarea class="mz-checkoutform-comments-field" name="message" cols="43" data-mz-value="contactus.message"></textarea>
+    </p>
+    <p align="center"><button type="submit">Submit</button></p>
+    
+    -->
+    <div class="field-row">
+            <div class="contact-label-container">
+                <label>Store</label>
+            </div>
+            <div class="contact-field-container" name="store">
+		<!--	<div id="address1A">Address line 1</div>
+                <p>OR</p> -->
+				<div id="name"></div>
+		      
+	
+                <div id="address1B"></div>
+				<div id="address1C"></div>
+				<div name="store-city" id="city"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+    <div class="field-row">
+            <div class="contact-label-container">
+                <label>Merchandiser's Name *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="text" name="name" data-mz-value="contactusName" req="true" error="Please enter your name"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Merchandiser's Email *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="email" name="email" data-mz-value="contactusEmail" req="true" error="Please enter your email id"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+			<div class="field-row">
+            <div class="contact-label-container">
+                <label>Merchandiser's Address <br /><span style="font-size: 12px; color: red">This is only required if items will be shipped to Merchandiser's address, instead of the store.</span></label>
+            </div>
+            <div class="contact-field-container">
+			<div>
+			
+                  <input type="text" name="address" data-mz-value="contactusEmail" req="true" placeholder="Street Address" error="Please enter your email id"/>
+			</div>
+			
+           <div>
+			
+				  <input type="text" name="city" data-mz-value="contactusEmail" req="true" placeholder="City" error="Please enter your email id"/>
+			</div>
+			<div>
+		
+				  <select name="state">
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+			</div>
+			<div>
+			
+			
+				  <input type="text" name="zip" data-mz-value="contactusEmail" placeholder="Zip Code" req="true" error="Please enter your email id"/>
+			</div>
+			
+                </div>
+                <div class="clear"></div>
+            </div>
+       <!-- <div class="field-row">
+            <div class="contact-label-container">
+                <label>Subject</label>
+            </div>
+            <div class="contact-field-container">
+                <input name="subject" data-mz-value="contactusSubject" type="text" error="Please enter subject"/>
+                </div>
+                <div class="clear"></div>
+            </div> -->
+
+             <div class="field-row">
+              <div class="contact-label-container">
+                <label>Sanitizer:</label>
+              </div>
+              <div class="input-field">
+                <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/0c6c74e1-276c-41f9-b6bb-fef75337a238" />
+                <br>
+                <div class="input-background">
+                  <input value="0" style="width:40px" type="number" name="Sanitizer_Quantity" id="Sanitizer_Quantity" min="0" max="10">
+                  <label for="Sanitizer_Quantity" class="container"> Sanitizer </label>
+                </div>
+              </div>
+              <div class="clear"></div>
+             </div>
+            
+             <div class="field-row">
+              <div class="contact-label-container">
+                <label>Trade Fixture Graphics:</label>
+              </div>
+              <div class="input-field">
+                <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/93c13d97-7469-44e0-8479-f0b5770b62a1" />
+                <br>  
+                <div class="input-background">
+                  <input value="0" style="width:40px" type="number" id="BumpHeader_Quantity" name="BumpHeader_Quantity" min="0"  max="10">
+                  <label for="BumpHeader_Quantity" class="container"> Trade Fixture Bump Out Header Graphic </label>
+                </div>
+               <br>
+               <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/5a45579a-f042-4ee6-a693-80411218cfe9" />
+               <br>
+               <div class="input-background">
+                <input value="0" style="width:40px" type="number" name="AboveTray_Quantity" id="AboveTray_Quantity" min="0" max="10"> 
+                <label for="AboveTray_Quantity" class="container"> Trade Fixture Above Catch Tray Graphic</label>
+               </div>
+               <br>
+               <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/e971bdce-6db6-4ad4-856c-5c6b4f6e0ddc" />
+               <br>
+               <div class="input-background">
+                <input value="0" style="width:40px" id="FrontTray_Quantity" name="FrontTray_Quantity" type="number" min="0" max="10"> 
+               <label for="FrontTray_Quantity" class="container"> Trade Fixture Front Catch Tray Graphic</label>
+               </div>
+              </div>
+              <div class="clear"></div>
+            </div> 
+            
+            <div class="field-row">
+                <div class="contact-label-container">
+                  <label> SMP Fixture Graphics:</label>
+                </div>
+                <div class="input-field">
+                <br>
+                <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/449f4889-6051-4499-8492-6433960ef5e6" />
+                <br>
+                <div class="input-background">
+                  <input value="0" style="width:40px" id="MetalFixture_Quantity" name="MetalFixture_Quantity" type="number" min="0" max="10"> 
+                  <label for="MetalFixture_Quantity" class="container"> SMP All Metal Fixture - Front Graphic  32” x 4 ½” </label> 
+                </div>
+                <br><br>
+                <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/635ce46f-56d8-4cd7-a06c-4c1e60734a56" />
+                <br>
+                <div class="input-background">
+                  <input value="0" style="width:40px" id="PlasticFixture_Quantity" name="PlasticFixture_Quantity" type="number"  min="0" max="10"> 
+                  <label for="PlasticFixture_Quantity" class="container"> SMP Plastic Front Fixture-3D Graphic  13 ½” x 5”</label>
+                </div>
+                <br><br>
+                <img src="https://cdn-tp1.mozu.com/9046-m2/cms/files/2c1ca485-a80f-4cd8-ae62-0e2b05938113" />
+                <br>
+                <div class="input-background">
+                  <input value="0" style="width:40px" id="GetReal_Quantity" name="GetReal_Quantity" type="number" min="0" max="10">
+                  <label for="GetReal_Quantity" class="container">SMP 4’ Get Real Get Jelly Belly Graphic</label>
+                </div>
+             </div>
+             <div class="clear"></div>
+           </div> 
+
+           <div class="field-row">
+            <div class="contact-label-container">
+              <label>Trade Fixture Retainer Knob:</label>
+            </div>
+            <div class="input-field">
+              <img src="https://cdn-tp1.mozu.com/9046-m1/cms/files/01d37a71-45e1-4fe0-a3c8-9d49f8464b2c" />
+              <br>
+              <div class="input-background">
+                <input value="0" style="width:40px" type="number" name="RetainerKnob_Quantity" id="RetainerKnob_Quantity" min="0" max="10">
+                <label for="RetainerKnob_Quantity" class="container"> Trade Fixture Retainer Knob </label>
+              </div>
+            </div>
+            <div class="clear"></div>
+           </div>
+           
+           <div class="field-row">
+               <div class="contact-label-container">
+                  <label>Select a Bin:</label>
+               </div>
+
+               <div class="input-field">
+               <br><br>
+               <label class="container">Trade Fixture Bin</label>
+               <br>
+               <img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m2/cms/files/Trade-Fixture-Bin.jpg" alt="Trade Fixture Bump Out Header Graphic" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/Trade_Fixture_Bin_1.jpg"/>
+			   <img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m1/cms/files/zoom-icon.png" alt="zoom" style="vertical-align: top" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/Trade_Fixture_Bin_1.jpg"/>
+               <br>
+               <div class="input-background">
+				 <input value="0" style="width:40px" id="TfbBin_Quantity" name="TfbBin_Quantity" min="0" max="10" type="number">
+                 <label for="TfbBin_Quantity" class="container"> Complete Bin </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbLid_Quantity" name="TfbLid_Quantity" type="number" min="0" max="10">
+                 <label for="TfbLid_Quantitys" class="container"> Lid </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbHandle_Quantity" name="TfbHandle_Quantity" type="number" min="0" max="10">
+                 <label for="TfbHandle_Quantity" class="container"> Handle </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbBlackBase_Quantity" name="TfbBlackBase_Quantity" type="number" min="0" max="10">
+                 <label for="TfbBlackBase_Quantity" class="container"> Black Base </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbTrapDoor_Quantity" name="TfbTrapDoor_Quantity" type="number" min="0" max="10">
+                 <label for="TfbTrapDoor_Quantity" class="container"> Trap Door </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbFlowControl_Quantity" name="TfbFlowControl_Quantity" type="number" min="0" max="10">
+                 <label for="TfbFlowControl_Quantity" class="container"> Flow Control </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbLabelCover_Quantity" name="TfbLabelCover_Quantity" type="number" min="0" max="10">
+                 <label for="TfbLabelCover_Quantity" class="container"> Label Cover </label>
+                 <br>
+                 <input value="0" style="width:40px" id="TfbRubberDoorPulls_Quantity" name="TfbRubberDoorPulls_Quantity" type="number" min="0" max="10">
+                 <label for="TfbRubberDoorPulls_Quantity" class="container"> White Rubber door pulls </label>
+               </div>
+               <br><br>
+               <label class="container">Trade Fixture Scoop Bin</label>
+               <br>
+               <img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m2/cms/files/Trade-Fixture-Scoop-Bin1.png" alt="Trade Fixture Above Catch Tray Graphic" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/Trade_Fixture_Scoop_Bin_2.jpg"/>
+			   <img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m1/cms/files/zoom-icon.png" alt="zoom" style="vertical-align: top" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/Trade_Fixture_Scoop_Bin_2.jpg"/>
+               <br>
+               <div class="input-background">
+                  <input value="0" style="width:40px" id="TfsBin_Quantity" name="TfsBin_Quantity" type="number" min="0" max="10">
+                  <label for="TfsBin_Quantity" class="container"> Complete Bin </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsFrontLid_Quantity" name="TfsFrontLid_Quantity" type="number" min="0" max="10">
+                  <label for="fsFrontLid_Quantity" class="container"> Front Lid </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsRearLid_Quantity" name="TfsRearLid_Quantity" type="number" min="0" max="10">
+                  <label for="TfsRearLid_Quantity" class="container"> Rear Lid </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsLabelHolder_Quantity" name="TfsLabelHolder_Quantity" type="number" min="0" max="10">
+                  <label for="TfsLabelHolder_Quantity" class="container"> Label Holder </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsTongScoop_Quantity" name="TfsTongScoop_Quantity" type="number" min="0" max="10">
+                  <label for="TfsTongScoop_Quantity" class="container"> Tong/Scoop holder </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsTong_Quantity" name="TfsTong_Quantity" type="number" min="0" max="10">
+                  <label for="TfsTong_Quantity" class="container"> Tong </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsScoop_Quantity" name="TfsScoop_Quantity" type="number" min="0" max="10">
+                  <label for="TfsScoop_Quantity" class="container"> Scoop </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsTether_Quantity" name="TfsTether_Quantity" type="number" min="0" max="10">
+                   <label for="TfsTether_Quantity" class="container"> Tether </label>
+                  <br>
+                  <input value="0" style="width:40px" id="TfsWhiteHinge_Quantity" name="TfsWhiteHinge_Quantity" type="number" min="0" max="10">
+                  <label for="TfsWhiteHinge_Quantity" class="container"> White Hinge </label>
+                </div>               
+                <br><br>
+                <label class="container">SMP Gen 1 Bin</label>
+               <br>
+               <img class="fixtureColorbox" src="https://cdn-tp1.mozu.com/9046-m2/cms/files/SMP-Gen-1-Bin.jpg" alt="SMP Gen 1 Bin" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_1_Bin.jpg"/>
+			   <img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m1/cms/files/zoom-icon.png" alt="zoom" style="vertical-align: top" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_1_Bin.jpg"/>
+               <br>
+               <div class="input-background">
+                 <input value="0" style="width:40px" id="Gen1Bin_Quantity" name="Gen1Bin_Quantity" type="number" min="0" max="10">
+                 <label for="Gen1Bin_Quantity" class="container"> Complete Bin </label>
+                 <br>
+                 <input value="0" style="width:40px" id="Gen1FrontLid_Quantity" name="Gen1FrontLid_Quantity" type="number" min="0" max="10">
+                 <label for="Gen1FrontLid_Quantity" class="container"> Lid </label>
+                 <br> 
+                 <input value="0" style="width:40px" id="Gen1LabelHolder_Quantity" name="Gen1LabelHolder_Quantity" type="number" min="0" max="10">
+                 <label for="Gen1LabelHolder_Quantity" class="container"> Label Holder </label>  
+                 <br><br>
+                </div>
+               
+                <label class="container">SMP Gen 2 Bin</label>
+                <br>
+                <img class="fixtureColorbox" src="https://cdn-tp1.mozu.com/9046-m2/cms/files/SMP-Gen-2-Bin.jpg" alt="SMP Gen 2 Bin" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_2_Bin.jpg"/>
+				<img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m1/cms/files/zoom-icon.png" alt="zoom" style="vertical-align: top" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_2_Bin.jpg"/>
+                <br>
+                <div class="input-background">
+                 <input value="0" style="width:40px" id="Gen2Bin_Quantity"  name="Gen2Bin_Quantity" type="number" min="0" max="10">
+                 <label for="Gen2Bin_Quantity" class="container"> Complete Bin </label>
+                 <br>
+                 <input value="0" style="width:40px" id="Gen2FrontLid_Quantity" name="Gen2FrontLid_Quantity" type="number" min="0" max="10">
+                 <label for="Gen2FrontLid_Quantity" class="container"> Lid </label>
+                 <br>
+                 <input value="0" style="width:40px" id="Gen2PlasticSpine_Quantity" name="Gen2PlasticSpine_Quantity" type="number" min="0" max="10">
+                 <label for="Gen2PlasticSpine_Quantity" class="container"> Red Plastic Spine </label> 
+                </div>            
+                 
+                <br><br>
+                <label class="container">SMP Gen 3 Bin</label>
+                <br>
+                <img class="fixtureColorbox" src="https://cdn-tp1.mozu.com/9046-m2/cms/files/SMP-Gen-3-Bin.jpg" alt="SMP Gen 3 Bin" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_3_Bin.jpg"/>
+				<img class="fixtureColorbox" src="//cdn-tp1.mozu.com/9046-m1/cms/files/zoom-icon.png" alt="zoom" style="vertical-align: top" big-img-src="//cdn-tp1.mozu.com/9046-m1/cms/files/SMP_Gen_3_Bin.jpg"/>
+                <br>
+                <div class="input-background">
+                 <input value="0" style="width:40px" id="Gen3Bin_Quantity" name="Gen3Bin_Quantity" type="number" min="0" max="10">
+                 <label for="Gen3Bin_Quantity" class="container"> Complete Bin </label>
+                 <br>
+                 <input value="0" style="width:40px" id="Gen3FrontLid_Quantity" name="Gen3FrontLid_Quantity" type="number" min="0" max="10">
+                 <label for="Gen3FrontLid_Quantity" class="container"> Lid </label>
+                 <br>
+                 <input value="0" style="width:40px" id="Gen3LabelHolder_Quantity" name="Gen3LabelHolder_Quantity" type="number" min="0" max="10">
+                 <label for="Gen3LabelHolder_Quantity" class="container"> Label Holder </label> 
+                </div>         
+            </div>
+            <div class="clear"></div>
+          </div> 
+          
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Reason for Request / <br />Special Instructions *</label>
+            </div>
+            <div class="contact-field-container">
+                <textarea class="mz-checkoutform-comments-field" name="instructions" cols="43" data-mz-value="contactus.message" req="true" error="Please enter your Message"> </textarea>
+                </div>
+                <div class="clear"></div>
+            </div>
+			<div class="field-row">
+            <div class="contact-label-container">
+                <label>Requested Item(s)</label>
+            </div>
+            <div class="contact-field-container">
+			    <div style="margin-bottom: 20px;">
+                <input type="text" name="item1" data-mz-value="contactusEmail" placeholder="Request Item 1" req="true"/><br />
+				<!--	<input type="file" name="image" size="40" multiple id="image">  -->
+				</div>
+
+				<div  style="margin-bottom: 20px;">
+				 <input type="text" name="item2" data-mz-value="contactusEmail" placeholder="Request Item 2" req="true"/><br />
+				<!--	<input type="file" name="image" size="40" multiple id="image">  -->
+                </div>
+
+				<div  style="margin-bottom: 20px;">
+				 <input type="text" name="item3" data-mz-value="contactusEmail" placeholder="Request Item 3" req="true"/><br />
+				<!--	<input type="file" name="image" size="40" multiple id="image">  -->
+                </div>
+
+				<div  style="margin-bottom: 20px;">
+				 <input type="text" name="item4" data-mz-value="contactusEmail" placeholder="Request Item 4" req="true"/><br />
+			<!--	<input type="file" name="image" size="40" multiple id="image">  -->
+                </div>
+
+				<div  style="margin-bottom: 20px;">
+				 <input type="text" name="item5" data-mz-value="contactusEmail" placeholder="Request Item 5" req="true"/><br />
+			<!--	<input type="file" name="image" size="40" multiple id="image"> -->
+                </div>
+               <!-- <textarea class="mz-checkoutform-comments-field" name="items" cols="43" data-mz-value="contactus.message" req="true" error="Please enter your Message"> </textarea> -->
+                </div>
+			
+                <div class="clear"></div>
+            </div>
+			<!--  <div class="field-row">
+            <div class="contact-label-container">
+                <label>Please Select File(s)</label>
+            </div>
+            <div class="contact-field-container">
+            <input type="file" name="image" size="40" multiple id="image"> 
+                </div>
+                <div class="clear"></div>
+            </div> -->
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label> &nbsp; </label>
+            </div>
+            <div class="contact-field-container">
+                <span> <input type="submit" name="contact-form-submit" id="contact-form-submit" value="Submit"/> <a href="#" class="contact-back">Back</a></span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </form> 
+    </div>
+
+	<!-- <form action="https://script.google.com/macros/s/AKfycbzvB4pcnCSfGHT8NKmyIh2yCKPHbcwvfENEs7W7bpqMfYB_JKVa/exec"  id="contact-form-container"> -->
+        
+   <!-- </form>
+	-->
+       
+</div>
+
+{% endblock body-content %} 
+
+

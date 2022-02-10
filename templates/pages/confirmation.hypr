@@ -1,0 +1,344 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.orderConfirmation %} - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-confirmation {% endblock body-tag-classes %}
+
+{% block body-content %}
+
+{% preload_json model "order" %}
+<div>
+    <style>
+        html{
+            page-break-after: avoid;
+        }
+    </style>
+</div>
+<script type="text/javascript">
+                var myprint = function(){
+                	var printWin = window.open();
+                    printWin.document.write(jQuery('.order-confirm-main-container-print-cont').html());
+                    printWin.document.close();
+                    printWin.focus();
+                    printWin.print();
+                       if( jQuery(window).width()>1024){
+                            printWin.close();
+                        }
+                   }
+    </script>
+<p style="float:left;" class="page-title-hdg mz-pagetitle">{{ labels.orderConfirmation }} </p><a class="page-title-hdg" style="float:right;cursor: pointer;" onclick='myprint();'>
+<img src={% make_url "image" "../../resources/images/print-icon.png" %} alt="Yes" />Print Receipt</a><p style="clear:both"></p>
+
+<div class="order-confirm-main-container">
+    <div class="order-confirm-inner-container">
+	<div class="thankyou-msg"><h3 class="thank-msg">Thank you for your order!</h3>You will receive an email confirmation.</div>
+	<div class="order-main-info">
+		<p class="t-center">{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}  </p>
+	</div>
+	<div class="order-details-container">
+				<div class="billing-info width-48p fl">
+					<div class="info-box">
+					<strong class="title theme-color">Billing Information</strong>
+					{% if model.total == 0 %}
+        				{% with model.total|currency as total %}
+        					<h4 class="mz-confirmation-nopaymentrequired">{{ labels.noPaymentWasRequired|string_format(total) }}</h4>
+        				{% endwith %}
+        			{% else %}
+        				{% for payment in model.payments %}
+            				{% if payment.status != "Voided" and payment.status != "Declined" %}
+            				    {% include "modules/checkout/checkout-payment" with model=payment %}
+            				{% endif %}
+        				{% endfor %}
+        			{% endif %}
+					</div>
+				</div>
+				{% if model.hasDirectShip %}
+				<div class="shipping-info width-48p fl">
+					<div class="info-box">
+					<strong class="title theme-color">{{ labels.shippingInformation }}</strong>
+						<div class="info-row">
+							<div class="width-50p fl side-label">{{ labels.shipTo }}<strong>:</strong></div>
+							<div class="width-50p fl capitalize my-address"><strong>{% include "modules/common/address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</strong></div>
+							<div class="cl"></div>
+						</div>
+						
+						<div class="info-row">
+							<div class="width-50p fl side-label">{{ labels.shippingMethod }}<strong>:</strong></div>
+							<div class="width-50p fl capitalize"><strong>{{ model.fulfillmentInfo.shippingMethodName }}</strong></div>
+							<div class="cl"></div>
+						</div>
+						
+						   
+					</div>
+				</div>
+				{% endif %}
+				<div class="cl"></div>
+			</div>
+		</div>
+		{% include "modules/common/order-summary" %}
+		  
+</div>
+
+<div class="order-confirm-main-container-print-cont" style="border: 1px solid #d2d4d6;text-align: center;display:none;">
+<style type="text/css">
+.order-confirm-main-container-print .order-confirm-main-container-print {
+    border: 1px solid #cccccc;
+}
+.order-confirm-main-container-print .order-confirm-inner-container {
+    width: 100%;
+    border-radius: 5px;
+    padding: 50px 3%;
+    box-sizing: border-box;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .thankyou-msg {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .thankyou-msg .thank-msg {
+    font-size: 24px;
+    color: #0080b7;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 300;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-main-info {
+    text-align: center;
+    background: whitesmoke;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 26px;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container {
+    padding: 15px 0px;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .billing-info {
+    margin-right: 1%;
+    min-height: 250px;
+    float: left;
+    width: 57%;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box {
+    border: 1px solid #cccccc;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 180px;
+    margin-top: 10px;
+    text-align: left;
+}
+.order-confirm-main-container-print .theme-color {
+    color: #0080b7;
+}
+.order-confirm-main-container-print .mz-checkout-payment {
+    clear: both;
+    min-width: 340px;
+}
+.order-confirm-main-container-print .mz-checkout-payment .mz-checkout-paymenttitle {
+    border-bottom: 1px solid #eeeeee;
+    font-weight: normal;
+}
+.order-confirm-main-container-print .mz-propertylist {
+    clear: both;
+}
+.order-confirm-main-container-print .mz-propertylist dt {
+    min-width: 120px;
+    margin-bottom: 12.5px;
+}
+.order-confirm-main-container-print .mz-propertylist dd {
+    margin-bottom: 12.5px;
+    font-size: 13px;
+}
+.order-confirm-main-container-print .mz-propertylist dt {
+    float: left;
+    clear: both;
+    font-weight: bold;
+}
+.order-confirm-main-container-print .fl {
+    float: left;
+}
+.order-confirm-main-container-print .width-48p {
+    width: 48%;
+}
+.order-confirm-main-container-print .width-30p {
+    width: 35%;
+}
+.order-confirm-main-container-print .width-68p {
+    width: 64%;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box .info-row {
+    padding-bottom: 10px;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box .info-row .side-label {
+    font-weight: bold;
+    font-size: 14px !important;
+    color: black;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box .info-row div {
+    line-height: 20px;
+    font-size: 13px;
+    color: #666666;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box .info-row strong {
+    color: black;
+    font-weight: normal;
+}
+.order-confirm-main-container-print .order-confirm-inner-container .order-details-container .info-box .info-row .capitalize.my-address span {
+    display: block;
+}
+.order-confirm-main-container-print .cl {
+    clear: both;
+}
+.order-confirm-main-container-print .bottom-order-summery {
+    margin-bottom: 50px;
+}
+.order-confirm-main-container-print .bottom-order-summery .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 25px;
+}
+.order-confirm-main-container-print .bottom-order-summery .info-row.row-hdg {
+    background: #f8f9f9;
+}
+.order-confirm-main-container-print .bottom-order-summery .info-row {
+    /* min-height: 40px; */
+    line-height: 30px;
+    padding: 5px 30px;
+}
+.order-confirm-main-container-print .fl {
+    float: left;
+}
+.order-confirm-main-container-print .width-60p {
+    width: 60%;
+}
+.order-confirm-main-container-print .width-10p {
+    width: 10%;
+}
+.order-confirm-main-container-print .width-15p {
+    width: 15%;
+}
+.order-confirm-main-container-print .width-40p {
+    width: 40%;
+}
+.order-confirm-main-container-print .bottom-order-summery .ord-price, .order-confirm-main-container .bottom-order-summery .mz-item-rowtotal {
+    font-weight: bold;
+    color: #0079b1;
+}
+.order-confirm-main-container-print .is-saleprice {
+    font-weight: bold;
+    color: #0079b1;
+}
+.order-confirm-main-container-print .list-of-order{
+    text-align: left;
+}
+
+.order-confirm-main-container-print .bottom-order-summery .main-div-container {
+    border-top: 1px solid #d2d4d6;
+}
+.order-confirm-main-container-print .fr {
+    float: right;
+}
+.order-confirm-main-container-print .bottom-order-summery .ordersummary-grandtotal {
+    border-bottom: 1px solid #d2d4d6;
+    /* border-top: 1px solid #d2d4d6; */
+    font-weight: bold;
+    color: #0079b1;
+    font-size: 18px;
+}
+.order-confirm-main-container-print .bottom-order-summery .product-details-subtotal .total-detail .width-60p {
+    text-align: right;
+    width: 50%;
+    box-sizing: border-box;
+    padding-right: 10%;
+}
+.order-confirm-main-container-print .bottom-order-summery .product-details-subtotal .total-detail .width-40p {
+    text-align: left;
+    width: 50%;
+    padding-left: 13%;
+    box-sizing: border-box;
+}
+.order-confirm-main-container-print .bottom-order-summery .product-details-subtotal .total-detail .width-40p strong {
+    color: black;
+}
+.order-confirm-main-container-print .extra-links.fr {
+   display: none;
+}
+.order-confirm-main-container-print .width-50p {
+    width: 50%;
+}
+.order-confirm-main-container-print .width-35p {
+    width: 35%;
+}
+.order-confirm-main-container-print .shipping-info{
+    width:42%;
+}
+.order-confirm-main-container-print .shipping-row{
+    padding-top: 18px;
+}
+.order-confirm-main-container-print .sec-info-box{
+    padding: 10px !importent;
+}
+</style>
+<div class="order-confirm-main-container-print">
+    <div class="order-confirm-inner-container">
+	<div class="thankyou-msg"><h3 style=""  class="thank-msg">Thank you for your order!</h3>You will receive an email confirmation.</div>
+	<div class="order-main-info">
+		<p class="t-center">{{ labels.yourOrderNumber|string_format(model.orderNumber)|safe }}  </p>
+	</div>
+	<div class="order-details-container">
+				<div class="billing-info width-48p fl">
+					<div class="info-box">
+					<strong class="title theme-color">Billing Information</strong>
+					{% if model.total == 0 %}
+        				{% with model.total|currency as total %}
+        					<h4 class="mz-confirmation-nopaymentrequired">{{ labels.noPaymentWasRequired|string_format(total) }}</h4>
+        				{% endwith %}
+        			{% else %}
+        				{% for payment in model.payments %}
+            				{% if payment.status != "Voided" and payment.status != "Declined" %}
+            				    {% include "modules/checkout/checkout-payment" with model=payment %}
+            				{% endif %}
+        				{% endfor %}
+        			{% endif %}
+					</div>
+				</div>
+				{% if model.hasDirectShip %}
+				<div class="shipping-info width-48p fl">
+					<div class="info-box sec-info-box">
+					<strong class="title theme-color">{{ labels.shippingInformation }}</strong>
+						<div class="info-row shipping-row">
+							<div class="width-30p fl side-label">{{ labels.shipTo }}<strong>:</strong></div>
+							<div class="width-68p fl capitalize my-address"><strong>{% include "modules/common/address-summary" with model=model.fulfillmentInfo.fulfillmentContact %}</strong></div>
+							<div class="cl"></div>
+						</div>
+						
+						<div class="info-row">
+							<div class="width-30p fl side-label">{{ labels.shippingMethod }}<strong>:</strong></div>
+							<div class="width-68p fl capitalize"><strong>{{ model.fulfillmentInfo.shippingMethodName }}</strong></div>
+							<div class="cl"></div>
+						</div>
+						
+						   
+					</div>
+				</div>
+				{% endif %}
+				<div class="cl"></div>
+			</div>
+		</div>
+		{% include "modules/common/order-summary" %}
+		  
+</div>
+</div>
+{% endblock body-content %}
+
+{% block trailing-scripts %}
+	{% parent %}
+	{% if siteContext.generalSettings.isGoogleAnalyticsEnabled and siteContext.generalSettings.isGoogleAnalyticsEcommerceEnabled %}
+	{% include "modules/analytics/google-analytics-ecommerce-tracking-code" %}
+	{% endif %}
+
+{% endblock trailing-scripts %}
+
+		
+		
+		

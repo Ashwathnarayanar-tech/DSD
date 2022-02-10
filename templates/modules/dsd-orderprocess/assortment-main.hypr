@@ -1,0 +1,26 @@
+<div class="dsd-ordercontainer assortment-container">
+{% comment %}
+    <h3>Assortments are temporarily unavailable. Please try again in a few minutes.</h3>{% endcomment %}
+        <div class="description">
+            <p> 
+                <font><strong>Shop approved products, category by category.</strong> Just click the “+” to expand each category, select the products you want and click Add to Cart.</font>
+            </p>
+			<p>
+				Select <strong>Previous Orders</strong> (above) to re-order all or part of a previous order.
+			</p>
+			<p>
+				Select <strong>Rapid Order</strong> (above) to enter a list of Item Numbers and add all of them to your Cart at once.
+			</p>
+        </div>             
+        {% block search-box %}
+            {% include "modules/page-header/search-box" %} 
+        {% endblock search-box %}
+        {% block searchresult-table %} 
+            {% include "modules/dsd-orderprocess/assortment-searchtable" %}
+        {% endblock searchresult-table %}
+        <div class="description tips"><p class="click-plus-msg">Click + to maximize or expand the category</p><p class="click-minus-msg">Click - to minimize or collapse the category.</p></div>
+        <div class="accordion-container" id="assortments"></div>        
+        <div class="description"><p>{{ labels.colditemsshippingmsg }}</p></div> 
+        <div class="message alerts"></div> 
+    </div>
+<div class="pop-up"></div>

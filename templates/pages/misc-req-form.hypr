@@ -1,0 +1,36 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle model.content.productName %}  - {% parent %}{% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-misc-req {% endblock body-tag-classes %}
+
+{% block body-content %}
+{% require_script "dsd-orderprocess/misc-req-form" %}  
+    <form id="misc-req" method="POST" action="https://script.google.com/macros/s/AKfycbxADqHSlufTBN4YZ7C9aX4trvBNLuCWNUlwMml49bvfph_f1Fk/exec">  
+        <input class="tableData" type="text" value="" name="tabledata" style="display:none"/>
+         <input class="tableData1" type="text" value="" name="tabledata1" style="display:none"/>
+        <input class="totelCount" type="text" value="" name="totelCount" style="display:none"/>
+        <input class="tableweight" type="text" value="" name="tableweight" style="display:none"/>
+        <div class="misc">
+        </div>
+        <div class="mz-misc-req-prod" data-mz-related-products ="{% json_attribute Model.config%}">
+            {% include_products "modules/dsd-orderprocess/misc-req-prod-list" with  categoryCode=themeSettings.misc and pageSize=100 as_parameter %} 
+        </div>
+    </form>
+    <div class="misc-overlay"></div>
+           
+    
+{% endblock body-content %} 
+
+
+
+
+
+
+
+
+
+
+
+
+

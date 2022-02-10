@@ -1,0 +1,436 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--[if !mso]><!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style type="text/css">
+
+    </style>
+    <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse !important;}
+    </style>
+    <![endif]-->
+    <style>
+      #centered {
+        margin: 0 auto;
+        width: 150px;
+      }
+
+      #centered p {
+        text-align: right;
+      }
+
+      body {
+        margin: 0 !important;
+        padding: 0;
+        background-color: #ffffff;
+      }
+
+      table {
+        border-spacing: 0;
+        font-family: sans-serif;
+        color: #333333;
+      }
+
+      td {
+        padding: 0;
+      }
+
+      img {
+        border: 0;
+      }
+
+      div[style*="margin: 16px 0"] {
+        margin: 0 !important;
+      }
+
+      .wrapper {
+        width: 100%;
+        table-layout: fixed;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+
+      .webkit {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .outer {
+        Margin: 0 auto;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .full-width-image img {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+      }
+
+      .inner {
+        padding: 10px;
+      }
+
+      p {
+        Margin: 0;
+      }
+
+      a {
+        color: #ee6a56;
+        text-decoration: underline;
+      }
+
+      .h1 {
+        font-size: 21px;
+        font-weight: bold;
+        Margin-bottom: 18px;
+      }
+
+      .h2 {
+        font-size: 18px;
+        font-weight: bold;
+        Margin-bottom: 12px;
+      }
+
+
+      .one-column .contents {
+        text-align: left;
+      }
+
+      .one-column p {
+        font-size: 14px;
+        Margin-bottom: 10px;
+      }
+
+
+      .two-column {
+        text-align: center;
+        font-size: 0;
+      }
+
+      .two-column .column {
+        width: 100%;
+        max-width: 300px;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .contents {
+        width: 100%;
+      }
+
+      .two-column .contents {
+        font-size: 14px;
+        text-align: left;
+      }
+
+      .two-column img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+      }
+
+      .two-column .text {
+        padding-top: 10px;
+      }
+
+
+      .three-column {
+        text-align: center;
+        font-size: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .three-column .logo {
+        max-width: 140px;
+      }
+
+      .three-column .social {
+        max-width: 25px;
+      }
+
+      .three-column .column {
+        width: 100%;
+        max-width: 200px;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .three-column .contents {
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .three-column img {
+        height: auto;
+      }
+
+      .three-column .text {
+        padding-top: 10px;
+      }
+
+
+      .left-sidebar {
+        font-size: 0;
+      }
+
+      .left-sidebar .column {
+        width: 100%;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .left-sidebar .left {
+        max-width: 140px;
+      }
+
+      .left-sidebar .right {
+        max-width: 200px;
+      }
+
+      .left-sidebar .img {
+        width: 100%;
+        max-width: 140px;
+        height: auto;
+      }
+
+      .left-sidebar .contents {
+        font-size: 14px;
+      }
+
+      .left-sidebar a {
+        color: #85ab70;
+      }
+
+
+      @media screen and (max-width: 400px) {
+        .two-column .column,
+        .three-column .column {
+          max-width: 100% !important;
+        }
+
+        .two-column img {}
+
+        .three-column img {}
+      }
+
+      @media screen and (min-width: 401px) and (max-width: 620px) {
+        .three-column .column {
+          max-width: 33% !important;
+        }
+
+        .two-column .column {
+          max-width: 50% !important;
+        }
+
+        #centered {
+          margin: 0 auto;
+          width: 150px;
+        }
+
+        #centered p {
+          text-align: center;
+        }
+      }
+
+
+
+      @media only screen and (max-width: 480px) {
+        td[class="main_nav"] {
+          padding: 0px 0;
+        }
+
+        td[class="main_nav"] td {
+          display: block;
+          float: left;
+          padding: 0 !important;
+          width: 50%;
+        }
+
+        td[class="main_nav"] a {
+          display: block;
+          padding: 10px 0;
+        }
+
+        td[class="main_nav"] .nav1 a,
+        td[class="main_nav"] .nav2 a {
+          border-bottom: 0px solid #bed3ec;
+        }
+
+        td[class="main_nav"] .nav1 a,
+        td[class="main_nav"] .nav3 a {
+          border-right: 0px solid #bed3ec;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#ffffff;">
+    <div style="display:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+      The Jelly Belly {{ model.content.productName }} is back in stock!
+    </div>
+    <center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+      <div class="webkit" style="max-width:600px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;">
+        <table class="outer" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:600px;">
+
+          <!-- Three Columns -->
+
+          <tr>
+            <td class="three-column" style="padding-right:0;padding-left:0;text-align:center;font-size:0;padding-top:10px;padding-bottom:10px;">
+              <!--[if (gte mso 9)|(IE)]>
+                        <table width="600px" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                        <tr>
+                        <td width="200" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                        <![endif]-->
+              <div class="column" style="width:100%;max-width:200px;display:inline-block;vertical-align:top;">
+                <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;"></table>
+              </div>
+              <!--[if (gte mso 9)|(IE)]>
+                        </td><td width="200" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                        <![endif]-->
+              <div class="column" style="width:100%;max-width:200px;display:inline-block;vertical-align:top;">
+                <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                  <tr>
+                    <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;">
+                      <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:center;">
+                        <tr>
+                          <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;"></td>
+                        </tr>
+                        <tr>
+                          <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                            <a href="https://www.jellybellydsd.com" style="color:#ee6a56;text-decoration:underline;">
+                              <img src="http://content.jellybelly.com/email/common/jblogo.png" width="140" alt="" class="logo" style="border-width:0;height:auto;max-width:140px;" />
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if (gte mso 9)|(IE)]>
+                        </td><td width="200" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                        <![endif]-->
+              <div class="column" style="width:100%;max-width:200px;display:inline-block;vertical-align:top;">
+                <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                  <tr>
+                    <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;">
+                      <table class="contents" id="centered" style="border-spacing:0;font-family:sans-serif;color:#333333;font-size:14px;text-align:center;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;width:150px;">
+                        <tr>
+                          <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                            <p style="Margin:0;text-align:right;">
+                              <!-- <span style="color:#333;">View in browser</span><br /> -->
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+            </td>
+          </tr>
+
+          <!-- End Three Columns -->
+          <!-- Navigation -->
+
+          <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+            <tbody>
+              <tr style="padding:0;text-align:left;vertical-align:top">
+                <td height="10px" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word;">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="row" style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+            <tbody>
+              <tr style="padding:0;text-align:left;vertical-align:top">
+                <th class="small-12 large-12 columns first last" style="Margin:0 auto;border-top-color:#bed3ec;border-top-style:solid;border-top-width:2px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:16px;padding-right:16px;text-align:left;width:564px">
+                </th>
+              </tr>
+            </tbody>
+          </table>
+          <!-- End Navigation -->
+          <!-- Single Column -->
+          <tr>
+            <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;width:100%;text-align:left;">
+                    <p class="h1" style="font-size:35px;color:#003366;text-align:center;Margin:0;font-weight:bold;Margin-bottom:10px;">Quick, before we run out again!</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- End Single Column -->
+          <!-- Single Column -->
+          <tr>
+            <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="text-align:center;padding-top:0px;padding-bottom:10px;padding-right:10px;padding-left:10px;width:100%;">
+                    <a href="http://{{domainName}}/p/{{model.productCode}}" style="text-decoration:none;color:#1184dd;text-align:center;"> <img src="http:{{ model.content.productImages|first|prop('imageUrl') }}?size=300" class="block-center" style="border-width:0;"> </a>
+                    <a href="http://{{domainName}}/p/{{model.productCode}}" style="text-decoration:none;color:#1184dd;text-align:center;">
+                      <p style="line-height:21px;color:#000000;font-size:17px;padding-top:0px;padding-bottom:0px;padding-right:0;padding-left:0;width:100%;display:block;Margin:0;Margin-bottom:10px;">{{ model.content.productName }} </p>
+                      <img src="http://content.jellybelly.com/email/common/shopnowbtn.png" style="border-width:0;">
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- End Single Column -->
+          <!-- Single Column -->
+          <tr>
+            <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="text-align:center;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#bed3ec;border-top-width:0px;border-top-style:solid;border-top-color:#bed3ec;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;width:100%;">
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;">
+                      Jelly Belly Candy Company<br /> One Jelly Belly Lane<br /> Fairfield, CA 94533<br />
+                      <strong>1-800-522-3267</strong>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- End Single Column -->
+          <!-- Single Column -->
+          <tr>
+            <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;width:100%;">
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;">
+                      You are receiving this message because you asked to be notified when <br />
+
+                      <a href="http://{{domainName}}/p/{{model.productCode}}" style="text-decoration:none;color:#1184dd;">
+                        <span>{{ model.content.productName }} </span>
+                      </a> was back in stock.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- End Single Column -->
+        </table>
+      </div>
+    </center>
+  </body>
+
+</html>

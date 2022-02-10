@@ -1,0 +1,50 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.yourAccount %} - {% parent %}{% endblock title-tag-content %}
+ 
+{% block body-tag-classes %} mz-spoils-form {% endblock body-tag-classes %}
+
+{% block body-content %}
+  
+{% require_script "dsd-orderprocess/spoils-form" %} 
+
+<div class="spoils-container">
+    <div class="form-label" >Spoils Form</div>
+    <div class="main" id="store-details"> </div>
+    <div class="model-background model-total-h">
+        <div class="model-total">
+            <div class="cross-parent">
+            <div class="cross">&#10006</div>
+                <div class="model-head">
+                    <img class="mz-cms-image-maintain" alt="" style="
+                      border-width: 1px; 
+                      border-style: None;
+                      border-color: rgba(0,0,0,1);
+                      box-sizing: border-box;
+                    " src="//cdn-sb.mozu.com/16171-24080/cms/files/17b5fbe3-b109-47dd-933f-f5305aa4964e?_mzcb=_1469431112332">   
+                </div>
+                <div class="model-msg">
+                    <p>The maximum store credit per claim is $250.</p>
+                    <p>Please contact your supervisor if this limit is insufficient.</p>
+                </div>
+                <div class="model-bulk-msg">
+                    <p>Put Bulk products into the &ldquo;Miscellaneous Bulk&rdquo; section, below.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-overlay"></div> 
+</div>
+
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %} 
+
+ 
+
+
+
+
+
+

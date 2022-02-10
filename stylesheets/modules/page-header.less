@@ -1,0 +1,144 @@
+@headerHeight: 100px;
+@headerBaseline: 66px;
+@searchBoxHeight: 28px;
+@utilityNavHeight: @headerBaseline - (@gutter / 2) - @searchBoxHeight;
+
+ /* styling for promo widget in the header in page.hypr */
+ #mz-drop-zone-promo-above-header {
+    background: #ebf0f2;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Trebuchet MS';
+    .mz-cms-content {
+        padding: 0;
+    }
+    .mz-cms-row {
+        max-height: 100%; 
+    } 
+    .promo-banner {
+        padding: 1%;
+        color: #006491;
+        text-align: center;
+    }     
+ }
+ 
+.mz-pageheader {
+    //clear: both;
+    position: relative;
+    height: @headerHeight;
+    padding: 12.5px 25px 0;
+    //background: #eee;
+   
+     
+    &.mz-pageheader-hasbanner {
+        background: #eee url('{{themeSettings.bannerImage}}') {{ themeSettings.bannerImageRepeat }};
+    }
+    padding: @gutter/2 @gutter 0;
+
+    .mz-storebranding {
+       // position: absolute;
+        //left: @gutter;
+        //top: @headerBaseline - @storeBrandingFontSize - 2;
+    }
+
+    &.mz-pageheader-hasbanner .mz-storebranding {
+        text-indent: -9999px; 
+    }
+
+    .mz-utilitynav {
+        padding: 1.5%;
+        float: right; 
+       // position: absolute; 
+        //top: @gutter/2;
+        //right: @gutter; 
+        //height: @utilityNavHeight;
+    } 
+
+    .mz-searchbox { 
+       /* position: absolute; 
+        top: @utilityNavHeight + ( @gutter / 2 );
+        right: @gutter;
+        */
+    }
+
+    @media only screen {
+        @media (max-width: 768px) {
+            height: auto;
+            .mz-storebranding, .mz-searchbox, .mz-utilitynav {
+                position: relative;
+                margin-bottom: 10px;
+                clear: both;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            .mz-searchbox-expands .mz-searchbox-input {
+                width: auto;
+                &:focus {
+                    width: auto;
+                }
+            }
+            // For Mobiles
+        //      #mz-drop-zone-promo-above-header {
+        //         font-size: 12px;
+        //     .mz-cms-content {
+        //         padding: 0;
+        //     }
+        //     .mz-cms-row {
+        //         max-height: 100%; 
+        //     }  
+        //     .promo-banner {
+        //         padding: 0;
+        //         color: #006491;
+        //         text-align: center;
+        //     }      
+        //  } 
+            
+            
+        }
+    }
+}
+
+
+
+ 
+   @media screen and (max-width: 760px) {  
+            // For Mobiles
+             #mz-drop-zone-promo-above-header {
+                font-size: 12px;
+                padding: 0.5% 2%; 
+                height: 35px;
+            .mz-cms-content {
+                padding: 0;
+            }
+            .mz-cms-row {
+                max-height: 100%; 
+            }  
+            .promo-banner {
+                padding: 0;
+                color: #006491;
+                text-align: center;
+            }      
+         }
+         .mz-pageheader {
+             //padding: 0;
+            padding: 10px 5px;
+            height: 45px;
+            border-bottom: 1px solid silver; 
+         }
+           .mlogo{
+            width: 20%;
+            float: left;
+            margin-top: 5px;
+           } 
+            
+        }
+
+
+
+
+
+
+

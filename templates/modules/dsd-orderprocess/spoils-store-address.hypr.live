@@ -1,0 +1,137 @@
+<div class="section store-details">
+    <div class="address-top-section desktop">
+        <ul class="ul-item">
+            <li>
+                <div class="form-label-name">Details</div>
+            </li>
+            <li>
+                <div class="select-submit-type"> 
+                    <ul>   
+                        <li>
+                            <label for="from-type" >
+                                <input type="radio" name="form-type" value="Spoils" {% if not model.pickupreq %}checked="true" {% endif %}>      
+                                <span></span>  
+                                Spoils
+                            </label>
+                        </li>
+                        <li>
+                            <label for="from-type">
+                                <input type="radio" name="form-type" value="Pick-Up-Request"  {% if model.pickupreq %}checked="true" {% endif %}>
+                                <span></span>
+                                Pick-Up Request
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="text-msg"><i>{% if model.pickupreqmsg %}{{model.pickupreqmsg}}{% else %}Please indicate whether this form is for Spoils or Pick-Up{% endif %}</i></div> 
+                </div>
+            </li>
+            <li>
+                <div class="form-id-sec">
+                    <label class="form-id-label">213886</label> 
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="address-top-section mobile">      
+        <div> 
+            <div class="floatleft">Details</div>
+            <div class="floatright">213886</div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <select class="select-submit-type"> 
+                <option value="Spoils" {% if not model.pickupreq %}selected {% endif %}>Spoils</option>
+                <option value="Pick-Up-Request" {% if model.pickupreq %}selected {% endif %}>Pick-Up Request</option>
+            </select>
+            <div class="text-msg"><i>{% if model.pickupreqmsg %}{{model.pickupreqmsg}}{% else %}Please indicate whether this form is for Spoils or Pick-Up{% endif %}</i></div> 
+        </div>
+    </div>
+    <div class="address-section">
+        <div class="float store-address-1">
+            <div>
+                <div class="float"><label class="label-name">Store Name/Number<sup> *</sup></label></div>
+                <div class="float"><input type="text" name="storename" value="{{model.firstName}}" disabled /><div class='error'></div></div> 
+                <div class="clear"></div>
+            </div>
+            <div>
+               <div class="float"><label class="label-name">Address Line 1<sup> *</sup></label></div>
+                <div class="float"><input type="text" name="addressline1" value="{{model.address.address1}}" disabled /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div> 
+                <div class="float"><label class="label-name">Address Line 2</label></div>
+                <div class="float"><input type="text" name="addressline2" value="{{model.address.address2}}" disabled /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">City<sup> *</sup></label></div>
+                <div class="float"><input type="text" name="city" value="{{model.address.cityOrTown}}" disabled /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">State<sup> *</sup></label></div>
+                <div class="float"><input type="text" name="state" value="{{model.address.stateOrProvince}}" disabled /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">Postal Code<sup> *</sup></label></div>
+                <div class="float"><input type="text" name="postel-code" value="{{model.address.postalOrZipCode}}" disabled /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="float store-address-2">
+            <div>
+                <div class="float"><label class="label-name">Date</label></div>
+                <div class="float datepick-div">
+                  <!--  <input class="datePicker1" id="datePicker" type="text" name="date" value="" readonly/>  
+                    <label for="datePicker" class="date-label"><img src="../resources/images/calendaricon1.png"></label>  
+                    -->
+                 <input type="text" readonly value="{{ model.currentDate }}">
+                </div> 
+                <div class="clear"></div>
+            </div>
+            <div>
+               <div class="float"><label class="label-name">Broker Name</label></div>
+                <div class="float"><input type="text" class="broname editable" name="broker-name" value="{% if model.brokerName %}{{model.brokerName}} {% endif %}" /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">JBCC Number</label></div>
+                <div class="float"><input type="text" name="jbcc" value="{{model.lastNameOrSurname}}" disabled/><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">Invoice Number</label></div>
+                <div class="float"><input maxlength="25" type="text" class="inv editable" name="invoice" value="{% if model.invoice %}{{model.invoice}} {% endif %}" /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">PO Number</label></div>
+                <div class="float"><input maxlength="25" class="ponum editable" type="text" name="ponumber" value="{% if model.ponumber %}{{model.ponumber}} {% endif %}" /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="float"><label class="label-name">Credit Number</label></div>
+                <div class="float"><input maxlength="25" class="creditNumber editable" type="text" name="creditNumber" value="{% if model.creditnumber %}{{model.creditnumber}} {% endif %}" /><div class='error'></div></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="req-fild-msg"><sup>* </sup>Required Fields</div>
+    </div>
+</div>  
+<div class="section product-details">
+        {% include "modules/dsd-orderprocess/spoils-product-list"%}
+</div>
+<div class="section additional-info">
+    {% include "modules/dsd-orderprocess/spoils-additional-info" %}
+</div>
+<div class="review-model">
+    {% include "modules/dsd-orderprocess/spoils-form-review" %}
+</div>
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+{% with themeSettings.useDebugScripts|default:pageContext.isDebugMode as debugMode %}
+
+<script src="{{siteContext.cdnPrefix}}/js/require-{% if debugMode %}debug{% else %}min{% endif %}.js"></script>
+<script type="text/javascript">
+    require.config({
+      cdnPrefix: "{{ siteContext.cdnPrefix }}",
+      cacheKey: "{{ siteContext.hashString }}",
+      urlArgs: "theme={{siteContext.themeId}}&cacheKey=" + {% now|"u" %}, //{{ siteContext.hashString }}",
+      baseUrl: "{{ siteContext.cdnPrefix }}{% if not debugMode %}/compiled{% endif %}/scripts",
+      paths: {
+        jquery: "//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery{% if not debugMode %}.min{% endif %}",
+		underscore: "vendor/underscore/underscore",
+		backbone: "vendor/backbone/backbone"
+      }
+  });
+  if(typeof Object.assign != 'function'){
+        Object.defineProperty(Object, "assign", {
+            value: function assign(target, varArgs) {
+                'use strict';
+                if (target == null) {
+                    throw new TypeError('Cannot convert undefined or null to object');
+                }
+                var to = Object(target);
+                for (var index = 1; index < arguments.length; index++) {
+                    var nextSource = arguments[index];
+                    if (nextSource != null) {
+                        for (var nextKey in nextSource) {
+                            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                                to[nextKey] = nextSource[nextKey];
+                            }
+                        }
+                    }
+                }
+                return to;
+            },
+            writable: true, 
+            configurable: true
+        });
+    }
+  {% if debugMode %}
+  require([{% all_scripts %}]);
+  {% else %}
+  require(['jquery'], function() { require(['modules/common'], function() { require([{% all_scripts %}]); }); });
+  {% endif %}
+</script>
+
+{% if siteContext.generalSettings.isGoogleAnalyticsEnabled %}
+  {% include "modules/analytics/google-analytics-tracking-code" %}
+{% endif %}
+
+{%endwith%}

@@ -1,0 +1,94 @@
+
+.contact-us{
+    .page-title-hdg {
+        padding: 10px 0px;
+        font-size: 16px;
+        color: #0080b7;
+    } 
+    .contact-us-container {    
+        padding: 1.5% 2%; 
+        border: 1px solid #e9e9e9;
+        border-radius: 5px;
+        
+        .contact-hdg-bdr-bot {
+            padding-bottom: 1.5%;
+            border-bottom: 1px solid #e9e9e9;
+            margin-bottom: 2%;
+            font-size: 16px;
+        }
+        .field-row {   
+            margin-bottom: 15px;
+        }
+        .contact-label-container {
+            width: 20%;
+            float: left;
+            display: block;
+            margin-right: 2%;
+        }
+        
+        .contact-field-container{
+            width: 78%;
+            float: left;
+            display: block;
+            position:relative;
+            .error-msg {
+                position: absolute;
+                bottom: -8px;
+                color: red;
+                font-size: 11px;
+             }
+            
+            input, textarea {
+                width: 35%;
+                border-color: #e9e9e9;
+                height: 30px;
+            }
+            textarea {
+                height:90px; 
+            }
+            .contact-back {
+                font-size: 14px;
+                color: #0080b7;
+                text-decoration:underline;
+                margin-left:15px;
+            }
+            #contact-form-submit{    
+                background: #f98700;
+                color: white;
+                font-size: 14px;
+                border: none;
+                width:150px;
+                background: #f47c20;
+                background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+                background: -moz-linear-gradient(top, #f88e11, #f06015);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+            }
+    
+        }
+    }  
+    
+}
+
+@media screen and (max-width: 766px) {
+
+.contact-us .contact-us-container .contact-label-container{
+                width: 30%;
+             
+}
+.contact-us .contact-us-container .contact-field-container{
+                width: 68%;
+}
+.contact-us .contact-us-container .contact-field-container input{
+                width: auto;
+                border-color: #e9e9e9;
+                height: 21px;
+}
+.contact-us .contact-us-container .contact-field-container textarea{
+                height: 70px;  
+                width: 80% !important;
+}
+.contact-us .contact-us-container .contact-field-container #contact-form-submit{
+                padding: 4px 34px!important;
+                height: 41px;
+}
+}

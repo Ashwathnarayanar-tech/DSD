@@ -1,0 +1,720 @@
+<div class="model">
+    <div class="model-overlay-mail"></div>
+    <div class="model-background model-mail-h">
+        <div class="model-mail">
+            <div class="cross-parent">
+            <div class="crossmail">&#10006</div>
+                <div class="model-head">
+                    <img class="mz-cms-image-maintain" alt="" style="
+                      border-width: 1px; 
+                      border-style: None;
+                      border-color: rgba(0,0,0,1);
+                      box-sizing: border-box;
+                    " src="//cdn-sb.mozu.com/16171-24080/cms/files/17b5fbe3-b109-47dd-933f-f5305aa4964e?_mzcb=_1469431112332">   
+                </div>
+                <div class="model-msg">
+                    <p>Your request is submitted successfully</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cross-parents"><div class="cross">&#10006</div></div>
+    <div class="spoils-review-container">
+        <div class="head-sec">
+            <div class="form-label" >Spoils Form</div>
+            <div class="review-functions">
+                <div class="float function-lable edit-form">Edit Form</div>
+                <div class="float verticalline"></div>
+                <div class="float function-lable print-form">Print</div>
+                <div class="clear"></div>
+            </div>
+            <div class="review-submit">
+                <button class="send-mail">Submit &amp; Email</button>
+            </div>    
+            <div class="clear"></div>
+        </div>
+        <div class="review-address-sec-main">
+            <div class="address-top-section desktop">
+                <ul class="ul-item">
+                    <li>
+                        <div class="form-label-name">Details</div>
+                    </li>
+                    <li>
+                        <div class="form-id-sec">
+                            <label class="form-id-label">{% if model.pickupreq %} Pick Up Request {% else %}Spoils Form {% endif %}</label> 
+                            <!-- <label class="vertival-line"></label>
+                            <label class="form-id-label">213886</label> -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="address-top-section mobile">
+                <div class="details-flat">Details</div>
+                <div class="form-id-float">213886</div>
+                <div class="clear"></div>
+                <div class="formname-flat">{% if model.pickupreq %} Pick Up Request {% else %} Spoils Form {% endif %}</div>
+            </div>
+            <div class="address-section">
+                <div class="float store-address-1">
+                    <div>
+                        <div class="float"><label class="label-name">Store Name/Number</label></div>
+                        <div class="float"><div class="data">{{model.firstName}}</div></div>  
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                       <div class="float"><label class="label-name">Address Line 1</label></div>
+                        <div class="float"><div class="data">{{model.address.address1}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div> 
+                        <div class="float"><label class="label-name">Address Line 2</label></div>
+                        <div class="float"><div class="data">{{model.address.address2}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">City</label></div>
+                        <div class="float"><div class="data">{{model.address.cityOrTown}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">State</label></div>
+                        <div class="float"><div class="data">{{model.address.stateOrProvince}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">Postal Code</label></div>
+                        <div class="float"><div class="data">{{model.address.postalOrZipCode}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="float store-address-2">
+                    <div>
+                        <div class="float"><label class="label-name">Date</label></div>
+                        <div class="float ``">
+                            <div class="data" class="datepickerval">{{model.datepick}}</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                       <div class="float"><label class="label-name">Broker Name</label></div>
+                        <div class="float"><div class="data" class="datepickerval">{% if model.brokerName %}{{model.brokerName}} {% endif %}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">JBCC Number</label></div>
+                        <div class="float"><div class="data" class="datepickerval">{{model.lastNameOrSurname}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div> 
+                        <div class="float"><label class="label-name">Invoice Number</label></div>
+                        <div class="float"><div class="data" class="datepickerval">{% if model.invoice %}{{model.invoice}} {% endif %}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">PO Number</label></div>
+                        <div class="float"><div class="data" class="datepickerval">{% if model.ponumber %}{{model.ponumber}} {% endif %}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">Credit Number</label></div>
+                        <div class="float"><div class="data" class="datepickerval">{% if model.creditnumber %}{{model.creditnumber}} {% endif %}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="review-product-details">
+            {% if model.addedspoilslist %}
+            <div class="review-product-top-section-1">
+                <ul class="ul-item">
+                    <li> 
+                        <div class="form-label-name">Packaged Items</div>  
+                    </li>
+                </ul>
+            </div>
+            <div class="review-product-list-div desktop">
+                <table class="review-particular-prod-tab">
+                    <thead>
+                        <tr>
+                            <th>Item No. </th>
+                            <th>Spoils Type </th>
+                            <th>Qty </th>
+                            <th>Description</th>
+                            <th>Reason Code </th>
+                            <th>Case Cost</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        {% for spoillist in model.addedspoilslist %}
+                        <tr>
+                            <td class="itemnumber"><div class="data-list">{{spoillist.prodId}}</div></td>
+                            <td class="itemtype"><div class="data-list">{{spoillist.itemtype}}</div></td>
+                            <td class="quntity"><div class="data-list">{{spoillist.quentity}}</div></td>
+                            <td class="decraption"><div class="data-list">{{spoillist.prodName}}</div></td>
+                            <td class="reasoncode"><div class="data-list">{{spoillist.reasoncode}}</div></td>
+                            <td class="casecost-td"><div class="data-list">{{spoillist.prodCast | currency}}</div></td>
+                            <td class="total-td"><div class="data-list">{{spoillist.total | currency}}</div></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="review-product-list-div mobile">
+                {% for spoillist in model.addedspoilslist %}
+                <div class="mob-added-res">
+                    <div class="mob-product-code"><label>Item #: <strong>{{spoillist.prodId}}</strong></label></div>   
+                    <div class="mob-product-name">
+                        <div>{{spoillist.prodName}}</div>
+                    </div>
+                    <div class="mob-prod-details">
+                        <div>{{spoillist.itemtype}}</div>
+                        <div>{{spoillist.quentity}}</div>
+                        <div>{{spoillist.reasoncode}}</div>
+                        <div>{{spoillist.prodCast | currency}}</div> 
+                        <div class="mob-review-total">Total {{spoillist.total | currency}}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if model.miscelbulk.weightinpounds > 0 %}
+            <div class="review-product-top-section-2">
+                <ul class="ul-item">
+                    <li>
+                        <div class="form-label-name">Miscellaneous Bulk</div> 
+                    </li>
+                </ul>
+            </div>
+            <div class="review-product-bulk-div">
+                <table class="bulk-prod-tab"> 
+                    <thead class="desktop">
+                        <tr>
+                            <th>Qty<p>(pounds)</p></th> 
+                            <th>Reason Code</th>
+                            <th>10# Case Cost</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pounds"><div class="data-td">{{model.miscelbulk.weightinpounds}}</div></td>
+                            <td class="reasoncode"><div class="data-td">{{model.miscelbulk.reasoncode}}</div></td>
+                            <td class="casecost-td"><div class="data-td">$52.00</div></td>
+                            <td class="total-td"><div class="data-td">{{model.miscelbulk.total | currency}}</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            
+            {% comment %} specific bulk {% endcomment %}
+            
+            {% if model.addedspecificlist %}
+                <div class="review-product-top-section-1">
+                    <ul class="ul-item">
+                        <li> 
+                            <div class="form-label-name">Specific Bulk</div>  
+                        </li>
+                    </ul>
+                </div>
+                <div class="specific review-product-list-div desktop">
+                    <table class="review-particular-prod-tab">
+                        <thead>
+                            <tr>
+                                <th>Item No. </th>
+                                <th>Qty </th>
+                                <th>Description</th>
+                                <th>Reason Code </th>
+                                <th>Case Cost</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            {% for spoillist in model.addedspecificlist %}
+                            <tr>
+                                <td class="itemnumber"><div class="data-list">{{spoillist.prodId}}</div></td>
+                                <td class="quntity"><div class="data-list">{{spoillist.quentity}}</div></td>
+                                <td class="decraption"><div class="data-list">{{spoillist.prodName}}</div></td>
+                                <td class="reasoncode"><div class="data-list">{{spoillist.reasoncode}}</div></td>
+                                <td class="casecost-td"><div class="data-list">{{spoillist.prodCast | currency}}</div></td>
+                                <td class="total-td"><div class="data-list">{{spoillist.total | currency}}</div></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="specific review-product-list-div mobile">
+                    {% for spoillist in model.addedspecificlist %}
+                    <div class="mob-added-res">
+                        <div class="mob-product-code"><label>Item #: <strong>{{spoillist.prodId}}</strong></label></div>   
+                        <div class="mob-product-name">
+                            <div>{{spoillist.prodName}}</div>
+                        </div>
+                        <div class="mob-prod-details">
+                            <div>{{spoillist.quentity}}</div>
+                            <div>{{spoillist.reasoncode}}</div>
+                            <div>{{spoillist.prodCast | currency}}</div> 
+                            <div class="mob-review-total">Total {{spoillist.total | currency}}</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="review-product-list-total">
+                <div class="grand-total"><label>Grand Total</label><span class="total-in-d">{{model.grandTotal | currency}}</span></div>
+            </div>
+        </div>
+        <div class="review-additional-info"> 
+            <div class="add-info-top-sec">
+                <ul class="ul-item">
+                    <li>
+                        <div class="form-label-name">Additional Info</div> 
+                    </li>
+                </ul>
+            </div>
+            <div class="additional-section">
+                <div class="float store-address-1" {% if not model.pickupreq %} style="border:none;" {% endif %}>
+                    <div>
+                        <div class="float"><label class="label-name">Store Ref Number</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.storeref}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">Rep Name</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.repname}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                       <div class="float"><label class="label-name">Rep Phone Number</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.repphone}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div> 
+                        <div class="float"><label class="label-name">Rep Mail</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.repmail}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">Additional Mail</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.additionalemail}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    {% if model.additionalinfo.commentsSpoils %}
+                        <div>
+                            <div class="float"><label class="label-name">Comments</label></div>
+                            <div class="float"><div class="data">{{model.additionalinfo.commentsSpoils}}</div></div>
+                            <div class="clear"></div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if model.pickupreq %}
+                <div class="float store-address-2">
+                    <div class="sub-form-head">
+                        <label>Pick Up Return Request Details</label>
+                    </div>
+                    <div>
+                       <div class="float"><label class="label-name">No. of Master Cases</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.numberofmastercases}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div>
+                        <div class="float"><label class="label-name">Comments</label></div>
+                        <div class="float"><div class="data">{{model.additionalinfo.comments}}</div></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+                {% endif %}
+                <div class="clear"></div> 
+            </div>
+            <div class="review-footer">
+                <div class="review-functions">
+                    <div class="float function-lable edit-form">Edit Form</div>
+                    <div class="float verticalline"></div>
+                    <div class="float function-lable print-form">Print</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="review-submit">
+                    <button class="function-lable send-mail">Submit &amp; Email</button>
+                </div>    
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class='spoils-review-container-print'>
+       <div style='height: 16px;background: #EDEDED;padding: 21px;padding-bottom: 25px;'>
+          <div style=' float:  left;color: #1a81bc;font-size: 16px;font-weight: bold;' >Spoils Form</div>
+       </div>
+       <div class='review-address-sec-main'>
+          <div class='address-top-section'>
+             <ul style='margin: 0; padding: 24px;border-bottom: 1px solid #99999f;width: 96%;'>
+                <li style='display: inline-block;vertical-align: bottom;text-align: left;width: 67%;'>
+                   <div style='font-size: 17px;font-weight: bold;'>Details</div>
+                </li>
+                <li style='display: inline-block;vertical-align: bottom;text-align: right;width: 25%;padding: 11px;font-weight: bold;'>
+                   <div style='text-align: center;'>
+                      <label class='form-id-label'>{% if model.pickupreq %} Pick Up Request {% else %}Spoils Form {% endif %}</label>
+                      <label style='border: 1px solid #99999F;margin: 8px;'></label>
+                      <label class='form-id-label'>213886</label>
+                   </div>
+                </li>
+             </ul>
+          </div>
+          <div style='padding: 20px 0 10px 0;width: 96%;margin: 0 auto;'>
+             <div style='float: left;width: 47%;margin-right: 10px;border-right: 1px solid #99999f;'>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Store Name/Number</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.firstName}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Address Line 1</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.address.address1}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Address Line 2</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.address.address2}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>City</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.address.cityOrTown}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>State</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.address.stateOrProvince}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Postal Code</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.address.postalOrZipCode}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+             </div>
+             <div style='float: left;width: 47%;margin-left: 22px;'>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Date</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;' class='datepickerval'>{{model.datepick}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Broker Name</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'> {% if model.brokerName %}{{model.brokerName}} {% endif %}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width:35%;float: left;'>
+                      <label class='label-name'>JBCC Number</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{{model.lastNameOrSurname}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>Invoice Number</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{% if model.invoice %}{{model.invoice}} {% endif %}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 35%;float: left;'>
+                      <label class='label-name'>PO Number</label>
+                   </div>
+                   <div style='float: left;'>
+                      <div style='width: 182%;border-radius: 3px;padding: 14px;min-height: 18px;font-weight: bold;padding-top:0;'>{% if model.ponumber %}{{model.ponumber}} {% endif %}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+             </div>
+             <div style='clear: both;'></div>
+          </div>
+       </div>
+       <div class='review-product-details'>
+          <div class='review-product-top-section-1'>
+             <ul style='margin: 0;padding: 24px;border-bottom: 1px solid #99999f;width: 96%;'>
+                <li style='display: inline-block;vertical-align: bottom;'>
+                   <div style='font-size: 17px;font-weight: bold;'>Packaged Items</div>
+                </li>
+             </ul>
+          </div>
+          <div style='margin-top: 25px;'>
+             <table style='width: 100%;'>
+                <thead style='background-color: #ededed;'>
+                   <tr style='height: 40px;'>
+                      <th>Item No. </th>
+                      <th>Spoils Type </th>
+                      <th>Qty </th>
+                      <th>Description</th>
+                      <th>Reason Code </th>
+                      <th>Case Cost</th>
+                      <th>Totale</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   {% for spoillist in model.addedspoilslist %}
+                   <tr style='border-bottom: 1px solid #ededed;'>
+                      <td style='text-align: center;width: 10%;'>
+                         <div class='data-list'>{{spoillist.prodId}}</div>
+                      </td>
+                      <td style='text-align: center;width: 10%;'>
+                         <div class='data-list'>{{spoillist.itemtype}}</div>
+                      </td>
+                      <td style='text-align: center;width: 10%;'>
+                         <div class='data-list'>{{spoillist.quentity}}</div>
+                      </td>
+                      <td style='width: 30%;text-align: center'>
+                         <div class='data-list'>{{spoillist.prodName}}</div>
+                      </td>
+                      <td style='text-align: center;width: 10%;'>
+                         <div class='data-list'>{{spoillist.reasoncode}}</div>
+                      </td>
+                      <td style='text-align: center;width: 14.5%;'>
+                         <div class='data-list'>${{spoillist.prodCast}}</div>
+                      </td>
+                      <td style='text-align: center;width: 14.5%;'>
+                         <div class='data-list'>${{spoillist.total}}</div>
+                      </td>
+                   </tr>
+                   {% endfor %}
+                </tbody>
+             </table>
+          </div>
+          {% if model.miscelbulk.weightinpounds > 0 %}
+          <div style='margin-top: 20px;'>
+             <ul style='margin: 0;padding: 24px;border-bottom: 1px solid #99999f;width: 96%;'>
+                <li style='display: inline-block;vertical-align: bottom;'>
+                   <div style='font-weight: bold;font-size: 17px;'>Miscellaneous Bulk</div>
+                </li>
+             </ul>
+          </div>
+          <div style='margin-top: 25px;border-bottom: 1px solid #99999f;'>
+             <table style='width: 100%;'>
+                <thead style='background-color: #ededed;'>
+                   <tr style='height: 40px;'>
+                      <th>
+                         Qty
+                         <p>(10# Cases)</p>
+                      </th>
+                      <th>Reason Code</th>
+                      <th>Case Cost</th>
+                      <th>Total</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                      <td style='text-align: center;width: 24.5%;'>
+                         <div style='width: 100%;padding: 7px;border-radius: 4px;text-align: center;'>{{model.miscelbulk.weightinpounds}}</div>
+                      </td>
+                      <td style='text-align: center;width: 24.5%;'>
+                         <div style='width: 100%;padding: 7px;border-radius: 4px;text-align: center;'>{{model.miscelbulk.reasoncode}}</div>
+                      </td>
+                      <td style='text-align: center;width: 24.5%;'>
+                         <div style='width: 100%;padding: 7px;border-radius: 4px;text-align: center;'>{{model.miscelbulk.casecost}}</div>
+                      </td>
+                      <td style='text-align: center;width: 24.5%;'>
+                         <div style='width: 100%;padding: 7px;border-radius: 4px;text-align: center;'>{{model.miscelbulk.total}}</div>
+                      </td>
+                   </tr>
+                </tbody>
+             </table>
+          </div>
+          {% endif %}
+          {% if model.addedspecificlist %}
+             <div class='review-product-top-section-2'>
+                <ul style='margin: 0;padding: 24px;border-bottom: 1px solid #99999f;width: 96%;'>
+                   <li style='display: inline-block;vertical-align: bottom;'>
+                      <div style='font-size: 17px;font-weight: bold;'>Specific Bulk</div>
+                   </li>
+                </ul>
+             </div>
+             <div style='margin-top: 25px;'>
+                <table style='width: 100%;'>
+                   <thead style='background-color: #ededed;'>
+                      <tr style='height: 40px;'>
+                         <th>Item No. </th>
+                         <th>Spoils Type </th>
+                         <th>Qty </th>
+                         <th>Description</th>
+                         <th>Reason Code </th>
+                         <th>Case Cost</th>
+                         <th>Totale</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      {% for spoillist in model.addedspecificlist %}
+                      <tr style='border-bottom: 1px solid #ededed;'>
+                         <td style='text-align: center;width: 10%;'>
+                            <div class='data-list'>{{spoillist.prodId}}</div>
+                         </td>
+                         <td style='text-align: center;width: 10%;'>
+                            <div class='data-list'>{{spoillist.itemtype}}</div>
+                         </td>
+                         <td style='text-align: center;width: 10%;'>
+                            <div class='data-list'>{{spoillist.quentity}}</div>
+                         </td>
+                         <td style='width: 30%;text-align: center'>
+                            <div class='data-list'>{{spoillist.prodName}}</div>
+                         </td>
+                         <td style='text-align: center;width: 10%;'>
+                            <div class='data-list'>{{spoillist.reasoncode}}</div>
+                         </td>
+                         <td style='text-align: center;width: 14.5%;'>
+                            <div class='data-list'>${{spoillist.prodCast}}</div>
+                         </td>
+                         <td style='text-align: center;width: 14.5%;'>
+                            <div class='data-list'>${{spoillist.total}}</div>
+                         </td>
+                      </tr>
+                      {% endfor %}
+                   </tbody>
+                </table>
+             </div>
+          {% endif %}
+
+          <div style='text-align: right;margin-top: 17px;'>
+             <div style='color: #0079b1;font-size: 17px;font-weight: bold;'>
+                <label>Grand Total</label>
+                <span style='margin-left: 23px;'>${{model.grandTotal}}</span>
+             </div>
+          </div>
+       </div>
+       <div class='review-additional-info'>
+          <div style='margin-top: 20px;'>
+             <ul style='margin: 0;padding: 24px;border-bottom: 1px solid #99999f;width: 96%;'>
+                <li style='display: inline-block;vertical-align: bottom;'>
+                   <div style='font-weight: bold;font-size: 17px;'>Additional Info</div>
+                </li>
+             </ul>
+          </div>
+          <div style='padding: 20px 0 10px 0;width: 96%;margin: 0 auto;'>
+             <div style='margin-right: 10px;border-right: 1px solid #99999f; float: left;width: 48%;{% if not model.pickupreq %} border:none; {% endif %}' >
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Store Ref Number</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.storeref}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Rep Name</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.repname}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Rep Phone Number</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.repphone}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Rep Mail</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.repmail}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Additional Mail</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.additionalemail}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                {% if model.additionalinfo.commentsSpoils %}
+                    <div>
+                        <div style='width: 25%;float: left;'>
+                            <label class="label-name">Comments</label>
+                        </div>
+                        <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.commentsSpoils}}</div></div>
+                        <div style='clear: both;'></div>
+                    </div>
+                {% endif %}
+             </div>
+             {% if model.pickupreq %}
+             <div style='float: left;width: 48%;'>
+                <div style='margin-bottom: 20px;font-weight: 600;font-size: 16px;'>
+                   <label>Pick Up Return Request Details</label>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>No. of Master Cases</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.numberofmastercases}}</div>
+                   </div>
+                   <div style='clear: both;'></div>
+                </div>
+                <div>
+                   <div style='width: 25%;float: left;'>
+                      <label class='label-name'>Comments</label>
+                   </div>
+                   <div style='width: 74%;float: left;'>
+                      <div style='width: 65%;padding: 14px;padding-top: 0;font-weight:bold;'>{{model.additionalinfo.comments}}</div>
+                   </div>
+                   <div style='clear: both;'>
+                   </div>
+                </div>
+                <div class='overlay'></div>
+             </div>
+             {% endif %}
+             <div style='clear: both;'></div>
+          </div>
+       </div>
+    </div>
+
+</div>

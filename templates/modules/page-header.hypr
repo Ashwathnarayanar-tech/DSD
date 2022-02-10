@@ -1,0 +1,16 @@
+<header class="mz-pageheader{% if themeSettings.bannerImageEnabled %} mz-pageheader-hasbanner {% endif %}">
+<div class="header-container" >
+   {% block store-branding %}
+        {% include "modules/page-header/store-branding" %}
+    {% endblock store-branding %}
+    {% block utility-nav %}
+        {% include "modules/page-header/utility-nav" %}
+    {% endblock utility-nav %} 
+    {% comment %}
+        {% block search-box %}
+                {% include "modules/page-header/search-box" %}
+        {% endblock search-box %}
+    {% endcomment %}
+    </div>
+</header>
+

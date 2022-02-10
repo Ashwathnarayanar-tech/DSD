@@ -1,0 +1,293 @@
+     {% comment %} <ul class="mz-orderlist">
+        
+        {% for order in model.items %}
+        <li>{% include "modules/my-account/order-history-order-listing" with model=order %}</li>
+        {% endfor %}
+      </ul>
+      {% endcomment %}
+     
+     <p class="page-title-hdg">Order History</p>
+     <div class="acc-tab-container"> 
+     
+     {% if  model.totalCount > 0 %}  
+     {% for orders in model.items %}
+     
+    	<div class="acc-tab-link">
+    		<div class="collapse-icon"><span class="mz-mobile collapse-iconformbl"></div>
+    		<div class="order-no hdg-col"> Order Number: <strong> {{ orders.orderNumber }} </strong> </div>
+    		<div class="po-no hdg-col">PO Number: 
+    		    {% if orders.billingInfo.purchaseOrder.purchaseOrderNumber %}
+                <strong> {{ orders.billingInfo.purchaseOrder.purchaseOrderNumber }}</strong>
+                {% else %}
+                <strong> N/A </strong>
+                {% endif %}
+       
+    		</div>
+    		<div class="order-status hdg-col"> Order Status: <strong>{{ orders.status}}</strong></div>
+    		<div class="order-total hdg-col">Order Total: <div>{{ orders.subtotal|currency }}</div></div>  
+    		<div class="cl"></div>
+    	</div>
+   
+	<div class="acc-tab-content-container">
+		<div class="inner-tab-container">
+			<div class="order-details-container">
+				<div class="billing-info width-48p fl">
+					<strong class="title">Billing Information</strong>
+					<div class="info-box">
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Billing Email</div>
+							<div class="width-50p mwidthp fl"><strong>{{ orders.billingInfo.billingContact.email}}</strong></div>
+							<div class="cl"></div>
+						</div>
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Billing Name</div>
+							<div class="width-50p mwidthp fl"><strong>{{ orders.billingInfo.billingContact.firstName}} {{ orders.billingInfo.billingContact.middleNameOrInitial}} {{ orders.billingInfo.billingContact.lastNameOrSurname}}</strong></div>
+							<div class="cl"></div>
+						</div>
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Billing Address</div>
+							<div class="width-50p mwidthp fl capitalize"><strong>
+							{% if not orders.billingInfo.billingContact.address.address1.isEmpty %}
+							{{ orders.billingInfo.billingContact.address.address1}}, 
+							{% endif %}
+							{% if not orders.billingInfo.billingContact.address.address2.isEmpty %}
+							{{ orders.billingInfo.billingContact.address.address2}}
+							{% endif %}
+							{% if not orders.billingInfo.billingContact.address.address3.isEmpty %}
+							{{ orders.billingInfo.billingContact.address.address3}}
+							{% endif %}
+							{% if not orders.billingInfo.billingContact.address.address4.isEmpty %}
+							{{ orders.billingInfo.billingContact.address.address4}} 
+							{% endif %}
+							{{ orders.billingInfo.billingContact.address.cityOrTown}} - {{ orders.billingInfo.billingContact.address.postalOrZipCode}},
+							{{ orders.billingInfo.billingContact.address.stateOrProvince}}, 
+							{{ orders.billingInfo.billingContact.address.countryCode}}</strong></div>
+							<div class="cl"></div>
+						</div>
+					</div>
+				</div>
+				<div class="shipping-info width-48p fl">
+					<strong class="title">Shipping Information</strong>
+					<div class="info-box">
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Ship to</div>
+							<div class="width-50p mwidthp fl capitalize"><strong>	
+							{% if not orders.fulfillmentInfo.fulfillmentContact.address.address1.isEmpty %}
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.address1}},
+							{% endif %}
+							{% if not orders.fulfillmentInfo.fulfillmentContact.address.address2.isEmpty %}
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.address2}} 
+							{% endif %}
+							{% if not orders.fulfillmentInfo.fulfillmentContact.address.address3.isEmpty %}
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.address3}} 
+							{% endif %}
+							{% if not orders.fulfillmentInfo.fulfillmentContact.address.address4.isEmpty %}
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.address4}}
+							{% endif %}{{ orders.fulfillmentInfo.fulfillmentContact.address.cityOrTown}} - {{orders.fulfillmentInfo.fulfillmentContact.address.postalOrZipCode}},
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.stateOrProvince}}, 
+							{{ orders.fulfillmentInfo.fulfillmentContact.address.countryCode}}</strong></div>
+							<div class="cl"></div>
+						</div> 
+						
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Shipping Method</div>
+							<div class="width-50p mwidthp fl capitalize"><strong>{{orders.fulfillmentInfo.shippingMethodName}}</strong></div>
+							<div class="cl"></div>
+						</div>
+						<div class="info-row">
+							<div class="width-50p mwidthp fl">Date Shipped</div>
+							<div class="width-50p mwidthp fl capitalize">
+							    <strong> 
+							        {% if orders.fulfillmentStatus == "Fulfilled" and orders.packages.length>0 %} 
+        							    {% with orders.packages|first as date %}
+        							        {{ date.fulfillmentDate|date("F j, Y") }}
+        							    {% endwith %}
+							        {% else %} 
+							            N/A
+							        {% endif %}
+							    </strong>
+							</div>
+							<div class="cl"></div>
+						</div>
+						
+						   
+					</div>  
+				</div>
+				<div class="cl"></div>
+			</div>
+		</div>
+		<div class="list-of-history-item-container ">
+	<div class="order-hdg">
+	    <span class="fl"><strong>Your Order</strong></span>
+	    <div class="fr">
+            <span>
+    	        <strong>Order Placed : {{ orders.submittedDate|date("F j, Y") }}</strong>
+    	        <div class="placed-order">by <span class="placed-by" orderID = "{{ orders.orderNumber }}" style="display: inline-block; font-weight:bold;"></span></div>
+    	    </span>
+    	    <div>
+                <strong>Requested Ship Date:
+                {% if orders.billingInfo and orders.billingInfo.purchaseOrder %}
+    	            {% with orders.billingInfo.purchaseOrder.customFields|first as date %}
+    	                {% if date.value %}
+    	                    {{ date.value }}
+    	                {% else %}
+    	                      N/A
+    	                {% endif %}
+    	            {% endwith %}
+	            {% else %}
+	                N/A
+	            {% endif %}
+    	        </strong>
+    	    </div>
+    	 </div>    
+    	 <span class="price-change">{{ labels.pricechange}}</span>
+	    <div class="cl"></div>
+	</div>
+	<div class="list-of-order">
+	
+	    
+		<div class="order-history-lists">
+		<table class="list-of-order">
+		    <thead> 
+		       <tr class="desktop">
+		        <th class="checkbox"><div class="checkbox"><input type="checkbox" name="select-all" class="select-all magic-checkbox" /> <label></label></div></th>
+                 <th class="ord-item-name">Item #</th>  
+                 <th class="ord-desc">Description</th>
+                 <th class="ord-price">Price</th>
+                 <th class="ord-cold-pack">Cold Pack</th>
+                 <th class="ord-qty">Order Qty</th>  
+		       </tr>  
+		     </thead>
+		      <tbody>
+                              <tr class="mobile">
+                                 <th colspan="4" class="checkbox">
+                                    <div class="checkboxcustom"> 
+                                       <input class="magic-checkbox select-all-check select-all" type="checkbox" value="None" name="check" data-mz-orderNumber="{{ orders.orderNumber }}" />
+                                       <label class="select-all"></label>
+                                    </div>
+                                 </th>
+                                 <tr class='gap'></tr>
+                              </tr>  
+		      <!--Table row for desktop-->
+		      {% for item in orders.items %}  
+		        <tr data-mz-orderNumber="{{ orders.orderNumber }}" class="desktop">
+		            <td class="checkbox"><div class="checkboxcustom"> <input type="checkbox" name="{{item.id}}" data-mz-productCode="{{item.product.productCode}}" 
+		            data-mz-location="{{item.fulfillmentLocationCode}}" class="prod-selection magic-checkbox" {% if not item.inventory %}disabled {% endif %}/> <label></label></div></td>
+		            <td class="ord-item-name">{{item.product.productCode}}</td>
+		            <td class="ord-desc">
+		                <span {% if item.inventory and item.futureDate!="undefined" %} 
+		                style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{item.product.name}}</span>
+		                <div class="orderhistory-error" order-error-code= {{item.product.productCode}}>{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
+		                {% if item.inventory %}
+		                    <div class="orderhistory-future" order-error-code-future= {{item.product.productCode}}>{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
+		                {% endif %}
+		            </td>
+		            <td class="ord-price">{{item.product.price.price|currency}}</td>  
+		            <td class="ord-cold-pack">
+		                {% if themeSettings.heatSensitive %}    
+		                    {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
+                                {% with aliasName.values|findwhere('value',true) as checkVal %}
+                                    {% if checkVal %}
+                                         <img src="../resources/images/coldpack-tick.png" alt="Yes" />
+                                    {% endif %}
+                                {% endwith %}
+                            {% endwith %}</td>
+                        {% endif %}    
+		            <td class="ord-qty">{{item.quantity}}</td>
+		        </tr>
+		       <!--Table row for desktop end-->
+		       
+		        <!--Table row for mobile/ipad portrait mode or width < 768px -->
+		         <tr colspan="3" class="mobile ordermbl-code">
+                               <td>
+                                   <span class="ordermbl-code">Code No: {{ item.product.productCode }} </span>
+                               </td>
+                </tr>
+		        <tr  class="mobile row1" data-mz-orderNumber="{{ orders.orderNumber }}">
+		          <td class="ord-desc"  colspan="3">
+		                <span {% if item.inventory and item.futureDate!="undefined" %} 
+		                style="font-weight:bold" {% else %}{% if not item.inventory %}style="color:red"{% endif %} {% endif %}>{{item.product.name}}</span>
+		                <div class="orderhistory-error" order-error-code= {{item.product.productCode}}>{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
+		                {% if item.inventory %}
+		                    <div class="orderhistory-future" order-error-code-future= {{item.product.productCode}}>{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
+		                {% endif %}
+		          </td>
+		          <td class="checkbox"><div class="checkboxcustom"><input type="checkbox" name="{{item.id}}" data-mz-productCode="{{item.product.productCode}}" data-mz-location="{{item.fulfillmentLocationCode}}" class="prod-selection magic-checkbox"  {% if not item.inventory %}disabled {% endif %}/> <label></label></div></td>
+		        </tr> 
+		       
+		        <tr class="mobile row2" data-mz-orderNumber="{{ orders.orderNumber }}">
+		         
+		         <td class="ord-price">{{item.product.price.price|currency}}</td>
+		         <td class="ord-cold-pack">{% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %} 
+                                {% with aliasName.values|findwhere('value',true) as checkVal %}
+                                    {% if checkVal %}
+                                        <font>Cold Pack</font>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endwith %}</td>
+                 <td class="ord-qty" data-mz-productCode="{{item.product.productCode}}">{{item.quantity}}</td>
+                 <td class="ord-price">{{item.product.price.price|currency}}</td>
+		        </tr>
+		         <tr class="mobile spacer"></tr>
+		        <!--Table row for mobile or width < 768px  end-->
+		        {% endfor %} 
+		       
+		      </tbody>
+		</table>
+		
+		</div>
+	
+		
+	
+	</div>   
+	<div class="selectedd-item-details" >
+			<div class="ord-t-qty">Total Items<br /><span class="theme-color">{{ orders.totalcount  }}</span></div>
+			<div class="gross-weight">Gross Weight<br /><span class="theme-color">{{  orders.totalWeight   }} lbs</span></div>  
+			<div class="ord-t-price">Price<br /><span class="theme-color">{{ orders.subtotal|currency }}</span></div>
+			<div class="ord-submit"><input type="submit" data-mz-action="addtocart" id="add-to-cart" class="add-to-cart" disabled="disabled" value="Add to Cart" data-mz-orderNumber="{{ orders.orderNumber }}" /></div>
+			<div class="return-to-order">
+		        <button class='btn-proceedtocheck'>Return to Order</button>
+		    </div>
+			<div class="cl"></div>
+		</div>   
+		 <div class="page-title-succesmsg"></div>
+		 <div class="proceedbtn">
+		 <button class='btn-proceedtocheck'>Return to Order</button>
+		 <div class="clear"></div>
+		 </div>
+		<div class="cl"></div>	 
+</div> 
+   
+	</div>
+	{% endfor %}
+	{% else %}
+	<style>
+	.order-history .dsd-order-history div.acc-tab-container {
+     width: 100% ; 
+     border: 0;   
+    }
+    </style>
+	<h3>There are no previous orders available for this Store.</h3> 
+	{% endif%}
+</div> 
+
+ <div class="pop-up"></div>
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+<style>
+table, th, td {
+
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>     
+
+
+ <div class="cart-modalsuccess">
+
+<div class="cart-container">
+            <div class="cart-content">  
+         {% if model.successmsg %}
+          <div class="successtick"></div>
+          {% endif %}
+                         <div class="suucess-msg"> {{ model.successmsg }}</div>
+                      
+       
+            {% if model.poparr.length > 0 %}
+                You have not added the following products
+                {% for details in model.poparr %}
+                             
+                           <div class="product-msg"> {{ details.prodName }}</div>
+                {% endfor %}
+            {% endif %}
+             
+        </div>
+ </div>
+
+

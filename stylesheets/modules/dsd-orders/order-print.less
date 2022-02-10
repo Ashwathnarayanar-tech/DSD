@@ -1,0 +1,623 @@
+.display-block{
+    display: block !important;     
+}
+.overlay-full-width {
+    display: none; 
+    position: fixed;
+    height: 100%;  
+    width: 100%;  
+    background: whitesmoke;
+    z-index: 2;
+    opacity: 0.4;   
+    left: 0;
+    }
+.select-store-container{
+    .dsdwrapper{ 
+        .review-order-container{
+            .empty-cart-container {
+               
+                padding: 20px 20px 0px 20px;
+                margin-top: -1px;
+            }
+            .review-order-block div.review-order-body {
+                padding: 20px 20px 0px 20px;
+            }
+        }
+        .pro-selction{
+            .select-store{
+                ul.dsullist {
+                    display: block; 
+                    margin: 0 auto !important;
+                    position: relative;
+                    width: 50%;
+                    padding: 0px;
+                    li {
+                        display: inline-block;
+                        font-size: 16px;
+                        margin-right: 12%;
+                        font-weight: normal;
+                        color: black;
+                        label input {
+                            display: none;
+                        }
+                    }
+                }
+                .store-selection-body {
+                    padding: 20px 0px;
+                    .store-search-result.active-contain{
+                    display:block;
+                }
+                    .store-search-result{
+                        display:none;
+                        table{  
+                                width: 100%; 
+                                thead{ 
+                                    background: #eff2f4; 
+                                    border: 1px solid #dee1e3;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    th {
+                                        border: 0.5px solid silver;
+                                            padding: 1.5% 0 1.5% 3%; 
+                                    }
+                                    tr{ 
+                                         
+                                        td{ 
+                                            border-right: 1px solid #dee1e3;
+                                            padding: 1.5% 0 1.5% 3%;
+                                            &:first-child{
+                                                width: 25%;
+                                                //cursor:pointer; 
+                                            }
+                                            &:nth-child(2){
+                                                width: 40%;
+                                                //cursor:pointer;
+                                            }
+                                            &:nth-child(3){
+                                                width: 22%;
+                                                //cursor:pointer;
+                                            }
+                                            span{
+                                                background: url('../resources/images/sprite.png') no-repeat -85px -403px;
+                                                width: 12px;
+                                                height: 14px;
+                                                display: inline-block;
+                                                position: relative;
+                                                top: 4px;
+                                                float: right;
+                                                padding: 0 6% 0 0;
+
+                                            }
+                                        }
+                                    }
+                                }
+                                tbody{
+                                    tr{ 
+                                        display: none;
+                                        &.mobile {
+                                            display: none;  
+                                        }
+                                        &.shownow {
+                                            display: table-row; 
+                                        }
+                                        &.bg-grey {  
+                                        background: #f8f9f9;
+                                        }
+                                         
+                                        &.address {
+                                            div {
+                                                padding: 2px 5%;   
+                                            }
+                                        }
+                                        td{ 
+                                            padding: 1% 0; 
+                                            vertical-align: middle; 
+                                            &.acc-num {
+                                                padding: 1.5% 0 1.5% 3%; 
+                                            }
+                                            div{ 
+                                                    .collapse-icon{
+                                                    width: 18%; 
+                                                    display: inline-block;
+                                                    height: 30px;
+                                                    background: url('../resources/images/previousorder-plus.png') no-repeat;
+                                                    background-size: 20px 20px;
+                                                    left: 5px;
+                                                    top: 0px;
+                                                    cursor: pointer;
+                                                    //margin-right: 25px;
+                                                    position: absolute; 
+                                                }
+                                                .collapse-icon.minus {
+                                                    background: url('../resources/images/previousorder-minus.png') no-repeat;
+                                                    background-size: 20px 20px;
+                                                } 
+                                                span{
+                                             
+                                                    // &:last-child{
+                                                    //     padding: 0 0 0 16%;
+                                                    // } 
+                                                }
+                                            }
+                                            
+                                            .store-name{ 
+                                                font-size: 15px;
+                                                font-weight: bold;
+                                                padding: 2% 0 2% 5%;
+                                                position: relative;
+                                            }
+                                            button{
+                                                font-size: 15px;
+                                                font-weight: normal;
+                                                width: 80px;
+                                                height: 30px;
+                                                font-weight: normal;
+                                                .jb-button-bg(); 
+                                                padding: 5px 18px;
+                                                border: none;
+                                                color: #fff;
+                                            }
+                                            .new-store-name{
+                                                font-size: 15px;
+                                                padding: 2% 0 2% 5%;
+                                                position: relative;
+                                            }
+                                        }
+                                         
+                                    }
+                                    .addres{
+                                        display:none;
+                                        background: #fff;
+                                        td{
+                                            padding: 2% 0 2% 5%;
+                                        }
+                                    }
+                                   
+                                } 
+                        }
+                        .acc-tab-content-container{
+                            display:none;
+                            .inner-tab-container {
+                                padding: 20px 8%;
+                                .addres{
+                                    text-transform:uppercase;
+                                    color:666;
+                                }
+                            }
+                        }
+                        .acc-tab-content-container.active.shownow {
+                            display: block;
+                        }
+                        .acc-tab-link.dfft {
+                            background: #fff;
+                        }
+                        .acc-tab-link.shownow{
+                            display:block;
+                        }
+                        .acc-tab-link {
+                            line-height: 30px;
+                            //height: 30px;
+                            padding: 1% 0;
+                            position: relative;
+                            cursor:pointer;
+                            display:none;
+                            background:#f8f9f9;
+                            .collapse-icon {
+                                    width: 6%;
+                                    display: inline-block;
+                                    height: 30px;
+                                    background: url('../resources/images/sprite.png') no-repeat -26px -191px;
+                                    position: relative;
+                                    left: 13px;
+                                    top: 11px;
+                                    cursor: pointer;
+                                        margin-right: 25px;
+                                        position:absolute;
+                                    
+                                    
+                            }
+                            .collapse-icon.minus {
+                                background: url('../resources/images/sprite.png') no-repeat -85px -191px;
+                            }
+                            .str-name {
+                                padding-left: 50px;
+                            }
+                            .select-txt {
+                                float: right;
+                                font-size: 15px;
+                                font-weight: normal;
+                                width: 80px;
+                                height: 30px;
+                                font-weight: normal;
+                                color: white; 
+                                .jb-button-bg(); 
+                                padding: 5px 18px;
+                                border: none;
+                            }
+                        }
+                        .result-head{
+                            padding: 10px 0px;
+                            margin-bottom: 20px;
+                            border-bottom: 1px solid #eee;
+                            .hdg {
+                                font-size: 16px;
+                                font-weight: bold;
+                                width: 35%;
+                                float: left;
+                            }
+                            .pagination {
+                                //height: 20px;
+                                max-width: 65%;
+                                float: right;
+                                display: inline-block;
+                                border-top: 1px solid #eee;
+                                border-bottom: 1px solid #eee;
+                                .item.curr{
+                                    color: #0080b7;
+                                }
+                                .item {
+                                    cursor: pointer;
+                                    &:first-child{
+                                         border-left: 1px solid silver; 
+                                    }
+                                    &:hover{
+                                        
+                                         color: #0080b7;
+                                    }
+                                    //height: 20px;
+                                    line-height: 20px;
+                                    text-align: center;
+                                    display:inline-block;
+                                    padding: 6px 10px;
+                                    /*padding-left: 5px;
+                                    padding-right: 5px;*/
+                                    border-right: 1px solid #eee;
+                                    font-size: 13px;
+                                    color: #999;
+                                }
+                            }
+                        } 
+                    }
+                    .store-search-container{
+                        display:none;
+                        padding: 20px 0px;
+                        
+                        .store-label {
+                            width: 10%;
+                            float: left;
+                            font-weight: bold;
+                            margin-top: 10px;
+                        }
+                        .store-search-part {
+                            width: 90%; 
+                            float: left;
+                            .after-search-msg {
+                                display: none; 
+                            }
+                            .search-field {
+                                position: relative;
+                                width: 90%;
+                                float: left;
+                                input#search-store {
+                                    height: 35px;
+                                    width: 100%;
+                                    border: 1px solid #d2d4d6;
+                                    padding-left: 10px;
+                                }
+                                p {
+                                    color: #999;
+                                    margin-top: 10px;
+                                    width: 100%;
+                                }
+                                
+                            }
+                            .search-button-contain {
+                                    position: absolute;
+                                    top: 0px; 
+                                    right: -16px;
+                                    width: 10%; 
+                                    //float: left;
+                                    /* box-sizing: border-box; */
+                                    button.search-store-submit {
+                                        background: #0080b7;
+                                        border: none;
+                                        color: #fff;
+                                        height: 39px;
+                                        width: 100%;
+                                    }
+                            }
+                        }
+                    }
+                     
+                    .recent-stores-main{
+                        
+                        .recent-store{
+                            .recent-msg{
+                                padding: 2% 0; 
+                                font-size: 14px;
+                                color: #828282;
+                                strong{
+                                    color: #000;
+                                }
+                            }
+                            table{ 
+                                width: 100%;
+                                &.table-responsive {
+                                    display: none; 
+                                }
+                                thead{ 
+                                    background: #eff2f4; 
+                                    border: 1px solid #dee1e3;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                    tr{ 
+                                        &:nth-child(odd) {  
+                                        background: #f8f9f9;
+                                        } 
+                                        td{
+                                            border-right: 1px solid #dee1e3;
+                                            padding: 1.5% 0 1.5% 3%;
+                                            &:first-child{
+                                                width: 25%;
+                                                //cursor:pointer; 
+                                            }
+                                            &:nth-child(2){
+                                                width: 40%;
+                                                //cursor:pointer;
+                                            }
+                                            &:nth-child(3){
+                                                width: 22%;
+                                                //cursor:pointer;
+                                            }
+                                            span{
+                                                background: url('../resources/images/sprite.png') no-repeat -85px -403px;
+                                                width: 12px;
+                                                height: 14px;
+                                                display: inline-block;
+                                                position: relative;
+                                                top: 4px;
+                                                float: right;
+                                                padding: 0 6% 0 0;
+
+                                            }
+                                        }
+                                    }
+                                }
+                                tbody{
+                                    tr{  
+                                        td{
+                                            padding: 1% 0;
+                                            vertical-align: middle;
+                                            div{
+                                                font-size: 15px;
+                                               // font-weight: bold;
+                                                padding: 2% 0 2% 5%;
+                                                position: relative;
+                                                .collapse-icon{
+                                                    width: 13%;
+                                                    display: inline-block;
+                                                    height: 30px;
+                                                    background: url('../resources/images/previousorder-plus.png') no-repeat;
+                                                    background-size: 20px 20px;
+                                                    position: relative;
+                                                    left: 5px;
+                                                    top: 5px;
+                                                    cursor: pointer;
+                                                    margin-right: 25px;
+                                                    position: absolute; 
+                                                }
+                                                .collapse-icon.minus {
+                                                    background: url('../resources/images/previousorder-minus.png') no-repeat;
+                                                    background-size: 20px 20px;
+                                                }
+                                                span{
+                                             
+                                                    &:last-child{
+                                                        padding: 0 0 0 16%;
+                                                    }
+                                                }
+                                            }
+                                            button{
+                                                font-size: 15px;
+                                                font-weight: normal;
+                                                width: 80px;
+                                                height: 30px;
+                                                font-weight: normal;
+                                                .jb-button-bg();
+                                                padding: 5px 18px;
+                                                border: none;
+                                                color: #fff;
+                                            }
+                                        }
+                                         &:nth-child(even) { 
+                                        background: #f8f9f9;
+                                    }
+                                    }
+                                    .addres{
+                                        display:none;
+                                        background: #fff;
+                                        td{
+                                            padding: 2% 0 2% 5%;
+                                        }
+                                    }
+                                   
+                                }
+                            } 
+                        }
+                        
+                    }
+                }
+            }
+        }
+    } 
+}
+// Responsive/
+@media only screen and (max-width: 1024px) {
+    .select-store-container .dsdwrapper .pro-selction .select-store {
+        ul.dsullist { 
+            width: initial;
+            padding: initial;
+            text-align: center; 
+        }
+      
+        .store-selection-body {
+            .store-search-container .store-search-part .search-button-contain { 
+                top: 3px;
+                width: 12% ;  
+                }
+            .recent-stores-main .recent-store .recent-store-table-container {
+                margin: 0 10px;
+            } 
+            .recent-stores-main .recent-store table,div.store-search-container.new-store.tabs .store-search-result div.acc-tab-container table{
+                    &.table.table-responsive { 
+                        display: table;
+                        thead{
+                            display: none; 
+                        }
+                        tr {
+                            &.search-result.mobile {
+                                display: none;
+                                &.shownow {
+                                    display: table-row; 
+                                }
+                            }
+                            &.desktop {
+                                display: none !important; 
+                            }
+                            &.bg-grey {
+                                background: #f8f9f9 !important; 
+                            }
+                            &:nth-child(even) {
+                                background: none; 
+                            }
+                            &:first-child {
+                                background: none; 
+                            }
+                            &.mobile {  
+                            display: table-row; 
+                        }
+                            &.spacer{
+                                height: 15px;  
+                                border: 0; 
+                            } 
+                        
+                            td,th { 
+                                padding: initial; 
+                                width: 20%;
+                                text-align: center;
+                                vertical-align: middle;
+                                border: 1px solid silver;  
+                                div {
+                                    padding: 0;
+                                    font-weight: normal;
+                                    &.address {
+                                    font-weight: normal;
+                                    font-size: small;
+                                    padding-top: 0;
+                                    padding-bottom: 0;
+                                    } 
+                                    &.account-no {
+                                        font-weight: bold; 
+                                    } 
+                                    &.order-date {
+                                        font-weight: bold; 
+                                    } 
+                                    &.store-name {
+                                      //  font-weight: bold;  
+                                    }
+                                }
+                                 
+                                &.right-arrow {
+                                    border: 0; 
+                                    width: 1%;   
+                                    background: #0080b7;
+                                    
+                                    button {
+                                        background: none;
+                                        border: 0;
+                                        padding: 0; 
+                                        height: 100%; 
+                                        width: 50px; 
+                                    }
+                                } 
+                              
+                            }
+                        } 
+                    }
+                &.desktop {
+                    display: none;
+                }
+            }
+           .store-search-result {
+               .result-head{
+                  .pagination {
+                        display: block;
+                        width: 100%;
+                        max-width: 100%;
+                        text-align: center;
+                        border: 0;
+                        padding: 2% 0;
+                        &.top { 
+                        //display: none !important;  
+                        }
+                        .item.curr{ 
+                            color: white !important;
+                        }
+                        .item { 
+                            border-radius: 4px; 
+                            padding: 2% 3%;
+                            border: 0; 
+                             &:first-child{
+                                 border-left: 1px solid silver; 
+                            }
+                             &.prev {
+                                border: 1px solid silver;
+                                float: left;
+                                padding-left: 4%;
+                                padding-right: 4%;
+                                font-size: 14px;
+                            }
+                            &.curr {
+                                background: @dsdfontcolorblue; 
+                                color: white; 
+                            }
+                            &.next {
+                                border: 1px solid silver;
+                                float: right;
+                                padding-left: 4%;
+                                padding-right: 4%;
+                                font-size: 14px;
+                            }
+                        }
+                    }    
+               }
+           } 
+        }
+    } 
+} 
+
+
+.page-hide{
+    display:none !important;
+}
+
+.allow-prev{
+    cursor: not-allowed !important;
+}
+
+.show-dot{
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-right: 1px solid #eee;
+    font-size: 13px;
+    color: #999;
+    display: inline-block;
+}
+
+.hide-dot{    display:none !important;}
+
+
+

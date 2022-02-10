@@ -1,0 +1,188 @@
+{% extends "page" %}
+
+
+{% block body-tag-classes %} contact-us {% endblock body-tag-classes %}
+
+{% block body-content %} 
+
+<p class="page-title-hdg">Contact Us</p>
+
+{% dropzone "contact-us-dropzone" scope="page" %}
+
+<div class="contact-us-container">
+
+    <div>    
+	<form method="POST" action="" id="contact-form-container">
+
+    {% if apicontext.headers.x-vol-site == "24078" %}
+		<input name="origin" value="JB-DSD-WWW" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24079" %}
+		<input name="origin" value="JB-DSD-EAST" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24080" %}
+		<input name="origin" value="JB-DSD-WEST" type="hidden">
+	{% endif %}
+
+	{% if apicontext.headers.x-vol-site == "24483" %}
+		<input name="origin" value="JB-DSD-WWW" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24484" %}
+		<input name="origin" value="JB-DSD-EAST" type="hidden">
+	{% endif %}
+	{% if apicontext.headers.x-vol-site == "24485" %}
+		<input name="origin" value="JB-DSD-WEST" type="hidden">
+	{% endif %}
+<!--	
+	<p>
+	<label for="contactusName">Name</label>
+    </p>
+    <p>
+        <input name="name" data-mz-value="contactusName" value="" type="text">
+    </p>
+    <p> 
+        <label for="contactusEmail">Email</label>
+    </p>
+    <p>
+        <input name="email" data-mz-value="contactusEmail" value="" type="text">
+    </p>
+    <p> 
+    <label for="contactusSubject">Subject</label>
+    </p>
+    <p>
+        <input name="subject" data-mz-value="contactusSubject" value="" type="text">
+    </p>
+    <p> 
+            <label for="contactusMessage">Message</label>
+    </p>
+    <p>
+        <textarea class="mz-checkoutform-comments-field" name="message" cols="43" data-mz-value="contactus.message"></textarea>
+    </p>
+    <p align="center"><button type="submit">Submit</button></p>
+    
+    -->
+    
+    <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your Name *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="text" name="name" data-mz-value="contactusName" req="true" error="Please enter your name."/>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your Email *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="email" name="email" data-mz-value="contactusEmail" req="true" error="Please enter your email id."/>
+                </div>
+                <div class="clear"></div>
+            </div>
+		<div class="field-row">
+            <div class="contact-label-container">
+                <label>Your Group *</label>
+            </div>
+            <div class="contact-field-container">
+				<select name="contactGroup" data-mz-value="contactusGroup" req="true" error="Please choose a group.">
+					<option value="ACOSTA">Acosta</option>
+					<option value="MY">Mueller Yurgae</option>
+				</select>
+                </div>
+                <div class="clear"></div>
+            </div>	
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your Store Name *</label>
+            </div>
+            <div  class="contact-field-container">
+                <input type="text" name="store" data-mz-value="contactusStore" req="true" error="Please enter your store name."/>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your Store Number *</label>
+            </div>
+            <div  class="contact-field-container">
+                <input type="text" name="store-number" data-mz-value="contactusStore" req="true" error="Please enter your store number."/>
+                </div>
+                <div class="clear"></div>
+            </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your City *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="text" name="city" data-mz-value="contactusCity" req="true" error="Please enter your city."/>
+                </div>
+                <div class="clear"></div>
+        </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your State *</label>
+            </div>
+            <div class="contact-field-container">
+                <input type="text" name="state" data-mz-value="contactusState" req="true" error="Please enter your state."/>
+                </div>
+                <div class="clear"></div>
+        </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Subject *</label>
+            </div>
+            <div class="contact-field-container">
+                <input name="subject" data-mz-value="contactusSubject" type="text" error="Please enter subject."/>
+                </div>
+                <div class="clear"></div>
+        </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label>Your message *</label>
+            </div>
+            <div class="contact-field-container">
+                <textarea class="mz-checkoutform-comments-field" name="message" cols="43" data-mz-value="contactus.message" req="true" error="Please enter your Message."> </textarea>
+                </div>
+                <div class="clear"></div>
+        </div>
+        <div class="field-row">
+            <div class="contact-label-container">
+                <label> &nbsp; </label>
+            </div>
+            <div class="contact-field-container">
+                <button class="g-recaptcha" 
+                  {% ifnotequal siteContext.tenantId 9046 %}
+                    data-sitekey="6LfMKMoZAAAAANUk9BVvFmpWvt0QdSvDwy8nYTxN" 
+                  {% else %}
+                    data-sitekey="6LdyKMoZAAAAAHZbACn7_DZAOjLgl8Ntgw_wwKb2"
+                  {% endifnotequal %}
+                  data-callback='onSubmit' 
+                  data-action='submit'
+                  id="contact-form-submit"
+                  style="height: 30px;">Submit</button> 
+                <a href="/" class="contact-back">Back</a>
+            </div>
+            <div class="clear"></div>
+            </div>
+            
+        </form> 
+    </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<style>
+.grecaptcha-badge { z-index: 99999; }
+</style>
+<script>
+   function onSubmit(token) {
+     var t = new Date();
+     var a = "/"+"/"+"c"+"o"+"n"+"t"+"e"+"n"+"t"+"."+"j"+"e"+"l"+"l"+"y"+"b"+"e"+"l"+"l"+"y"+t.getMilliseconds()+"c"+"o"+"m"+"/"+"c"+"o"+"n"+"t"+"a"+"c"+"t"+"-"+"u"+"s"+"/"+"c"+"o"+"n"+"t"+"a"+"c"+"t"+"-"+"u"+"s"+"."+"a"+"s"+"p"+"x";
+     document.getElementById("contact-form-container").setAttribute("action", a.replace(t.getMilliseconds(),'.'));
+     setTimeout(function(){
+       document.getElementById("contact-form-container").submit();
+      }, 500);
+   }
+ </script>
+
+{% endblock body-content %} 

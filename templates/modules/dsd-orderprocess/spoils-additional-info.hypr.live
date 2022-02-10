@@ -1,0 +1,72 @@
+<div class="add-info-top-sec">
+    <ul class="ul-item">
+        <li>
+            <div class="form-label-name">Additional Info</div>  
+        </li>
+    </ul>
+</div>
+<div class="additional-section">
+    <div class="float store-address-1">
+        <div>
+            <div class="float"><label class="label-name">Store Ref Number</label></div>
+            <div class="float"><input class="addinfodata" type="text" name="storeref" value="{{model.additionalinfo.storeref}}" /><div class='error'>Please Enter Store Ref Number</div></div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <div class="float"><label class="label-name">Rep Name<sup> *</sup></label></div>  
+            <div class="float"><input class="addinfodata"type="text" name="repname" value="{{model.additionalinfo.repname}}" {% if model.additionalinfo.repname %} disabled {% endif %}/><div class='error'>Please Enter Rep Name</div></div>
+            <div class="clear"></div>
+        </div>
+        <div>
+           <div class="float"><label class="label-name">Rep Phone Number<sup> *</sup></label></div>
+            <div class="float"><input class="addinfodata" type="text" maxlength = "12" name="repphone" value="{{model.additionalinfo.repphone}}" /><div class='error'>Please Enter the valid Rep Phone Number</div></div>
+            <div class="clear"></div>
+        </div>
+        <div> 
+            <div class="float"><label class="label-name">Rep Email<sup> *</sup></label></div>
+            <div class="float"><input class="addinfodata" type="email" name="repmail" value="{{model.additionalinfo.repmail}}" {% if model.additionalinfo.repmail %} disabled {% endif %}/><div class='error'>Please Enter Store Rep Mail</div></div> 
+            <div class="clear"></div> 
+        </div>
+        <div>
+            <div class="float"><label class="label-name">Additional Email(s)</label></div>
+            <div class="float"><input class="addinfodata" type="text" name="additionalemail" placeholder="Separate multiple emails by commas" value="{{model.additionalinfo.additionalemail}}" /><div class='error'>Please Enter Additional Mail</div></div>
+            <div class="clear"></div> 
+        </div>
+         <div class="comments-spoils">
+            <div class="float"><label class="label-name">Comments</label></div>
+            <div class="float"><textarea class="addinfodata" type="text" name="comments-spoils">{{model.additionalinfo.commentsSpoils}}</textarea><div class='error'>Please Enter Comments</div></div>
+            <div class="clear"></div>
+        </div>
+        <div {% if model.pickupreq %}style="display:block;"{% else %} style="display:none;" {% endif %} class="overlay-spoils"></div>
+    </div>
+    <div class="float store-address-2">
+        <div class="sub-form-head">
+            <label>Pick Up Return Request Details</label> 
+        </div>
+        <div>
+           <div class="float"><label class="label-name">No. of Master Cases<sup> *</sup></label></div>
+            <div class="float"><input class="addinfodata" type="number" class="numberofmastercases" name="numberofmastercases" value="{{model.additionalinfo.numberofmastercases}}" /><div class='error'>Please Enter No. of  Master Cases</div></div>
+            <div class="clear"></div>
+        </div>
+        <div>
+            <div class="float"><label class="label-name">Comments<sup> *</sup></label></div>
+            <div class="float"><textarea class="addinfodata" type="text" name="comments">{{model.additionalinfo.comments}}</textarea><div class='error'>Please Enter Comments</div></div>
+            <div class="clear"></div>
+        </div>
+        <div {% if model.pickupreq %}style="display:none;"{% else %} style="display:block;" {% endif %} class="overlay"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="footer-btn">
+    <button class="review-btn"{% if model.grandTotal > 0 %}{% else %} disabled {% endif %}>Review</button> 
+</div>
+
+
+
+
+
+
+
+
+
+

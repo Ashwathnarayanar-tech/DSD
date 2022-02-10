@@ -1,0 +1,280 @@
+.mz-misc-req-prod{
+    display: none;
+    h3{
+        color:#4FA3E0;
+    }
+    div.sections{
+        .outro-misc-req{
+            padding-top: 2%;
+            font-size: 17px;
+            width: 92%;
+            margin: 0 auto;
+            border-bottom: 1px solid lightgrey; 
+            ul{
+                padding: 0;
+                list-style-type: none;
+            }
+        }
+        border: 1px solid #E6E6E6;
+        margin : 5px;
+        h4{
+            padding: 0;
+            margin: 0;
+            padding-bottom: 25px;
+            padding-top: 20px;
+            padding-left: 20px;
+            font-size: 18px;
+        }
+        table{
+            tr{
+                td{
+                    width: 300px;;
+                    padding-bottom: 5px;
+                    position: relative;
+                    h5{
+                        padding: 0;
+                        margin: 0;
+                        font-size: 14px;
+                        padding-bottom: 10px;
+                    }
+                   /* a{
+                        color : #4FA3E0;
+                        cursor : pointer;
+                        text-decoration: underline;
+                    }*/
+                    label.image{
+                        position: absolute;
+                        right: 38%;
+                        top: 3px;
+                        img{
+                           width: 24px; 
+                        }
+                    }
+                    input{
+                        width: 311px;
+                        height: 21px;
+                        background-color: #EEEEEE;
+
+                    }
+                    label{
+                        font-weight: 300;
+                    }
+                    textarea{
+                        width: 311px;
+                        height: 100px;
+                    }
+                }
+                td.item-td{
+                    padding-left: 87px;
+                }
+                td.item-name-td{
+                    padding-left: 188px;
+                }
+            }
+        }
+        table.list{
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            tr{
+                .checkbox-head{
+                    width: 2%;
+                }
+                .qunt{
+                    width: 17%;
+                }
+                .item-head{
+                    width: 20%;
+                }
+                .item-td{
+                    text-align: left;   
+                }
+                th{
+                    &:first-child{
+                        width: 10%;
+                    }
+                    background-color:#EEEEEE;    
+                    height: 44px;
+                }
+                td{
+                    height : 44px;
+                    &:last-child{
+                        text-align: left;
+                    }
+                   
+                    select{
+                        width: 54px;
+                        border-radius: 5px;
+                        margin: 5px;
+                    }
+                    p{
+                        margin: 5px;
+                    }
+                }
+                td.checkbox{
+                    @keyframes hover-color {
+                        from {
+                            border-color: #c0c0c0; 
+                        }
+                        to {
+                            border-color: #3e97eb; 
+                        } 
+                    }
+
+
+                    .magic-checkbox {
+                        position: absolute;
+                        display: block;
+                        width: 15px;
+                        z-index: 100000;
+                        top: 0;
+                        left: 46%;
+                        opacity: 0; }
+                    
+                    .magic-checkbox[disabled] {
+                      cursor: not-allowed; }
+                    
+                    .magic-checkbox + label {
+                        position: relative;
+                        display: block;
+                        padding-left: 30px;
+                        //right: 6px;
+                        bottom: 9px;
+                        cursor: pointer;
+                        vertical-align: middle; }
+                    
+                      .magic-checkbox + label:hover:before {
+                        animation-duration: 0.4s;
+                        animation-fill-mode: both;
+                        animation-name: hover-color; }
+                    
+                      .magic-checkbox + label:before {
+                            position: absolute; 
+                            top: 16px;
+                            left: 46%;
+                            display: inline-block;
+                            width: 11px;
+                            height: 11px;
+                            content: '';
+                            border: 1px solid silver;
+                        
+                        }
+                      .magic-checkbox + label:after {
+                        position: absolute;
+                        display: none;
+                        content: ''; }
+                    
+                    .magic-checkbox[disabled] + label {
+                      cursor: not-allowed;
+                      color: #e4e4e4; }
+                     
+                      .magic-checkbox[disabled] + label:hover,
+                      .magic-checkbox[disabled] + label:before,
+                      .magic-checkbox[disabled] + label:after {
+                        cursor: not-allowed; }
+                    
+                      .magic-checkbox[disabled] + label:hover:before {
+                        border: 1px solid #e4e4e4;
+                        animation-name: none; }
+                     
+                      .magic-checkbox[disabled] + label:before {
+                        border-color: #e4e4e4; }
+                    
+                    .magic-checkbox:checked + label:before {
+                      animation-name: none; }
+                    
+                    .magic-checkbox:checked + label:after {
+                      display: block; }
+                    
+                    
+                    .magic-checkbox + label:after {
+                        top: 17px;
+                        left: 49.5%;
+                        box-sizing: border-box;
+                        width: 5px;
+                        height: 8px;
+                        transform: rotate(45deg);
+                        border-width: 2px;
+                        border-style: solid;
+                        border-color: #fff;
+                        border-top: 0;
+                        border-left: 0; } 
+                    
+                    .magic-checkbox:checked + label:before {
+                      border: 1px solid #3e97eb;
+                      background: #3e97eb; }
+                    
+                    .magic-checkbox:checked[disabled] + label:before {
+                      border: #c9e2f9;
+                      background: #c9e2f9; }
+
+                    /* end .squaredFour */
+    
+                }
+            }
+        }
+        .table-footer{
+            margin-top: 31px;
+            .float{
+                float: right;
+                width: 20%;
+                text-align: center;
+                vertical-align: middle;
+                button{
+                    padding: 9px 28px;
+                    background-color: #f26e14;
+                    color: white;
+                    border: none;
+                    border-radius: 2px;
+                    font-weight: 600;
+                }
+                div{
+                    color: #0F87BB;
+                    font-weight: 600;
+                }
+            }
+            .clear{
+                clear: both;
+            }
+        }
+        .hrline{
+            border-bottom: 1px solid lightgrey !important;
+            width: 92%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media only screen 
+  //and (min-width: 768px)   
+  and (max-width: 1024px) {
+      table.list{
+         tr{
+            td{
+                .magic-checkbox + label:before {
+                    position: absolute; 
+                    top: 16px;
+                    left: 46%;
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    content: '';
+                    border: 1px solid silver;
+                
+                }
+            } 
+         } 
+      }
+      .table-footer{
+         .float{
+             &:first-child{
+                 width: 100%;
+             }
+         }
+      }
+  }
+
+  
+
+
+

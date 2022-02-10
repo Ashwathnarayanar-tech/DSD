@@ -1,0 +1,119 @@
+{% extends "page" %}
+
+{% block title-tag-content %}{% firstof pageContext.metaTitle labels.yourAccount %} - {% parent %}{% endblock title-tag-content %}
+ 
+{% block body-tag-classes %} mz-select-store {% endblock body-tag-classes %}
+
+{% block body-content %}
+  
+{% require_script "pages/b2blogin" %}
+
+<div class="select-store-container">
+    <div class="dsdwrapper">   
+        <div class="pro-selction">
+            <div class="select-store">
+                <div class="store-head">       
+                    <div class="storelabel">  
+                        <font>Select Store</font>
+                        <div class="editchange"> 
+                            <span class="dsdtoggle dsd-minus-icon"></span>
+                        </div>  
+                    </div>
+                </div>
+                {% comment %}
+                    <div class="store-selection-body">
+                        <div class="store-options">
+                            <ul class="dsullist desktop">
+                                <li> 
+                                    <label>
+                                        <input type="radio" name="radio" value="recent-store" checked="checked" disabled> <span> </span>Recent Stores
+                                    </label>
+                                </li>
+                                <li> 
+                                    <label>
+                                        <input type="radio" name="radio" value="new-store" disabled> <span></span>  Store Lookup
+                                    </label>
+                                </li>
+                               
+                            </ul>
+                            <div class="dropdown mobile"> 
+                                <select>   
+                                    <option value="recent-store" selected>Recent Stores</option>
+                                    <option value="new-store">Store Lookup</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                {% endcomment %}
+                <div class="mz-l-stack-section mz-storeselection" id="store-section">
+                       {% comment %} {% include "modules/dsd-orderprocess/store-selection" %} {% endcomment %}
+                </div> 
+                <div class="recent-stores-main recent-store tabs">
+                                   {% comment %} {% include "modules/dsd-orderprocess/recent-store" with model = model.recentstores %} {% endcomment %}
+                </div>
+            </div>
+            
+            <div class="dsdmainorders">
+                <div class="dsdheader">
+                    <div class="dsdorderlabel"><font>Build Orders</font> 
+                        <div class="editchange">
+                                <div class="dsdtoggle dsd-plus-icon"></div>
+                        </div> 
+                        <div class="collapsed">
+                            <div class="dsdtoggle dsd-plus-icon"></div>
+                        </div>
+                    </div> 
+                </div>
+            </div>  
+            <div class="placewrapper">
+                <div class="dsdcheckoutheader"> 
+                    <div class="dsdcheckoutlabel">
+                        <font>Review and Place Order</font> 
+                            <span class="editchange">
+                                <!--<font>Edit/Change</font>--> 
+                            <div class="dsdtoggle dsd-plus-icon"></div>
+                            </span>
+                    </div>
+                    <div class="collapsed">
+                        <div class="dsdtoggle dsd-plus-icon"></div>
+                    </div>
+                </div><!-- .dsdcheckoutlabel end -->
+            </div>
+            <div class="place-order"></div>
+        </div>
+        <div class="review-order-container">
+            <div class="review-order-block"> 
+                <div class="heading-container"> 
+                    <div class="review-order-heading">
+                        Review Cart 
+                    </div>
+                </div>
+                <div id="store-address">
+                    <div class="review-order-body">
+                        <!--<div class="select-store-msg">Please select a store</div>-->
+                        <p class="empty-cart" >Please Select a Store</p>
+                    </div>
+                </div>
+                <div id="review-your-order" class="empty-cart-container">
+                    <div class="review-cart-items">
+                        <div class="items-added-msg">
+                            <p class="empty-cart">No items added to the Cart</p> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<form id="jb-b2bform" method="post">
+<input name='email' type='hidden' value="test@test.com"/>
+<input name='password' class="password" type='hidden'/>
+<input name='returnUrl' type='hidden' value="/">
+</form>
+{% endblock body-content %}
+
+{% block body-below-content %}
+{% endblock body-below-content %} 
+
+ 

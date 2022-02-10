@@ -1,0 +1,59 @@
+<div class='sections'>
+        <h4 class="add">Requested Items</h4>
+        <table class='list'>
+            <tr>
+                <th class="checkbox-head">Items</th>
+                <th class="qunt">Quantity</th>
+                <th class="item-head">Item #</th>
+                <th>Description</th>
+            </tr>
+            {% if model.items %}
+                {% for item in model.items %}
+                    <tr>
+                        <td class="checkbox">
+                            <div class="checkboxcustom">
+                                <input type="checkbox" class="magic-checkbox" value="None" id="checkbox" name="check">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td class="quantity">
+                            <select class="qnt" data-weight={{ item.measurements.packageWeight.value }}>  
+                                <option value=1>1</option> 
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                            </selcect>
+                        </td>
+                        <td class="item-td"><p>{{ item.productCode }}</p></td>
+                        <td class="item-name-td"><p>{{ item.content.productName }}</p></td>
+                    </tr>
+                {% endfor %}
+            {% else  %}
+                <tr> <td> No products available </td> </tr>
+            {% endif %}
+        </table>
+        <div class="hrline"></div>
+        <div class="outro-misc-req">
+            <p>Don't forget to keep your fixtures stocked with Jelly Belly Menus, Ingredient Labels, Tear-off Bags and consumables.</p>
+            <ul>
+                <li>Sweet Regards,</li>
+                <li>The Jelly Belly Team</li>
+            </ul>
+        </div>
+        <div class="table-footer">
+            <div class='float btn'><button class="submit-form" type="submit" >Send Request</button></div>
+            <div class='float grosweight'><p>Gross Weight</p><div class='itemweight'><span>0</span> lbs</div></div>
+            <div class='float itemcount'><p>Total items</p><div class='itemCount'><span>0</span> Items</div></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

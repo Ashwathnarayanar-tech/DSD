@@ -1,0 +1,125 @@
+{% extends "page" %}
+
+{% block title-tag-content %} Login  {% endblock title-tag-content %}
+
+{% block body-tag-classes %} mz-loginpage {% endblock body-tag-classes %}
+
+{% block body-content %}
+    <div class="mz-l-container">
+        <!-- Login Password Form  -->
+        <div login-form-container>
+            <h1 class="mz-pagetitle">{{ labels.logIn }}</h1>
+            <div class="mz-loginform mz-loginform-page" > 
+                <h2 class="login-header" style="text-align: center;">Welcome to the official Jelly Belly DSD Order Site.</h2>
+                <input type="hidden" name="returnUrl" value="{{model.returnUrl}}"/>
+                <div class="mz-messagebar" message-login-bar style="display:none;">
+                        <ul class="is-showing mz-errors">
+                            <li>{{labels.loginFailedMessage | string_format(model.email) }}</li>
+                        </ul>
+                    </div>
+                <div class="mz-l-formfieldgroup">
+                    
+                    <form method="post" class="mz-loginform mz-loginform-page" name="mz-loginform">    
+                        <div class="mz-l-formfieldgroup-row">
+                            <div class="mz-l-formfieldgroup-cell">
+                                <label for="email">*{{ labels.emailAddress }}:</label>
+                            </div>
+                            <div class="mz-l-formfieldgroup-cell">
+                                <input name="email-login" data-mz-login-email value="{{model.email|default:user.email}}" type="email"/>
+                            </div>
+                        </div>
+                        <div class="mz-l-formfieldgroup-row">
+                            <div class="mz-l-formfieldgroup-cell">
+                                <label for="password">*{{ labels.password }}:</label>
+                            </div>
+                            <div class="mz-l-formfieldgroup-cell zero-cellspace">
+                                <input name="password-login"  data-mz-login-password type="password"/>
+                            </div>
+                        </div>
+                        <div class="mz-l-formfieldgroup-row">
+                            <div class="mz-l-formfieldgroup-cell"></div>
+                            <div class="mz-l-formfieldgroup-cell">
+                                <a toggle-login-forget-password-form="forgetpassword" style="cursor:pointer;" class="mz-forgot">({{ labels.forgotPasswordLink }})</a>
+                                <button class="mz-button mz-button-large" data-mz-action="loginpage-submit">{{ labels.logIn }}</button>
+                                <div class="mz-l-formfieldgroup-cell">
+                                    <section data-mz-role="popover-message" class="mz-popover-message"></section>
+                                </div>
+                            </div>
+                        </div>
+                    </form>    
+                </div>
+                <div style="margin-top:80px">
+                  <div style="text-align:center;">
+                    <a href="http://cdn-tp1.mozu.com/9046-m1/cms/files/Jelly_Belly_DSD_Service_Call-10_Step.pdf" target="_blank"><button class="btn">10 Step Service Call (PDF)</button></a>
+                  </div>
+                  <div style="text-align:center;">
+                    <a href="https://www.youtube.com/watch?v=5nAra2Adl1o&t=1s" style="color:#fff" target="_blank"><button class="btn">DSD In-store Training (video)</button></a>
+                  </div>
+                  <hr>
+                  <div style="text-align:center;">
+                    <a href="http://cdn-tp1.mozu.com/9046-m1/cms/files/DSD_JellyBellyDSD_User_Guide.pdf" style="color:#fff" target="_blank"><button class="btn">DSD Site User Guide (PDF)</button></a>
+                  </div>
+                  <div style="text-align:center;">
+                    <a href="https://www.youtube.com/watch?v=NVqacnA2PAg&feature=youtu.be" style="color:#fff" target="_blank"><button class="btn">DSD Site User Guide (video)</button></a>
+                  </div>
+              </div>
+              <style>
+                .btn {
+                font-weight:bold;
+                background-color: #36abe2;
+                border: medium none;
+                border-radius: 0px;
+                box-shadow: none;
+                color: #fff;
+                font-size: 15px;
+                width:219px;
+                padding:7px;
+                display: inline-block;
+                margin: 10px 0;
+                text-align: center;
+                text-decoration: none;
+                }
+                .btn:hover {
+                background-color:#0080b7;
+                }
+              </style>
+              <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Forget Password Form  -->
+        <div forgetpassword-form-container style="display:none;">
+            <h1 class="mz-pagetitle">{{ labels.resetPassword }}</h1>
+            <div id="jb-resetpassword" class="forgot-pwd-form">
+                <h2 class="login-header">ENTER YOUR EMAIL ADDRESS</h2>
+                <div class="mz-l-formfieldgroup">
+                    <div class="mz-l-formfieldgroup-row">
+                        <div class="mz-l-formfieldgroup-cell">
+                            <label for="email">*{{ labels.emailAddress }}:</label>
+                        </div>
+                        <div class="mz-l-formfieldgroup-cell zero-cellspace">
+                            <input type="email" data-mz-forgotpassword-email name="reset-password-email" placeholder="{{ labels.emailAddress }}" />
+                        </div>
+                    </div>
+                    <div class="mz-l-formfieldgroup-row">
+                        <div class="mz-l-formfieldgroup-cell">
+                            <span class="required">No problem! Enter your email address above <br>
+                            and we'll send you instructions to reset your password.</span>
+                        </div>
+                    </div>
+                    <div class="mz-l-formfieldgroup-row">
+                        <div class="mz-l-formfieldgroup-cell">
+                            <a toggle-login-forget-password-form="login" style="cursor:pointer;" class="mz-forgot">(Back to login page)</a>
+                            <button class="mz-button" submitforgotpassword>{{ labels.submit }}</button>
+                        </div>
+                    </div>
+                </div>
+                <section forgetpassword-message class="mz-popover-message"></section>
+            </div>
+        </div>
+    </div>
+  
+    <div id="receiver" style="display:none;"></div>
+    
+  {% endblock body-content %}
+
+

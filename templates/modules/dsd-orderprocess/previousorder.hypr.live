@@ -1,0 +1,343 @@
+<!-- dsd-ordercontainer close-->
+<div class="dsd-ordercontainer">
+   <!-- dsdheader-->
+   <div class="dsdbody"> 
+	  <div class="dsdorderdescription">
+		<p> 
+			<font><strong>Add items from Previous Orders</strong> (all or just some), to your Cart. To expand the order and see the included products, click the “+” sign next to the Order Number.</font>
+		</p>
+		<p>
+			Select <strong>Rapid Order</strong> (above) to enter a list of Item Numbers and add all of them to your Cart at once.
+		</p>
+		<p>
+			Select <strong>Assortment</strong> (above) to order from a categorized list of approved products.
+		</p>
+	  </div>
+	  
+      <!--<p class="dsdorderdescriptionselect">Select <font>  Rapid Order </font>  for selecting items directly or View  <font> Product List </font>  and add items
+         to your Cart. 
+      </p> -->
+      <!-- Previous Order -->
+      {% if model.items.length > 0 %}   
+	  
+      <div class="dsdborder ex-desktop">
+         <table class="table table-main">
+            <thead>
+               <tr>     
+               
+                  <th data-mz-action="ordernumber"><font>Order #</font><span class="dsdsorting"></span></th>
+                  <th data-mz-action="ordersorting" ><font>Order Date</font><span class="dsdsorting"></span></th>
+                  <th><font>PO No.</font></th>
+                  <th data-mz-action="fulfillment"><font>Ship Date</font><span class="dsdsorting"></span></th>
+                  <th data-mz-action="orderamount" ><font>Amount</font><span class="dsdsorting"></span></th>
+            </thead>
+           
+     
+        
+            <tbody>   
+               {% for orders in model.items %}   
+               {% if orders.isEmpty %}
+               <tr class="ex-mobile">
+                  <td colspan="5" >No items added to the cart</td>
+               </tr>
+               {% endif %}
+               <tr class="ex-mobile">
+               <td colspan="5" > 
+               {% if orders.totalCollected != 0  %}
+                <div class="clear"></div> 
+               <table class="top1 ex-mobile">   
+                  <tr >
+                     <td data-mz-orderNumber="{{ orders.orderNumber }}"> <span class="mz-toggleicon img-collapse plus"></span></td>
+                  </tr>
+               </table>
+               <table class="top2 ex-mobile">
+                  <tr class="">
+                     <th data-mz-action="ordernumber"><label>Order #</label><span class="dsdsorting"><font>{{ orders.orderNumber }}</font></span></th>
+                     <th data-mz-action="ordersorting" ><label>Order Date</label><span class="dsdsorting"><font>{{ orders.submittedDate }}</span></th>
+                     <th><label>PO No.</label><span class="dsdsorting"> <font>
+                        <font>
+                            {% if orders.billingInfo.purchaseOrder.purchaseOrderNumbe %}
+                                {{ orders.billingInfo.purchaseOrder.purchaseOrderNumber }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </font>
+                        </font></span>
+                     </th>
+                    
+                     <th data-mz-action="fulfillment"><label>Ship Date</label><span class="dsdsorting"><font>{{ orders.shippingDate }}
+                     </font></span></th>
+                     <th data-mz-action="orderamount" ><label>Amount</label><span class="dsdsorting"><font>{{ orders.discountedTotal|currency }}</font></span></th>
+                    
+                  </tr>
+               </table>
+               <table class="top3 ex-mobile">
+                  <tr class="ex-mobile">
+                     <td><button data-mz-orderNumber="{{ orders.orderNumber }}" class="dsd-btn">Add All to Cart</button></td>
+                  </tr>
+               </table>
+                </td>
+              </tr>
+               {% if orders.isEmpty %}
+               <tr class="">
+                  <td class="" colspan="5" >No items added to the cart</td>
+               </tr>
+               {% endif %}
+               <tr  data-mz-orderNumber="{{ orders.orderNumber }}" class="desktop-toggle">
+                  <td data-mz-orderNumber="{{ orders.orderNumber }}" ><span class="mz-toggleicon img-collapse plus "></span><font class="">{{ orders.orderNumber }}</font></td>
+                  <td><font class="">{{ orders.submittedDate }}</font></td>
+                  <td>
+                     <font class="">
+                    {% if orders.billingInfo.purchaseOrder.purchaseOrderNumber %}
+                        {{ orders.billingInfo.purchaseOrder.purchaseOrderNumber }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                     </font>
+                  </td>
+                  <td><font > {{ orders.shippingDate }}  </font> </td>
+                  <td ><font >{{ orders.discountedTotal|currency }}</font><button data-mz-orderNumber="{{ orders.orderNumber }}" class="dsd-btn ">Add All to Cart</button></td>
+               </tr>
+               <tr data-mz-orderNumber="{{orders.orderNumber}}" class="order-slave" >
+                  <td colspan="5" class="cover-columns">
+                     <div class="child-table-container" data-mz-orderNumber="{{orders.orderNumber}}" >
+                                <span class="price-change">{{ labels.pricechange}}</span>
+                        <table class="table table-child">
+                           <thead >
+                              <tr class="desktop">
+                                 <th class="checkbox">
+                                    <div class="checkboxcustom"> 
+                                       <input checked class="magic-checkbox select-all-check" type="checkbox" value="None" name="check" data-mz-orderNumber="{{ orders.orderNumber }}" />
+                                       <label class="select-all"></label>
+                                    </div>
+                                 </th>
+                                 <th class="item">Item #</th>
+                                 <th class="desc">Description</th>
+                                 <th class="price">Price</th>
+                                 <th class="coldpack">Cold Pack</th>
+                                 <th class="qnty">Qty</th>
+                              </tr>
+                             
+                           </thead>
+                           <tbody class="desktop-check">
+                              {% for item in orders.items %}
+                              <tr class="desktop" >
+                                 <td class="checkbox">
+                                    <div class="checkboxcustom">
+                                       <input  type="checkbox" class="magic-checkbox" value="None" {% if item.inventory %} checked {% else %}disabled{% endif %}  name="check" 
+                                            data-mz-orderNumber="{{ orders.orderNumber }}" data-mz-locationCode="{{ item.fulfillmentLocationCode }}"
+                                            data-mz-name="{{item.product.name}}" data-mz-productCode="{{ item.product.productCode }}" data-mz-qty="{{ item.quantity }}"
+                                            data-mz-futureDate="{% if item.futureDate!="undefined" %}{{item.futureDate}}{% endif %}"
+                                            />
+                                       <label></label>
+                                    </div>
+                                 </td>
+                                 <td class="item">  
+                                    {{ item.product.productCode }}
+                                 </td>
+                                 <td class="desc" itemcode = "{{ item.product.productCode }}">
+                                    <div class="product-name" {% if item.inventory and item.futureDate!="undefined" %} 
+                                    style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name }}</div>
+                                    <div class="pre-error" prodcode = "{{ item.product.productCode }}">{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
+                                    {% if item.inventory %}
+                                        <div class="pre-future" prodcode = "{{ item.product.productCode }}">{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
+                                    {% endif %}
+                                 </td>
+                                 <td class="price">
+                                    {% if item.product.price.price > item.product.price.salePrice and item.product.price.salePrice != 0 %}
+                                      {{ item.product.price.salePrice|multiply(item.quantity)|currency }}
+                                    {% else %}
+                                      {{ item.product.price.price|multiply(item.quantity)|currency }}
+                                    {% endif %}
+                                 </td>
+                                 <td class="coldpack">
+                                    <div class="coldpack"> 
+                                        {% if themeSettings.heatSensitive %}
+                                       {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %} 
+                                       {% with aliasName.values|findwhere('value',true) as checkVal %}
+                                       {% if checkVal %}
+                                       <img src="../resources/images/coldpack-tick.png" alt="Yes" />
+                                       {% endif %}
+                                       {% endwith %}
+                                       {% endwith %}
+                                        {% endif %}
+                                    </div>
+                                 </td>
+                                 <td  class="qnty">
+                                    {{ item.quantity }}
+                                 </td>
+                              </tr>
+                             
+                              {% endfor %} 
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               {% endif %}
+               {% endfor %} 
+            </tbody>
+         </table>
+         
+      </div>
+       {% else %} 
+       <div class="Nopreviousorder ex-desktop">There are no previous orders for this store.</div>
+       {% endif %}
+      <!-- Mobile -->
+      
+      {% if model.items.length > 0 %}
+         <div class="dsdborder ex-mobile">
+         <table class="table table-main">
+
+             
+            <tbody>
+               {% for orders in model.items %}   
+                
+               {% if orders.isEmpty %}
+               <tr class="ex-mobile">
+                  <td  colspan="5" >No items added to the cart</td>
+               </tr>  
+               {% endif %}
+                <tr>
+                <td class="previousorder-mbl" colspan="5">
+               {% if orders.totalCollected != 0  %}
+               
+               <table class="top1 ex-mobile">
+                  <tr>
+                          <td data-mz-orderNumber="{{ orders.orderNumber }}"> <span class="mz-toggleiconmbl img-collapse plus"></span></td>
+                  </tr>
+               </table>
+               <table class="top2 ex-mobile">
+                  <tr class="">
+                     <th ><label>Order #</label><span><font>{{ orders.orderNumber }}</font></span></th>
+                     <th  ><label>Order Date</label><span >
+                       <font>{{ orders.submittedDate|date("m/d/Y") }}</font></span></th>
+                     <th><label>PO No.</label><span> <font>
+                        <font>
+                            {% if orders.billingInfo.purchaseOrder.purchaseOrderNumbe %}
+                                {{ orders.billingInfo.purchaseOrder.purchaseOrderNumber }}
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </font>
+                        </font></span>
+                     </th>
+                     <th><label>Ship Date</label><span><font>{{ orders.shippingDate }}</font></span></th>
+                     <th ><label>Amount</label><span ><font>{{ orders.discountedTotal|currency }}</font></span></th>
+                    
+                  </tr>
+               </table>
+               <table class="top3 ex-mobile">
+                  <tr class="ex-mobile">
+                     <td> <div class="mbtn"><button data-mz-orderNumber="{{ orders.orderNumber }}" class="dsd-btnformbl">Add All To Cart <span></span></button></div></td>
+                  </tr>
+               </table>
+             </td> 
+             </tr>  
+             
+               <tr data-mz-orderNumber="{{orders.orderNumber}}" class="order-slaveformbl"> 
+                  <td colspan="5" class="cover-columns">
+                     <div class="child-table-container" data-mz-orderNumber="{{orders.orderNumber}}" >
+                        <span class="price-change">{{ labels.pricechange}}</span>
+                        <table class="table table-child">
+                           <thead > 
+                              <tr class="mobile">
+                                 <th colspan="4" class="checkbox">
+                                    <div class="checkboxcustom"> 
+                                       <input checked class="magic-checkbox select-all-check" type="checkbox" value="None" name="check" data-mz-orderNumber="{{ orders.orderNumber }}" />
+                                       <label class="select-all"></label>
+                                    </div>
+                                 </th>
+                              </tr>  
+                           </thead>
+                           <tbody class="mobile-body">
+                           <tr class='gap'></tr>
+                              {% for item in orders.items %}
+                              <tr colspan="2" class="mobile prembl-code">
+                               <td>
+                                   <span class="prev-mblcode">Item # {{ item.product.productCode }} </span>
+                               </td>
+                              </tr>
+                              <tr class="mobile row1" > 
+                                 <td colspan="3" class="desc" itemcode = "{{ item.product.productCode }}">
+                                    <div class="product-name" {% if item.inventory and item.futureDate!="undefined" %} style="font-weight:bold" {% else %} 
+                                    {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name }}</div>
+                                    <div class="pre-error" prodcode = "{{ item.product.productCode }}">{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
+                                    {% if item.inventory %}
+                                        <div class="pre-future" prodcode = "{{ item.product.productCode }}">{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
+                                    {% endif %}
+                                 </td>
+                                 <td class="checkbox">
+                                    <div class="checkboxcustom">
+                                       <input  type="checkbox" class="magic-checkbox" value="None" {% if item.inventory %} checked {% else %}disabled{% endif %}  name="check" data-mz-orderNumber="{{ orders.orderNumber }}" 
+                                       data-mz-productCode="{{ item.product.productCode }}" data-mz-name="{{item.product.name}}" data-mz-locationCode="{{ item.fulfillmentLocationCode }}" 
+                                       data-mz-qty="{{ item.quantity }}" data-mz-futureDate="{% if item.futureDate!="undefined" %}{{item.futureDate}}{% endif %}"/>
+                                       <label></label>
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr class="mobile row2">
+                                 <td class="price">
+                                    {% if item.product.price.price > item.product.price.salePrice and item.product.price.salePrice != 0 %}
+                                      {{ item.product.price.salePrice|multiply(item.quantity)|currency }}
+                                    {% else %}
+                                      {{ item.product.price.price|multiply(item.quantity)|currency }}
+                                    {% endif %}
+                                 </td>
+                                 <td class="coldpack">
+                                    <div class="coldpack"> 
+                                       {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %} 
+                                       {% with aliasName.values|findwhere('value',true) as checkVal %}
+                                       {% if checkVal %}
+                                       <font>Cold Pack</font>
+                                       {% endif %}
+                                       {% endwith %}
+                                       {% endwith %}
+                                    </div>
+                                 </td>
+                                 <td  class="qnty">
+                                    <font>{{ item.quantity }}</font>
+                                 </td>
+                                 <td class="price">
+                                    {% if item.product.price.price > item.product.price.salePrice and item.product.price.salePrice != 0 %}
+                                      {{ item.product.price.salePrice|multiply(item.quantity)|currency }}
+                                    {% else %}
+                                      {{ item.product.price.price|multiply(item.quantity)|currency }}
+                                    {% endif %}
+                                 </td>
+                              </tr>
+                              <tr class="mobile spacer"></tr>
+                              {% endfor %} 
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               {% endif %}
+               {% endfor %}
+            </tbody>
+         </table> 
+         
+      </div>
+         {% else %} 
+       <div class="Nopreviousorder ex-mobile">There are no previous orders for this store.
+              </div>
+       {% endif %}
+      <!-- Mobile -->
+      <div class="dsd-successfullmsg"></div>
+   </div>
+</div>
+<div class="description"><p>{{ labels.colditemsshippingmsg }}</p></div>
+   <div class="pop-up"></div> 
+<!-- dsd-ordercontainer close-->
+
+
+
+
+
+
+
+
+
+
+

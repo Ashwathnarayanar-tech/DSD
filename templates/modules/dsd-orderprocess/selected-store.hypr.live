@@ -1,0 +1,25 @@
+<div class="review-order-body">
+    <!--<div class="select-store-msg">Please select a store</div>-->
+    <h3 class="store-name">
+    <span class="dsdstore-name">{{ model.storeAddress.companyOrOrganization }}</span>
+    </h3>
+    <div class="store-address">
+    <p>{{ model.storeAddress.address.address1 }}</p> 
+    <p>{{ model.storeAddress.address.address2 }}</p> 
+    <p>{{ model.storeAddress.address.address3 }}</p>
+    <p>{{ model.storeAddress.address.address4 }}</p>
+    <p>{{ model.storeAddress.address.cityOrTown |upper }} {{ model.storeAddress.address.stateOrProvince |upper }}</p> 
+    <p>{{ model.storeAddress.address.postalOrZipCode |upper }} {{ model.storeAddress.address.countryCode |upper }}</p>
+    </div>
+    <div class="total-price"><font><span class="dsd-dollar">$</span>{{ model.total| split(".")|first }}</font><span class="float">{{ model.total|currency| split(".")|last }}</span>
+   <!-- <span class="reviewmin">*$120 Minimum</span> -->
+    </div>  
+</div>
+
+
+  
+ 
+  
+
+
+

@@ -1,0 +1,17 @@
+{% extends "page" %}
+
+
+{% block body-tag-classes %} order-history {% endblock body-tag-classes %}
+
+{% block body-content %} 
+ {% require_script "dsd-orderprocess/order-history" %}
+
+   <div dsd-order-history-list class="dsd-order-history">
+       
+   </div>
+{% endblock body-content %}
+
+
+  
+
+

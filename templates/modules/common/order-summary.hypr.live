@@ -1,0 +1,146 @@
+<div class="bottom-order-summery">
+<div class="title">Order Summary</div>
+	<div class="product-details-table">
+		<div class="list-of-order">
+		   {% for item in model.items %}
+        {% if item.fulfillmentMethod == "Pickup" %}
+        <div class="pickup-part">
+            <h4 class="title">{{ labels.storePickupFor|string_format(item.product.name)|safe }}</h4>
+            <div class="info-row">
+                <div class="width-50p fl">{{ labels.storeName }}</div>
+                <div class="width-50p fl">{{ item.fulfillmentLocationName }}</div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+			
+		</div>
+		<div class="list-of-order">
+		
+			<div class="info-row row-hdg">
+				<div class="width-60p fl desc"><strong>{{ labels.product }}</strong></div>
+				<div class="width-10p fl Qty"><strong>{{ labels.qty }}</strong></div>
+				<div class="width-15p each fl"><strong>{{ labels.each }}</strong></div>
+				<div class="width-15p fl amount"><strong>{{ labels.total }}</strong></div>
+				<div class="cl"></div>
+			</div>
+			{% for item in model.items %}
+			<div class="info-row {% if item.discountTotal > 0 %}is-discounted{% endif %}">
+				<div class="width-60p fl item-name">{{ item.product.name }} {% if item.product.bundledProducts.length %}
+                      <span class="mz-extra-detail">
+                        {% for bundledProduct in item.product.bundledProducts %}
+                        {{ bundledProduct.productCode }} | &nbsp;
+                        | {{ bundledProduct.name }} ({{ bundledProduct.quantity }})
+                        {% endfor %}
+                      </span>
+                      {% endif %}</div>
+				<div class="width-10p fl ord-desc">{{ item.quantity }}</div>
+				<div class="width-15p fl ord-price">{{ item.unitPrice.extendedAmount|currency }}</div>
+				<div class="width-15p fl ttl-pack">{% include "modules/common/item-total" %}</div>
+				<div class="cl"></div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	
+	<div class="product-details-subtotal">
+			<div class="info-row main-div-container">
+			{% comment %}
+				<div class="width-60p fl desc"><strong>{{ labels.comments }}</strong><br><textarea row="4" name="comments">{% if model.shopperNotes.comments %}{{ model.shopperNotes.comments }}{% endif %}</textarea></div>
+				{% endcomment %}
+				<div class="width-40p fr total-detail">
+				{%comment %}
+					<div class="info-row">
+						<div class="width-60p fl">{{ labels.subtotal }}</div>
+						<div class="width-40p fl t-center"><strong>{{ model.discountedSubtotal|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+				{% endcomment %}	
+					{% comment %}
+					{% for discount in model.orderDiscounts %}
+          {% if not discount.excluded %}
+		  <div class="info-row order-discount">
+						<div class="width-60p fl">{{ discount.discount.name }}</div>
+						<div class="width-40p fl t-center"><strong>{{ discount.impact|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+          {% endif %}
+          {% endfor %}
+          {% endcomment %}
+		  {% comment %}
+		   {% if model.dutyTotal > 0 %}
+		    <div class="info-row ordersummary-tax">
+						<div class="width-60p fl">{{ labels.taxDuty }}</div>
+						<div class="width-40p fl t-center"><strong>{% filter currency %} {{ model.dutyTotal|add(model.taxTotal)}} {% endfilter %}</strong></div>
+						<div class="cl"></div>
+					</div>
+          
+          {% else %}
+          {% if model.taxTotal %}
+		  <div class="info-row ordersummary-tax">
+						<div class="width-60p fl">{{ labels.tax }}</div>
+						<div class="width-40p fl t-center"><strong>{{ model.taxTotal|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+          
+          {% endif %}
+          {% endif %}
+          {% endcomment %}
+		  {% comment %}
+		  <div class="info-row ordersummary-shippingtotal">
+						<div class="width-60p fl">{{ labels.shippingHandling }}</div>
+						<div class="width-40p fl t-center"><strong>{{ model.shippingSubTotal|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					{% for shippingDiscount in model.shippingDiscounts %}
+					<div class="info-row ordersummary-shippingdiscount">
+						<div class="width-60p fl">{{ shippingDiscount.discount.discount.name }}</div>
+						<div class="width-40p fl t-center"><strong>{{ shippingDiscount.discount.impact|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					
+            {% endfor %}
+			{% if model.handlingTotal %}
+			<div class="info-row ordersummary-additionalhandling">
+						<div class="width-60p fl"><span class="mz-ordersummary-totalname">{{ labels.additionalHandling }}{% if model.handlingAmount > model.handlingTotal  %}<span class="is-crossedout" {% block crossedout-inline-style %}{% endblock crossedout-inline-style %}> ( {{ model.handlingAmount|currency }} )</span>{% endif %}</span></div>
+						<div class="width-40p fl t-center"><strong>{{ model.handlingTotal|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					
+            {% endif %}
+            {% endcomment %}
+			<div class="info-row ordersummary-grandtotal">
+						<div class="width-60p fl">{{ labels.total }}</div>
+						<div class="width-40p fl t-center"><strong>{{ model.total|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					{% if model.billingInfo and model.billingInfo.digitalCreditPaymentTotal %}
+					<div class="info-row ordersummary-digitalcreditpayment">
+						<div class="width-60p fl">{{ labels.digitalCreditTotal }}</div>
+						<div class="width-40p fl t-center"><strong>{{ labels.digitalCreditSubtractFromOrderPrefix }}{{ model.billingInfo.digitalCreditPaymentTotal|currency }}{{ labels.digitalCreditSubtractFromOrderSuffix }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					<div class="info-row ordersummary-grandtotal">
+						<div class="width-60p fl">{{ labels.remainingBalance }}</div>
+						<div class="width-40p fl t-center"><strong>{{ model.billingInfo.nonStoreCreditTotal|currency }}</strong></div>
+						<div class="cl"></div>
+					</div>
+					
+       {% endif %}
+			 {% if model.shopperNotes.giftMessage %}
+            <div class="mz-ordercomments">
+                <h5 class="mz-ordercomments-header">{{ labels.giftMessage }}</h5>
+                <p class="mz-ordercomments-body">{{ model.shopperNotes.giftMessage }}</p>
+            </div>
+            {% endif %}
+				</div>
+				
+				
+				<div class="cl"></div>
+			</div>
+	</div>
+	
+	<div class="fr extra-links"><a href="/">continue shopping</a> | <a href="/logout" data-mz-action="logout">LOGOUT</a></div>
+		<div class="cl"></div>
+</div>
+

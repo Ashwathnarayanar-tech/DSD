@@ -1,0 +1,72 @@
+<div class="recent-store">
+    <div>
+        <p class="recent-msg">Recent Stores</p>
+        <div class="recent-store-table-container acc-tab-container">
+
+           <!-- Table for desktops view-->
+           {% if model.recentstores.length %}
+            <table class="desktop">
+                <thead>
+                    <tr>
+                    <!--data-mz-action="orderDate"  <span></span>  -->
+                        <td>Order Date</td>
+                        <td class="acct">Account No.</td>
+                        <td class="store-name">Store Name</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                {% for store in model.recentstores  %} 
+                    <tbody class="recent-address">
+                        <tr class="bg-grey">
+                            <td><div><span class="collapse-icon"></span><span>{% if store.lastorderdate!=null %}{{ store.lastorderdate}} {% else %} N/A {% endif %}</span></div></td>
+                            <td class="acct"><div>{{ store.accountnumber }}</div></td>
+                            <td class="store-name"><div>{{ store.storename}} - {{ store.city }}</div></td>
+                            <td><button class="select-txt" token="{{store.token}}" host="{{store.host}}" username="{{store.username}}" >Select</button></td>
+                        </tr>
+                         <tr class="addres">
+                            <td></td>  
+                            <td></td>
+                            <td colspan=4>
+                                {{store.address1}}<br> {% if store.address2 != null %} {{store.address2}}<br> {% endif %} {% if store.address3 != null %} {{store.address3}}<br> {% endif %}{{store.city}}, {{store.state}} {{store.zip}}
+                            </td>
+                        </tr>
+                    </tbody>
+
+                {% endfor %}
+            </table>
+            {% else  %}
+                <div> <p class="recent-msg" style="text-align:center"><strong>There are no Recent Stores available.</strong></p></div>
+            {% endif %}
+           <!-- table for Desktop ends-->
+
+           <!--Table for devices with width <=768 -->
+            <table class="table table-responsive">
+            <tbody class="recent-address">
+                {% for store in model.recentstores  %}
+
+                         <tr class="mobile" >
+                            <td colspan="6">
+                            <div class="store-name">{{ store.storename}} - {{ store.city }}</div>
+                            <div class="address">{{store.address1}}<br> {% if store.address2 != null %} {{store.address2}} <br>{% endif %} {% if store.address3 != null %} {{store.address3}} <br> {% endif %} {{store.city}}, {{store.state}} {{store.zip}}</div>
+                            </td>
+                        </tr>
+                        <!--<tr class="row2"><th colspan="2"><div >Order Date</div></th><th colspan="2"><div>Account No.</div></th></tr> -->
+                        <tr class="bg-grey">
+                            <td colspan="2">
+                            <div >Order Date</div>
+                            <div class="order-date"><span>{% if store.lastorderdate %}{{ store.lastorderdate}} {% else %} N/A {% endif %}</span></div>
+                            </td>
+                            <td colspan="2">
+                            <div>Account No.</div>
+                            <div class="account-no">{{ store.accountnumber }}</div>
+                            </td>
+                            <td colspan="2" class="store-select-td"><button class="select-txt" token="{{store.token}}" username="{{store.username}}" host="{{store.host}}" >Select</button></td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <!-- Responsive table end-->
+        </div>
+    </div>
+</div>

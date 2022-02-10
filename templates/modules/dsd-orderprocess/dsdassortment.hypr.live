@@ -1,0 +1,279 @@
+<div class="globalOverlay" role="alert" aria-live="assertive" aria-label="Loading Please wait">
+          <style>
+            .loading-wrapper {
+              display: flex;
+              height: 20px;
+            }
+
+            .loading-ball {
+              display: flex;
+              height: 20px;
+              width: 20px;
+              background: white;
+              border-radius: 100%;
+              margin-right: 8px;
+              animation: loading 3s infinite ease-in-out;
+            }
+
+            .loading-ball-1 {
+              animation-delay: -0.8s;
+              background: #f54747;
+            }
+
+            .loading-ball-2 {
+              animation-delay: -0.6s;
+              background: #f5dd68;
+            }
+
+            .loading-ball-3 {
+              animation-delay: -0.4s;
+              background: #69d881;
+            }
+
+            .loading-ball-4 {
+              animation-delay: -0.2s;
+              background: #f39f48;
+            }
+
+            .loading-ball-5 {
+              /* animation-delay: -0.8s; */
+              background: #9a52f9;
+            }
+
+            .loading-ball:last-child {
+              margin-right: 0;
+            }
+
+            @keyframes loading {
+              0%,
+              80%,
+              100% {
+                transform: scale(0.25);
+              }
+
+              40% {
+                transform: scale(1);
+              }
+            }
+          </style>
+
+          <div class="loading-wrapper">
+            <div class="loading-ball loading-ball-1"></div>
+            <div class="loading-ball loading-ball-2"></div>
+            <div class="loading-ball loading-ball-3"></div>
+            <div class="loading-ball loading-ball-4"></div>
+            <div class="loading-ball loading-ball-5"></div>
+          </div>
+        </div>
+        
+<div class="add-allto-cart">
+    <button class="atc addAllToCart" data-mz-action="addAllToCart" disabled>Add All to Cart</button>
+</div>
+{% for category in model.ActCategory.rootCategories  %}
+    {% if not category.isEmpty %}
+        {% if category.originalId != themeSettings.misc %}
+            <button class="accordion" data-mz-categoryid="{{ category.originalId }}"><p><span class="acc-image"></span><span>{{ category.name }}</span></p></button>
+            <div class="panel" data-mz-categoryid-panel ="{{ category.originalId }}">
+                <div class="mz-productlist {% block module-classes %}{% endblock module-classes %}">
+                    {% for catLit in model.items %}
+                        {% if catLit.category[0].categoryId == category.originalId %}
+                            {% if catLit.items %} 
+                                <div class="cart-table-container"> 
+                                    <table class="cart-table mz-productlist-list"> 
+                                        <thead>
+                                            <tr class="desktop">
+                                                <th class="checkbox">  
+                                                    <div class="checkboxcustom"> 
+                                                        <input class="magic-checkbox" type="checkbox" id="checkbox" value="None" name="check" />
+                                                        <label class="select-all"></label>
+                                                    </div>
+                                                </th>
+                                                <th class="item">Item #</th>  
+                                                <th class="desc">Description</th>
+                                                <th class="price">Price</th>
+                                                <th class="coldpack">Cold Pack</th>
+                                                <th class="qnty">Order Qty</th>  
+                                            </tr>
+                                            <tr class="mobile">
+                                                <th colspan="4" class="checkbox"><font>CHECK/UNCHECK ALL</font> 
+                                                    <div class="checkboxcustom"> 
+                                                        <input class="magic-checkbox" type="checkbox" id="checkbox" value="None" name="check" />
+                                                        <label class="select-all"></label>
+                                                    </div>
+                                                </th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for prod in catLit.items %}
+                                                <!-- Table row for desktop-->
+                                                <tr  class="desktop" {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %} style="color: red !important;" title="Out of stock"{% endif%} 
+                                                data-mz-productstock="{% if prod.inventoryInfo.manageStock %}{{ prod.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}" 
+                                                data-mz-productcode="{{ prod.productCode }}" data-mz-productweight="{{ prod.measurements.packageWeight.value }}" 
+                                                data-mz-productprice="{{ prod.price.price }}"
+                                                data-mz-futuredate="{% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}{{prod.futureDate}}{% endif %}"
+                                                data-mz-productName="{{ prod.content.productName }}"
+                                                > 
+                                                    <td class="checkbox">
+                                                        <div class="checkboxcustom">
+                                                            <input {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}disabled{% endif%} type="checkbox" class="magic-checkbox" value="None" id="checkbox" name="check"/>
+                                                            <label></label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="item">
+                                                        {{ prod.productCode }}
+                                                    </td>
+                                                    <td class="desc" assort-itemcode="{{ prod.productCode }}">
+                                                        <div  {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}style="font-weight:bold" {% endif %}>
+                                                            {{ prod.content.productName }}
+                                                        </div>
+                                                        <div class="assort-error" style="color:red">
+                                                            {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}
+                                                                This item is out of Stock. <span class="notify">Notify Me</span>
+                                                            {% else %}
+                                                                {% if  prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable < 4 %}
+                                                                    Only {{ prod.inventoryInfo.onlineStockAvailable }} in stock.
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                        {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}
+                                                            <div class="assort-future" style="color:#25cc38">
+                                                                Available on {{prod.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </td> 
+                                                    <td class="price">
+                                                        {{ prod.price.price |currency }}
+                                                    </td> 
+                                                    <td class="coldpack">
+                                                        <div class="coldpack">
+                                                            {% if themeSettings.heatSensitive %}
+                                                                {% with prod.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}
+                                                                    {% with aliasName.values|findwhere('value',true) as checkVal %}  
+                                                                        {% if checkVal %}
+                                                                            <img src="../resources/images/coldpack-tick.png" alt="Yes" />  
+                                                                        {% endif %}
+                                                                    {% endwith %}
+                                                                {% endwith %}
+                                                            {% endif %}
+                                                        </div> 
+                                                    </td>
+                                                    <td  class="qnty">
+                                                        {% if prod.inventoryInfo.manageStock %}
+                                                            <select {% if prod.inventoryInfo.onlineStockAvailable == 0  %}disabled{% endif%}>
+                                                                <option value="1">1</option>
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 2  %}<option value="2">2</option>{% endif %}
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 3  %}<option value="3">3</option>{% endif %}
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 4  %}<option value="4">4</option>{% endif %} 
+                                                            </select>
+                                                        {% else%} 
+                                                            <select>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option> 
+                                                            </select>
+                                                        {% endif%}
+                                                    </td>
+                                                </tr> 
+                                                <!-- Table row for desktop end-->
+                                                <!--Table row for mobile/ipad portrait mode or width < 768px -->
+                                                <tr class="mobile itemno">
+                                                    <td class="item">
+                                                        <div><font>Item # </font><strong 
+                                                            {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}style="color:red;" {% endif %}>
+                                                            {{ prod.productCode }}</strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr  class="mobile row1" {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %} style="color: red !important;" title="Out of stock"{% endif%}
+                                                data-mz-productstock="{% if prod.inventoryInfo.manageStock %}{{ prod.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}"
+                                                data-mz-productcode="{{ prod.productCode }}" data-mz-productweight="{{ prod.measurements.packageWeight.value }}" 
+                                                data-mz-productprice="{{ prod.price.price }}"
+                                                data-mz-futuredate="{% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}{{prod.futureDate}}{% endif %}"
+                                                data-mz-productName="{{ prod.content.productName }}"
+                                                > 
+                                                    <td  colspan="3" class="desc" assort-itemcode="{{ prod.productCode }}"> 
+                                                        <div {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}style="font-weight:bold" {% endif %}>{{ prod.content.productName }}</div>
+                                                        <div class="assort-error" style="color:red">
+                                                            {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}
+                                                                This item is out of Stock. <span class="notify">Notify Me</span>
+                                                            {% else %}
+                                                                {% if  prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable < 4 %}
+                                                                    Only {{ prod.inventoryInfo.onlineStockAvailable }} in stock </div>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                        {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}
+                                                            <div class="assort-future" style="color:#25cc38">
+                                                                Available on {{prod.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </td> 
+                                                    <td class="checkbox">
+                                                        <div class="checkboxcustom">
+                                                            <input {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}disabled{% endif%} type="checkbox" class="magic-checkbox" value="None" id="checkbox" name="check"/>
+                                                            <label></label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr  class="mobile row2" {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %} style="color: red !important;" title="Out of stock"{% endif%} data-mz-productstock="{% if prod.inventoryInfo.manageStock %}{{ prod.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}" data-mz-productcode="{{ prod.productCode }}" data-mz-productweight="{{ prod.measurements.packageWeight.value }}" data-mz-productprice="{{ prod.price.price }}"> 
+                                                    <td class="unit-price">
+                                                        {{ prod.price.price |currency }}
+                                                    </td> 
+                                                    <td class="coldpack">
+                                                        <div class="coldpack">
+                                                            {% with prod.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
+                                                                {% with aliasName.values|findwhere('value',true) as checkVal %} 
+                                                                    {% if checkVal %}
+                                                                        <font>Cold Pack</font>
+                                                                    {% endif %}
+                                                                {% endwith %}
+                                                            {% endwith %}
+                                                        </div> 
+                                                    </td>
+                                                    <td  class="qnty">
+                                                        {% if prod.inventoryInfo.manageStock %}
+                                                            <select {% if prod.inventoryInfo.onlineStockAvailable == 0  %}disabled{% endif%}>
+                                                                <option value="1">1</option>
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 2  %}<option value="2">2</option>{% endif %}
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 3  %}<option value="3">3</option>{% endif %}
+                                                                {% if  prod.inventoryInfo.onlineStockAvailable >= 4  %}<option value="4">4</option>{% endif %} 
+                                                            </select>
+                                                        {% else%} 
+                                                            <select>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option> 
+                                                            </select>
+                                                        {% endif%}
+                                                    </td>
+                                                    <td class="price">
+                                                        {{ prod.price.price |currency }}
+                                                    </td> 
+                                                </tr>
+                                                <tr class="mobile spacer"></tr> 
+                                                <!--Table row for mobile or width < 768px  end-->
+                                                {# {% endif %} #} 
+                                            {% endfor %} 
+                                        </tbody> 
+                                    </table>
+                                    <div class="summary">  
+                                        <table>
+                                            <thead><tr><th>Total items</th><th>Gross Weight</th><th>Price</th></tr></thead> 
+                                            <tbody><tr><td class="total-items">0 Items</td><td class="total-weight">0 lbs</td><td class="total-price">$0.00</td></tr></tbody>
+                                        </table> 
+                                        <button disabled class="atc addToCart" data-mz-action="addToCart">Add All to Cart</button>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<div class="add-allto-cart"> 
+    <button class="atc addAllToCart" data-mz-action="addAllToCart" disabled>Add All to Cart</button>
+</div>

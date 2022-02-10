@@ -1,0 +1,22 @@
+    <h1 class="mz-storebranding" id="store-branding">
+   
+     <div class="mz-mobile mlogo">
+      <div class="ham"><img src="{% make_url "image" "../resources/images/ham-icon.png" %}" alt="open-menu"/></div>
+      </div>
+   
+      <div class="logo-jb"> 
+       {% dropzone "jb-logotest" scope="site" %}
+      <!--<img src="/resources/images/jellybelly-logheader-containero.png" alt="Logo" />-->
+      </div>
+      <!--<div class="store-title">-->
+      <!--<div class="website-name"><a href="/" title="asdsa sad">{{ siteContext.generalSettings.websiteName }}</a></div>-->
+      <!--<div class="site-type">DSD ORDER SYSTEM</div>-->
+      <!--</div>-->
+    </h1>
+ 
+ 
+
+ 
+
+
+

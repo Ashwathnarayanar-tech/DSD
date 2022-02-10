@@ -1,0 +1,56 @@
+{% comment %}
+<nav class="mz-scrollnav" id="account-nav" data-mz-scrollnav="{{ navtarget }}">
+    <ul class="mz-scrollnav-list nav">
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#settings">
+                {{ labels.accountSettings }}
+            </a>
+        </li>
+        {% if siteContext.generalSettings.isWishlistCreationEnabled %}
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#wishlist">
+                {{ labels.accountMyWishlist }}
+            </a>
+        </li>
+        {% endif %}
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#orderhistory">
+                {{ labels.orderHistory }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#returnhistory">
+                {{ labels.returns }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#paymentmethods">
+                {{ labels.paymentMethods }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#addressbook">
+                {{ labels.addressBook }}
+            </a>
+        </li>
+        <li class="mz-scrollnav-item">
+            <a class="mz-scrollnav-link" href="#{{ labels.digitalCreditsAnchor }}">
+                {{ labels.digitalCredit }}
+            </a>
+        </li>
+    </ul>
+</nav>
+{% require_script "modules/scroll-nav" %}
+{% endcomment %}
+
+{% require_script "pages/b2blogin" %}
+
+begin
+<form id="jb-b2bform">
+<input name='username' type='hidden'/>
+<input name='password' type='hidden'/>
+</form>
+<div class="jb-userlogins"></div>
+end
+
+

@@ -1,0 +1,27 @@
+
+        <div class="printaddress" id="printaddress">
+            <h3 class="store-name">
+                <span class="dsdstore-name">{{ model.address.companyOrOrganization }}</span>
+            </h3>
+            <div class="store-address">
+             <div class="printbtn"><button class="printpage">Print</button></div>
+                <p>{{ model.address.address1 }}</p> 
+                <p>{{ model.address.address2 }}</p> 
+                <p>{{ model.address.address3 }}</p>
+                <p>{{ model.address.address4 }}</p>
+                <p>{{ model.address.cityOrTown |upper }} {{ model.address.stateOrProvince |upper }}</p> 
+                <p>{{ model.address.postalOrZipCode |upper }} {{ model.address.countryCode |upper }}</p>
+            
+            </div>
+            
+        </div>
+        <div class="border"></div>
+        <p class="printclose"><img class="remove-item-list" src="resources/images/close.jpg" alt="X"/></p>
+  
+
+
+
+
+
+
+
