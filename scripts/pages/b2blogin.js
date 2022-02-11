@@ -831,7 +831,6 @@ function (Backbone, _, $, HyprLiveContext, Hypr,api,futurePopup) {
         if($.cookie("userEmail") === undefined){
             window.location = Hypr.getThemeSetting('themeLoginURL')+"?clearSession=yes";
         }
-
         //   if(!$(".table table-responsive").children(".recent-address").children().length){
               
         //   }

@@ -507,8 +507,22 @@ require([
         var orderobj = {
             orderStaus: function() {
                 var self = this;
-                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=fulfillmentstatus+eq+fulfilled&sortBy=submittedDate desc').then(function(resp) {
-                    getProductDates(resp,self.dateCallBack);
+                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=status+eq+Completed&sortBy=submittedDate desc').then(function(resp) {
+                        getProductDates(resp,self.dateCallBack);
+                        // console.log(resp.items);
+                        // var items = resp.items;
+                        // var itemLength = resp.items.length;
+                        // var i;
+                        // $.each(items,function(i,v){
+                        //     var item = items[i].items;
+                        //     // var itemCLength = resp.items.length;
+                        //     // var j;
+                        //     $.each(item,function(j,v){
+                        //         var getProductCode = item[j].product.productCode;
+                        //         console.log(getProductCode);
+                        //     }); 
+                        // });
+                        // getProductDates(resp,self.dateCallBack);
                 },function(err){
                     console.log(err);
                 });
@@ -565,8 +579,10 @@ require([
 
     var getProductDates = function(res,callback){
         var ordersLen =  res.items.length,i=0,productCodes=[];
+        var fetchData = [];
         for(i;i<ordersLen;i++){
             var itemsLen = res.items[i].items.length,j=0;
+
             for(j;j<itemsLen;j++){
                 var code = res.items[i].items[j].product.productCode;
                 if(productCodes.length>0 && productCodes.indexOf(code)<0){
@@ -577,9 +593,20 @@ require([
             }
         }
         if(productCodes.length>0){
-            api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
-                var d =  assignFutureDates(res,resp);
-                callback(d);
+            api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
+                if(resp.FirstShipDate) {
+                    api.request("post","/rof/get_coldpackDetails",{data:res,customerId:require.mozuData('user').lastName,site:"dsd","FirstShipDate":resp.FirstShipDate}).then(function(productDetails){
+                        var d =  assignFutureDates(productDetails.data,resp);
+                        callback(d);
+                    }).catch(function(e) { 
+
+                    }).then(function() {
+
+                    });
+                } else {
+                    var d =  assignFutureDates(res,resp);
+                    callback(d);
+                }
             },function(err){
                 console.log(err);
                 callback(res);
@@ -595,7 +622,6 @@ require([
             for(j;j<prodLen;j++){
                 var code = orders.items[i].items[j].product.productCode,
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
-                
                 if(futureProduct){
                     var isHeatSensitive = _.find(orders.items[i].items[j].properties, function(property) {
                         if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
