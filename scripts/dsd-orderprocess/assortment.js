@@ -883,7 +883,7 @@ require([
             product.future = $(document).find('.desc[assort-itemcode="'+product.Code+'"]').find('.assort-future');    
             $(".mz-searchbox-input.tt-input").val(product.Name);
             $("#search-result-table-container .item").not("th.item").html(product.Code); 
-            $("#search-result-table-container td.desc .description").html(product.Name);
+            $("#search-result-table-container td.desc .description").html(window.unescapeHTML(product.Name));
             $("#search-result-table-container td.desc .assort-future").remove();
             if( product.Stock>0 && product.future.length>0){
                 var fdate = product.future.first().clone();

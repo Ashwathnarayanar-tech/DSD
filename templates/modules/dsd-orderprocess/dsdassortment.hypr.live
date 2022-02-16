@@ -125,7 +125,7 @@
                                                     </td>
                                                     <td class="desc" assort-itemcode="{{ prod.productCode }}">
                                                         <div  {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}style="font-weight:bold" {% endif %}>
-                                                            {{ prod.content.productName }}
+                                                            {{ prod.content.productName | safe }}
                                                         </div>
                                                         <div class="assort-error" style="color:red">
                                                             {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}

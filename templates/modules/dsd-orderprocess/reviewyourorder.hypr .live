@@ -39,7 +39,7 @@
                     <tr class="desktop">
                         <td class="item">{{ item.product.productCode }}</td>
                         <td class="desc">
-                            <div class="desc-cart">{{ item.product.name }}</div>
+                            <div class="desc-cart">{{ item.product.name | safe }}</div>
                             <div class="cart-error" cart-prod-code = "{{ item.product.productCode }}"></div>
                             {% if item.product.inventory and item.product.futureDate!="undefined" %}
                                 <div class="cart-future" style="color:black">

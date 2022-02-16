@@ -365,6 +365,11 @@ define([
                 //return new Promise(function(resolve,reject){
                     if(productCodes.length>0){
                         api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
+                            //window.cart.model.attributes.items.models[0].attributes.isHeatsensitive
+                            var cartItems = window.cart.model.attributes.items.models;
+                            for(var c=0;c<cartItems.length;c++){
+                                cartItems[c].set('isHeatsensitive',resp.isNewHeatSensitive[c].isHeatSensitive);
+                            }
                             self.callback(resp.FirstShipDate);
                         },function(err){
                             self.callback(res,self);
@@ -979,8 +984,11 @@ define([
                 // });  
         },
         updateOrder:function(){
+            var _this = this;
             this.model.apiGet();
+            this.getProductDates(this.model);
             this.render();
+            
          
         }
     });

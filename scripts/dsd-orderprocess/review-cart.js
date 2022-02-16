@@ -159,6 +159,9 @@ define([
                        break;
                    }
                 }
+                setTimeout(function(){
+                  window.cart.render();
+                },3000);
                 /*  if(!$('.place-order').is(':hidden')){
                     $('.place-order').slideUp('slow');
                     $('.order-body').slideDown('slow');
@@ -187,7 +190,10 @@ define([
                 });
             },
             updateReviewCart:function(){
+                var _this= this;
                 cartModel.apiGet();
+                this.getProductDates(this.model);
+               
             },
             
             notifyOrderAmount: function(e){
@@ -282,7 +288,7 @@ define([
                             // console.log(resp);
                             if(resp.isNewHeatSensitive) {
                                 // for(res.get("items"))
-                                for(i=0;i<itemsLen;i++){
+                                for(var i=0;i<itemsLen;i++){
                                     res.get('items').models[i].set('isHeatsensitive',resp.isNewHeatSensitive[i].isHeatSensitive);
                                     if(itemsLen === i+1) {
                                         self.callback(self.assignFutureDates(resp,res));
