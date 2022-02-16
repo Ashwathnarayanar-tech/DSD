@@ -187,10 +187,10 @@
                                                 data-mz-productcode="{{ prod.productCode }}" data-mz-productweight="{{ prod.measurements.packageWeight.value }}" 
                                                 data-mz-productprice="{{ prod.price.price }}"
                                                 data-mz-futuredate="{% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}{{prod.futureDate}}{% endif %}"
-                                                data-mz-productName="{{ prod.content.productName }}"
+                                                data-mz-productName="{{ prod.content.productName | safe }}"
                                                 > 
                                                     <td  colspan="3" class="desc" assort-itemcode="{{ prod.productCode }}"> 
-                                                        <div {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}style="font-weight:bold" {% endif %}>{{ prod.content.productName }}</div>
+                                                        <div {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable > 0  and prod.futureDate!="undefined" %}style="font-weight:bold" {% endif %}>{{ prod.content.productName | safe }}</div>
                                                         <div class="assort-error" style="color:red">
                                                             {% if prod.inventoryInfo.manageStock and prod.inventoryInfo.onlineStockAvailable == 0  %}
                                                                 This item is out of Stock. <span class="notify">Notify Me</span>

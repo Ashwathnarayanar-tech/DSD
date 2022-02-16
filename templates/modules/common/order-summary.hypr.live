@@ -26,7 +26,7 @@
 			</div>
 			{% for item in model.items %}
 			<div class="info-row {% if item.discountTotal > 0 %}is-discounted{% endif %}">
-				<div class="width-60p fl item-name">{{ item.product.name }} {% if item.product.bundledProducts.length %}
+				<div class="width-60p fl item-name">{{ item.product.name | safe}} {% if item.product.bundledProducts.length %}
                       <span class="mz-extra-detail">
                         {% for bundledProduct in item.product.bundledProducts %}
                         {{ bundledProduct.productCode }} | &nbsp;

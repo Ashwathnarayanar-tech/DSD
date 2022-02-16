@@ -137,7 +137,7 @@
                                  </td>
                                  <td class="desc" itemcode = "{{ item.product.productCode }}">
                                     <div class="product-name" {% if item.inventory and item.futureDate!="undefined" %} 
-                                    style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name }}</div>
+                                    style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name | safe }}</div>
                                     <div class="pre-error" prodcode = "{{ item.product.productCode }}">{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
                                     {% if item.inventory %}
                                         <div class="pre-future" prodcode = "{{ item.product.productCode }}">{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
@@ -257,7 +257,7 @@
                               <tr class="mobile row1" > 
                                  <td colspan="3" class="desc" itemcode = "{{ item.product.productCode }}">
                                     <div class="product-name" {% if item.inventory and item.futureDate!="undefined" %} style="font-weight:bold" {% else %} 
-                                    {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name }}</div>
+                                    {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{ item.product.name | safe }}</div>
                                     <div class="pre-error" prodcode = "{{ item.product.productCode }}">{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
                                     {% if item.inventory %}
                                         <div class="pre-future" prodcode = "{{ item.product.productCode }}">{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
