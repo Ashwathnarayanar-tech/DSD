@@ -355,7 +355,8 @@ require([
           if($(window).width() <= 1024){
             items = self.find("tbody tr.mobile").not(".row2"); 
           }
-          items.each(function(){
+          items.each(function(item){
+            console.log("item ---",item);
             var isChecked = $(this).find(".checkboxcustom input").prop("checked");  
             if(isChecked){
               var prodQuantity;
@@ -367,7 +368,8 @@ require([
               var product= {
                 quantity : prodQuantity,
                 productcode: $(this).attr("data-mz-productcode"),
-                stock : $(this).attr('data-mz-productstock')
+                stock : $(this).attr('data-mz-productstock'),
+                isHeatSensitive:$(this).attr('data-mz-heatSensitive')
               };
               window.TotalAddedToCart += product.quantity;
               products.push(product);
@@ -486,7 +488,7 @@ require([
               if(!isApiCalled){
                 $(".accordion-container").addClass("openoverlay");
                 isApiCalled = true;
-                api.request('GET','svc/dsdassortments?categoryId='+catCode).then(function(result){
+                api.request('POST','svc/dsdassortments?categoryId='+catCode,{"customerId":require.mozuData('user').lastName,"site":"dsd"}).then(function(result){
                    modelsItems = window.assortments.model.get('items') ? window.assortments.model.get('items') : [];
                   var itemFound = false;
                   console.log("modelsItems ---",modelsItems);
@@ -538,17 +540,15 @@ require([
     });
 
     $(document).ready(function(event){
-      
-      if($.cookie("userData") === undefined){
-        window.location = Hypr.getThemeSetting('themeLoginURL')+"?clearSession=yes";
-      }
-
         var QOModel= Backbone.MozuModel.extend({});
         var result = {ActCategory:require.mozuData('navigation')};
         var assortments = window.assortments = new assortmentsView({ 
           el: $('#assortments'),
           model: new QOModel(result)  
       });
+      if($.cookie("userData") === undefined){
+        window.location = Hypr.getThemeSetting('themeLoginURL')+"?clearSession=yes";
+      }
       window.assortments = assortments;
       assortments.render();
       /*
@@ -562,7 +562,7 @@ require([
             assortments.render();
         });*/
         var searchItemsFn = _.debounce(function(term) {
-            api.request('POST','svc/customsearch',{"query":term}).then(function(response){
+            api.request('POST','svc/customsearch',{"query":term,"customerId":require.mozuData('user').lastName,site:"dsd"}).then(function(response){
               console.log(response);
               var facetModel,emptyresults = [];
               if(response === "no response") {
@@ -883,7 +883,7 @@ require([
             product.future = $(document).find('.desc[assort-itemcode="'+product.Code+'"]').find('.assort-future');    
             $(".mz-searchbox-input.tt-input").val(product.Name);
             $("#search-result-table-container .item").not("th.item").html(product.Code); 
-            $("#search-result-table-container td.desc .description").html(product.Name);
+            $("#search-result-table-container td.desc .description").html(window.unescapeHTML(product.Name));
             $("#search-result-table-container td.desc .assort-future").remove();
             if( product.Stock>0 && product.future.length>0){
                 var fdate = product.future.first().clone();

@@ -176,7 +176,7 @@
 		            <td class="ord-item-name">{{item.product.productCode}}</td>
 		            <td class="ord-desc">
 		                <span {% if item.inventory and item.futureDate!="undefined" %} 
-		                style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{item.product.name}}</span>
+		                style="font-weight:bold" {% else %} {% if not item.inventory %}style="color:red"{% endif %}{% endif %}>{{item.product.name | safe}}</span>
 		                <div class="orderhistory-error" order-error-code= {{item.product.productCode}}>{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
 		                {% if item.inventory %}
 		                    <div class="orderhistory-future" order-error-code-future= {{item.product.productCode}}>{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
@@ -184,15 +184,12 @@
 		            </td>
 		            <td class="ord-price">{{item.product.price.price|currency}}</td>  
 		            <td class="ord-cold-pack">
-		                {% if themeSettings.heatSensitive %}    
-		                    {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
-                                {% with aliasName.values|findwhere('value',true) as checkVal %}
-                                    {% if checkVal %}
-                                         <img src="../resources/images/coldpack-tick.png" alt="Yes" />
-                                    {% endif %}
-                                {% endwith %}
-                            {% endwith %}</td>
+		                {% if themeSettings.heatSensitive %}
+		                {% if  item.product.isHeatSensitiveDatas %}
+		                	<img src="../resources/images/coldpack-tick.png" alt="Yes" />
+		                {% endif %}    
                         {% endif %}    
+		            </td>
 		            <td class="ord-qty">{{item.quantity}}</td>
 		        </tr>
 		       <!--Table row for desktop end-->
@@ -206,7 +203,7 @@
 		        <tr  class="mobile row1" data-mz-orderNumber="{{ orders.orderNumber }}">
 		          <td class="ord-desc"  colspan="3">
 		                <span {% if item.inventory and item.futureDate!="undefined" %} 
-		                style="font-weight:bold" {% else %}{% if not item.inventory %}style="color:red"{% endif %} {% endif %}>{{item.product.name}}</span>
+		                style="font-weight:bold" {% else %}{% if not item.inventory %}style="color:red"{% endif %} {% endif %}>{{item.product.name | safe}}</span>
 		                <div class="orderhistory-error" order-error-code= {{item.product.productCode}}>{% if not item.inventory %}This item is out of Stock. <span class="notify">Notify Me</span>{% endif %}</div>
 		                {% if item.inventory %}
 		                    <div class="orderhistory-future" order-error-code-future= {{item.product.productCode}}>{% if item.futureDate!="undefined" %}Available on {{item.futureDate}} <span class="or-text">or</span><span class="notify">Notify Me</span>{% endif %}</div>
@@ -218,13 +215,11 @@
 		        <tr class="mobile row2" data-mz-orderNumber="{{ orders.orderNumber }}">
 		         
 		         <td class="ord-price">{{item.product.price.price|currency}}</td>
-		         <td class="ord-cold-pack">{% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %} 
-                                {% with aliasName.values|findwhere('value',true) as checkVal %}
-                                    {% if checkVal %}
-                                        <font>Cold Pack</font>
-                                    {% endif %}
-                                {% endwith %}
-                            {% endwith %}</td>
+		         <td class="ord-cold-pack">
+		         	{% if  item.product.isHeatSensitiveDatas %}
+                        <font>Cold Pack</font>
+                    {% endif %}
+                 </td>
                  <td class="ord-qty" data-mz-productCode="{{item.product.productCode}}">{{item.quantity}}</td>
                  <td class="ord-price">{{item.product.price.price|currency}}</td>
 		        </tr>

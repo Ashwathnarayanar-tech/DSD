@@ -1,3 +1,4 @@
+
 {% autoescape on %}
 {% block doctype %}
 <!doctype html>
@@ -110,6 +111,7 @@
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
         </script>
+
     </head>
 
     {% endblock head-tag %}
@@ -118,7 +120,7 @@
 
     {% block open-body-tag %}
 
-    <body class="{% block body-tag-classes %}{% endblock body-tag-classes %}">
+    <body class="{% block body-tag-classes %}{% endblock body-tag-classes %}" >
 
 
 	<style>

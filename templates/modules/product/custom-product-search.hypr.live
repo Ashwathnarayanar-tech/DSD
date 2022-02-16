@@ -6,28 +6,10 @@
 				 	<div class="tt-suggestion">
 	        			<div class="mz-itemlisting mz-itemlisting-autocomplete mz-itemlisting-autocomplete-product">
 	        				<div class="mz-itemlisting-details">
-							    <a data-mz-stock="{% if product.inventoryInfo.manageStock %}{{ product.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}" class="mz-itemlisting-title" 
-							    {% with product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}
-							        {% if aliasName %}
-							            {% with aliasName.values|findwhere('value',true) as checkVal %}
-							                {% if checkVal %}data-mz-iscoldpack="yes"{% else %}data-mz-iscoldpack="no"{% endif %}
-							            {% endwith %}
-							        {% else %} 
-							            {% with product.properties|findwhere('attributeFQN','tenant~isheatsensitive') as heat %}
-							                {% if heat %}
-							                    {% with heat.values|findwhere('value',true) as checkVals %}
-							                        {% if checkVals %}data-mz-iscoldpack="yes"{% else %}data-mz-iscoldpack="no"{% endif %}
-							                    {% endwith %}
-							                {% else %} 
-							                    data-mz-iscoldpack="no"
-							                {% endif %}
-							            {% endwith %}    
-							        {% endif %}
-							        
-							    {% endwith %} 
+							    <a data-mz-stock="{% if product.inventoryInfo.manageStock %}{{ product.inventoryInfo.onlineStockAvailable }}{% else %}4{% endif %}" class="mz-itemlisting-title" {% if product.isHeatSensitiveDatas %}data-mz-iscoldpack="yes"{% else %}data-mz-iscoldpack="no"{% endif %}
 							    data-mz-weight="{{ product.measurements.packageWeight.value }}" 
-							    data-mz-price="{{ product.price.price }}" data-mz-productcode="{{ product.productCode }}"  data-mz-productname="{{ product.content.productName }}" 
-							    href="javascript:void(0);">{{ product.content.productName }}</a>
+							    data-mz-price="{{ product.price.price }}" data-mz-productcode="{{ product.productCode }}"  data-mz-productname="{{ product.content.productName | safe }}" 
+							    href="javascript:void(0);">{{ product.content.productName  | safe }}</a>
 
 								{% if product.inventoryInfo.manageStock  and product.inventoryInfo.onlineStockAvailable == 0 %}  
 									<div style="color:red" class="outofstock">Out of Stock</div> 

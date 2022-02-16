@@ -159,6 +159,9 @@ define([
                        break;
                    }
                 }
+                setTimeout(function(){
+                  window.cart.render();
+                },3000);
                 /*  if(!$('.place-order').is(':hidden')){
                     $('.place-order').slideUp('slow');
                     $('.order-body').slideDown('slow');
@@ -187,8 +190,12 @@ define([
                 });
             },
             updateReviewCart:function(){
+                var _this= this;
                 cartModel.apiGet();
+                this.getProductDates(this.model);
+               
             },
+            
             notifyOrderAmount: function(e){
                 e.preventDefault();
                 $('.cart-modal').show();
@@ -276,9 +283,20 @@ define([
                     }
                 //return new Promise(function(resolve,reject){
                     if(productCodes.length>0){
-                        api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
+                        api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
                             window.futureDates = resp;
-                            self.callback(self.assignFutureDates(resp,res));
+                            // console.log(resp);
+                            if(resp.isNewHeatSensitive) {
+                                // for(res.get("items"))
+                                for(var i=0;i<itemsLen;i++){
+                                    res.get('items').models[i].set('isHeatsensitive',resp.isNewHeatSensitive[i].isHeatSensitive);
+                                    if(itemsLen === i+1) {
+                                        self.callback(self.assignFutureDates(resp,res));
+                                    }
+                                }
+                            } else {
+                                self.callback(self.assignFutureDates(resp,res));
+                            }
                         },function(err){
                             self.callback(res);
                         });
@@ -293,11 +311,7 @@ define([
                     var code =order.get('items').models[i].get('product.productCode'),
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
-                        var isHeatSensitive = _.find( order.get('items').models[i].get('product.properties'), function(property) {
-                            if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                return property.values[0].value;
-                            }
-                        }); 
+                        var isHeatSensitive = order.get('items').models[i].get("isHeatsensitive"); 
                         if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
@@ -329,11 +343,7 @@ define([
                     var code =order.items[i].product.productCode,
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
-                        var isHeatSensitive = _.find( order.items[i].product.properties, function(property) {
-                            if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                return property.values[0].value;
-                            }
-                        }); 
+                        var isHeatSensitive = order.items[i].isHeatsensitive; 
                         if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
@@ -522,12 +532,12 @@ define([
             }
         });
         
-        var cartModel = new CartModels.Cart(),
-        miniCartView = new MiniCartView({ 
+        var cartModel = new CartModels.Cart();
+        var miniCartView = new MiniCartView({ 
             el: $('#review-your-order'),
             model: cartModel
         });
-           window.cart = miniCartView; 
+        window.cart = miniCartView; 
         var storeadress = new storeAdress({
             el: $('#store-address'),
             model: cartModel

@@ -355,7 +355,8 @@ require([
           if($(window).width() <= 1024){
             items = self.find("tbody tr.mobile").not(".row2"); 
           }
-          items.each(function(){
+          items.each(function(item){
+            console.log("item ---",item);
             var isChecked = $(this).find(".checkboxcustom input").prop("checked");  
             if(isChecked){
               var prodQuantity;
@@ -367,7 +368,8 @@ require([
               var product= {
                 quantity : prodQuantity,
                 productcode: $(this).attr("data-mz-productcode"),
-                stock : $(this).attr('data-mz-productstock')
+                stock : $(this).attr('data-mz-productstock'),
+                isHeatSensitive:$(this).attr('data-mz-heatSensitive')
               };
               window.TotalAddedToCart += product.quantity;
               products.push(product);
@@ -486,7 +488,7 @@ require([
               if(!isApiCalled){
                 $(".accordion-container").addClass("openoverlay");
                 isApiCalled = true;
-                api.request('GET','svc/dsdassortments?categoryId='+catCode).then(function(result){
+                api.request('POST','svc/dsdassortments?categoryId='+catCode,{"customerId":require.mozuData('user').lastName,"site":"dsd"}).then(function(result){
                    modelsItems = window.assortments.model.get('items') ? window.assortments.model.get('items') : [];
                   var itemFound = false;
                   console.log("modelsItems ---",modelsItems);
@@ -544,6 +546,9 @@ require([
           el: $('#assortments'),
           model: new QOModel(result)  
       });
+      if($.cookie("userData") === undefined){
+        window.location = Hypr.getThemeSetting('themeLoginURL')+"?clearSession=yes";
+      }
       window.assortments = assortments;
       assortments.render();
       /*
@@ -557,7 +562,7 @@ require([
             assortments.render();
         });*/
         var searchItemsFn = _.debounce(function(term) {
-            api.request('POST','svc/customsearch',{"query":term}).then(function(response){
+            api.request('POST','svc/customsearch',{"query":term,"customerId":require.mozuData('user').lastName,site:"dsd"}).then(function(response){
               console.log(response);
               var facetModel,emptyresults = [];
               if(response === "no response") {
