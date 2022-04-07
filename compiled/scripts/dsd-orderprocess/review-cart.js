@@ -159,6 +159,11 @@ define([
                        break;
                    }
                 }
+                setTimeout(function(){
+                    window.cart.render();
+                    placeorder.submitOrder.updateOrder();
+                    self.getProductDates(self.model);
+                  },1000);
                 /*  if(!$('.place-order').is(':hidden')){
                     $('.place-order').slideUp('slow');
                     $('.order-body').slideDown('slow');
@@ -188,6 +193,8 @@ define([
             },
             updateReviewCart:function(){
                 cartModel.apiGet();
+                this.getProductDates(this.model);
+                //placeorder.submitOrder.updateOrder();
             },
             notifyOrderAmount: function(e){
                 e.preventDefault();
@@ -276,9 +283,21 @@ define([
                     }
                 //return new Promise(function(resolve,reject){
                     if(productCodes.length>0){
-                        api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
+                        api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
                             window.futureDates = resp;
                             self.callback(self.assignFutureDates(resp,res));
+                            // console.log(resp);
+                            if(resp.isNewHeatSensitive) {
+                                // for(res.get("items"))
+                                for(var i=0;i<itemsLen;i++){
+                                    res.get('items').models[i].set('isHeatsensitive',resp.isNewHeatSensitive[i].isHeatSensitive);
+                                    if(itemsLen === i+1) {
+                                        self.callback(self.assignFutureDates(resp,res));
+                                    }
+                                }
+                            } else {
+                                self.callback(self.assignFutureDates(resp,res));
+                            }
                         },function(err){
                             self.callback(res);
                         });
@@ -293,11 +312,7 @@ define([
                     var code =order.get('items').models[i].get('product.productCode'),
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
-                        var isHeatSensitive = _.find( order.get('items').models[i].get('product.properties'), function(property) {
-                            if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                return property.values[0].value;
-                            }
-                        }); 
+                        var isHeatSensitive = order.get('items').models[i].get("isHeatsensitive");
                         if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
@@ -329,11 +344,7 @@ define([
                     var code =order.items[i].product.productCode,
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
-                        var isHeatSensitive = _.find( order.items[i].product.properties, function(property) {
-                            if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                return property.values[0].value;
-                            }
-                        }); 
+                        var isHeatSensitive = order.items[i].isHeatsensitive;  
                         if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
@@ -449,7 +460,7 @@ define([
             },
             render:function(){
                 Backbone.MozuView.prototype.render.call(this);
-                placeorder.submitOrder.updateOrder();
+                //placeorder.submitOrder.updateOrder();
                 if(this.model.get('total')>=Hypr.getThemeSetting('minimumOrderAmount')){
                     $('#review-your-order .checkout-button').removeClass('disabled');
                     if(!$('.place-order').is(':hidden')){
@@ -522,12 +533,12 @@ define([
             }
         });
         
-        var cartModel = new CartModels.Cart(),
-        miniCartView = new MiniCartView({ 
+        var cartModel = new CartModels.Cart();
+         var miniCartView = new MiniCartView({ 
             el: $('#review-your-order'),
             model: cartModel
         });
-           window.cart = miniCartView; 
+        window.cart = miniCartView; 
         var storeadress = new storeAdress({
             el: $('#store-address'),
             model: cartModel

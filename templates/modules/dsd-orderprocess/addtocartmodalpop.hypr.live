@@ -24,7 +24,7 @@ th, td {
                 You have not added the following products
                 {% for details in model.poparr %}
                              
-                           <div class="product-msg"> {{ details.prodName }}</div>
+                           <div class="product-msg"> {{ details.prodName | safe }}</div>
                 {% endfor %}
             {% endif %}
              

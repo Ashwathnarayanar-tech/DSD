@@ -482,9 +482,20 @@ require([
                 }
             }
             if(productCodes.length>0){
-                api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
-                    var d =  assignFutureDates(res,resp);
-                    callback(d);
+                api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
+                    if(resp.FirstShipDate) {
+                        api.request("post","/rof/get_coldpackDetails",{data:res,customerId:require.mozuData('user').lastName,site:"dsd","FirstShipDate":resp.FirstShipDate}).then(function(productDetails){
+                        var d =  assignFutureDates(productDetails.data,resp);
+                            callback(d);
+                        }).catch(function(e) { 
+
+                        }).then(function() {
+
+                        });
+                    } else {
+                        var d =  assignFutureDates(res,resp);
+                        callback(d);
+                    }
                 },function(err){
                     console.log(err);
                     callback(res);
@@ -502,11 +513,7 @@ require([
                         futureProduct = _.findWhere(dates.Items, {SKU: code});
                     
                     if(futureProduct){
-                        var isHeatSensitive = _.find(orders.items[i].items[j].properties, function(property) {
-                            if (property.attributeFQN === "tenant~isheatsensitive" || property.attributeFQN === "tenant~IsHeatSensitive") {
-                                return property.values[0].value;
-                            }
-                        });
+                        var isHeatSensitive = orders.items[i].items[j].product.isHeatSensitiveDatas;
                         if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
                             orders.items[i].items[j].futureDate = heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
                         }else{

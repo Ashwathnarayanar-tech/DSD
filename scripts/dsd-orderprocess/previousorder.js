@@ -507,7 +507,7 @@ require([
         var orderobj = {
             orderStaus: function() {
                 var self = this;
-                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=fulfillmentstatus+eq+fulfilled&sortBy=submittedDate desc').then(function(resp) {
+                api.request('GET', 'api/commerce/orders/?startIndex=0&pageSize=5&filter=status+eq+Completed&sortBy=submittedDate desc').then(function(resp) {
                     getProductDates(resp,self.dateCallBack);
                 },function(err){
                     console.log(err);
@@ -565,6 +565,7 @@ require([
 
     var getProductDates = function(res,callback){
         var ordersLen =  res.items.length,i=0,productCodes=[];
+        var fetchData = [];
         for(i;i<ordersLen;i++){
             var itemsLen = res.items[i].items.length,j=0;
             for(j;j<itemsLen;j++){
@@ -577,9 +578,20 @@ require([
             }
         }
         if(productCodes.length>0){
-            api.request("post","/sfo/get_dates",{data:productCodes}).then(function(resp) {
-                var d =  assignFutureDates(res,resp);
-                callback(d);
+            api.request("post","/sfo/get_dates",{data:productCodes,customerId:require.mozuData('user').lastName,site:"dsd"}).then(function(resp) {
+                if(resp.FirstShipDate) {
+                    api.request("post","/rof/get_coldpackDetails",{data:res,customerId:require.mozuData('user').lastName,site:"dsd","FirstShipDate":resp.FirstShipDate}).then(function(productDetails){
+                        var d =  assignFutureDates(productDetails.data,resp);
+                        callback(d);
+                    }).catch(function(e) { 
+
+                    }).then(function() {
+
+                    });
+                } else {
+                    var d =  assignFutureDates(res,resp);
+                    callback(d);
+                }
             },function(err){
                 console.log(err);
                 callback(res);

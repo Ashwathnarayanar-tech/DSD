@@ -286,7 +286,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
             }else{
                 window.location = "//"+window.location.host;  
             }*/
-
+            $.cookie("loggedInUser", $('[name="email-login"]').val(), { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});
             window.location = "//"+window.location.host; 
             /* $('#receiver').load('/myaccount', function() {
                 var customer = JSON.parse($('#receiver #data-mz-preload-customer').html());
@@ -514,6 +514,7 @@ define(['shim!vendor/bootstrap/js/popover[shim!vendor/bootstrap/js/tooltip[modul
                         method: 'GET',   
                         url: '../../logout',   
                         complete: function() {
+                            $.cookie("loggedInUser", $.cookie("userEmail"), { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});   
                                 window.location.href = Hypr.getThemeSetting('wwwSiteLink'); 
                             }  
                     });  

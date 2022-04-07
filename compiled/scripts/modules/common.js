@@ -5184,7 +5184,37 @@ require([
            '24820221',
            '24820226',
            '24820223'];
-
+          //JEL-2026
+          function logoutUser(){
+           // $.cookie("userData", '', {path: '/', expires: -1, domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});
+            setTimeout(function(){
+                //window.location="/logout";
+                $("a[data-mz-action='logout'],.comltlogout").trigger('click');
+            },1000);
+        }
+        
+        var logUser = $.cookie("loggedInUser");
+        if(logUser){
+          if(window.location.pathname !=="/user/login" && $(document).find('.mz-select-store').length<0){
+            if(logUser.split("@")[1] !== "jbaccounts.com"){
+              $.removeCookie('loggedInUser',{ expires: -1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});
+              logoutUser();
+            }
+          }
+          else if(window.location.pathname !=="/user/login" && $(document).find('.mz-select-store').length>0){
+              console.log("logUser ---",logUser);
+              if(logUser.split("@")[1] === "jbaccounts.com"){
+                  $.removeCookie('loggedInUser',{ expires: -1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});
+                  logoutUser();
+              }
+          }
+          
+        }else if(window.location.pathname !=="/user/login"){
+          logoutUser();
+        }
+        
+    
+    
            // example
            var em = document.getElementById('easter-announcement');
            var cv19 = document.getElementById('covid19');
@@ -5745,6 +5775,38 @@ require([
 
 });
 
+var htmlEntities = {
+  nbsp: ' ',
+  cent: '¢',
+  pound: '£',
+  yen: '¥',
+  euro: '€',
+  copy: '©',
+  reg: '®',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  amp: '&',
+  apos: '\''
+};
+
+window.unescapeHTML = function unescapeHTML(str) {
+  return str.replace(/\&([^;]+);/g, function (entity, entityCode) {
+      var match;
+
+      if (entityCode in htmlEntities) {
+          return htmlEntities[entityCode];
+          /*eslint no-cond-assign: 0*/
+      } else if (match == entityCode.match(/^#x([\da-fA-F]+)$/)) {
+          return String.fromCharCode(parseInt(match[1], 16));
+          /*eslint no-cond-assign: 0*/
+      } else if (match == entityCode.match(/^#(\d+)$/)) {
+          return String.fromCharCode(~~match[1]);
+      } else {
+          return entity;
+      }
+  });
+};
 define("modules/common", function(){});
 
 /**
@@ -6893,7 +6955,7 @@ define('modules/login-links',['shim!vendor/bootstrap/js/popover[shim!vendor/boot
             }else{
                 window.location = "//"+window.location.host;  
             }*/
-
+            $.cookie("loggedInUser", $('[name="email-login"]').val(), { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});
             window.location = "//"+window.location.host; 
             /* $('#receiver').load('/myaccount', function() {
                 var customer = JSON.parse($('#receiver #data-mz-preload-customer').html());
@@ -7121,6 +7183,7 @@ define('modules/login-links',['shim!vendor/bootstrap/js/popover[shim!vendor/boot
                         method: 'GET',   
                         url: '../../logout',   
                         complete: function() {
+                            $.cookie("loggedInUser", $.cookie("userEmail"), { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});   
                                 window.location.href = Hypr.getThemeSetting('wwwSiteLink'); 
                             }  
                     });  

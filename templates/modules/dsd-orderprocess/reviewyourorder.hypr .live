@@ -40,7 +40,7 @@
                     <tr class="desktop">
                         <td class="item">{{ item.product.productCode }}</td>
                         <td class="desc">
-                            <div class="desc-cart">{{ item.product.name }}</div>
+                            <div class="desc-cart">{{ item.product.name | safe  }}</div>
                             <div class="cart-error" cart-prod-code = "{{ item.product.productCode }}"></div>
                             {% if item.product.inventory and item.product.futureDate!="undefined" %}
                                 <div class="cart-future" style="color:black">
@@ -50,15 +50,9 @@
                         </td>
                         <td class="coldpack">
                             <span class="coldpack">
-                                {% if themeSettings.heatSensitive %}
-                                   {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
-                                        {% with aliasName.values|findwhere('value',true) as checkVal %} 
-                                            {% if checkVal %}
-                                                <img src="../resources/images/coldpack-tick.png" alt="Yes" />
-                                            {% endif %}
-                                            {% endwith %}
-                                        {% endwith %}
-                                {% endif %}    
+                                {% if item.isHeatsensitive %}
+                                         <img src="../resources/images/coldpack-tick.png" alt="Yes" />
+                                {% endif %}   
                             </span>
                         </td>
                         <td  class="qty">
@@ -80,7 +74,7 @@
                 </tr>
                 <tr class="mobile row1"> 
                     <td class="desc" colspan="3">
-                    <div>{{ item.product.name }}</div> 
+                    <div>{{ item.product.name | safe  }}</div> 
                     <div class="cart-error" mob-cart-prod-code = "{{ item.product.productCode }}"></div> 
                     {% if item.product.inventory and item.product.futureDate!="undefined" %}
                         <div class="cart-future" style="color:black">
@@ -95,13 +89,9 @@
                         <td class="unit-price">{{ item.unitPrice.saleAmount |currency }}</td>
                         <td class="coldpack"> 
                             <span class="coldpack">
-                               {% with item.product.properties|findwhere('attributeFQN','tenant~IsHeatSensitive') as aliasName %}  
-                                    {% with aliasName.values|findwhere('value',true) as checkVal %} 
-                                       {% if checkVal %} 
-                                             <font>Cold Pack</font> 
-                                        {% endif %}
-                                    {% endwith %}
-                                {% endwith %}
+                               {% if item.isHeatsensitive %}
+                                      <font>Cold Pack</font>
+                                {% endif %}
                             </span>
                         </td>
                         <td  class="qty">

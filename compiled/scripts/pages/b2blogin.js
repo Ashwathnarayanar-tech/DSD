@@ -431,6 +431,7 @@ function (Backbone, _, $, HyprLiveContext, Hypr,api,futurePopup) {
                     email:username, 
                     password:token   
                 }).then( function () {  
+                    $.cookie("loggedInUser", username, { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});   
                     form.submit();
                 }, function (xhr) {
                     var msg = "There was an error when selecting the store. Please contact Jelly Belly support at 1-800-323-9380 for assistance.";
@@ -682,6 +683,7 @@ function (Backbone, _, $, HyprLiveContext, Hypr,api,futurePopup) {
                     email:username, 
                     password:token   
                 }).then( function () {  
+                    $.cookie("loggedInUser", username, { expires: 1, path: '/', domain: (location.href.indexOf('sandbox.mozu.com') > -1 ? '.sandbox.mozu.com' : '.jellybellydsd.com' )});  
                     form.submit();
                 }, function (xhr) { 
                     var msg = "There was an error when selecting the store. Please contact Jelly Belly support at 1-800-323-9380 for assistance.";
@@ -827,6 +829,10 @@ function (Backbone, _, $, HyprLiveContext, Hypr,api,futurePopup) {
       
       
       $(document).ready(function(){
+        if($.cookie("userEmail") === undefined){
+            window.location = Hypr.getThemeSetting('themeLoginURL')+"?clearSession=yes";
+        }
+
         //   if(!$(".table table-responsive").children(".recent-address").children().length){
               
         //   }
