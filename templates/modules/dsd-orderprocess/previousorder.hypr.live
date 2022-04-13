@@ -152,11 +152,11 @@
                                  </td>
                                  <td class="coldpack">
                                     <div class="coldpack"> 
-                                        {% if themeSettings.heatSensitive %}
+                                        
                                           {% if  item.product.isHeatSensitiveDatas %}
                                              <img src="../resources/images/coldpack-tick.png" alt="Yes" />
                                           {% endif %}
-                                        {% endif %}
+                                        
                                     </div>
                                  </td>
                                  <td  class="qnty">
