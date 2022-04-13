@@ -917,7 +917,7 @@ require([
             $("#search-result-table-container tr").attr("");
             $("#search-result-table-container td.price").html("$"+ product.Price.toFixed(2) ); 
             $("#search-result-table-container td.weight").html( product.Weight.toFixed(2) );  
-            if(product.HeatSensitive == "yes" && Hypr.getThemeSetting('heatSensitive')){
+            if(product.HeatSensitive == "yes"){
                 if($(window).width() <= 1024){ 
                 $("#search-result-table-container td.is-coldpack").html("<div>Cold Pack</div>");
                 }else{

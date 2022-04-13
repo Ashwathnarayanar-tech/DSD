@@ -215,7 +215,7 @@ define([
             },
             callback:function(res){
                 var self = this,sdate,udate,heat=false;
-                if(self.isHeatSensitive() &&  Hypr.getThemeSetting('heatSensitive')){
+                if(self.isHeatSensitive() ){
                     heat=true;
                 }
                 window.cartItems = self.model.get('items').length;
