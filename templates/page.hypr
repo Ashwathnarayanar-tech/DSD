@@ -105,11 +105,13 @@
 
 
         {%header_content%}
-        <script type = "text/javascript" >
+        {% comment %}
+ <script type = "text/javascript" >
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null };
-        </script>
+        </script> 
+{% endcomment %}
     </head>
 
     {% endblock head-tag %}

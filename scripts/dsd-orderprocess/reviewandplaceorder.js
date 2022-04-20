@@ -817,6 +817,8 @@ define([
         
         },
         order1:function(){
+            $(".overlay-full-width").show(); 
+
             var url = window.location.href;
             if(url.lastIndexOf('/') > 0){
                 url = window.location.href.substr(0,window.location.href.lastIndexOf('/'));
@@ -834,6 +836,9 @@ define([
                         console.log(err);
                         window.location =url+"/checkout/"+ res.id +"/confirmation";
                     });
+                    $(".overlay-full-width").show(); 
+
+
                     
                 },function(err){
                     console.log(err);
