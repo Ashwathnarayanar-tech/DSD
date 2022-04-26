@@ -331,7 +331,9 @@ define([
                         if ($('.ponum-warn').length) {
                             $('.ponum-warn').remove();
                         }
-                        $('.placeorder').prop('disabled',false);
+                        if($(e.currentTarget).val().trim() !== "" && $(e.currentTarget).val().trim().length >= 3){
+                            $('.placeorder').prop('disabled',false);
+                        }
                     }
                 });
             },
