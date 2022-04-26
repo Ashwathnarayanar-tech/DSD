@@ -333,7 +333,8 @@ define([
                         }
                         if($(e.currentTarget).val().trim() !== "" && $(e.currentTarget).val().trim().length >= 3){
                             $('.placeorder').prop('disabled',false);
-                        }                    }
+                        }
+                    }
                 });
             },
             getProductDates:function(res){
