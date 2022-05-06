@@ -232,7 +232,10 @@ define([
                                 }else{
                                     $(document).find('[mob-cart-prod-code="'+v.productCode+'"]').text(Hypr.getLabel('qtynotavailabel'));
     								oosItems.push(product);
-                                }  
+                                } 
+                                setTimeout(function(){
+                                    $(document).find('[data-mz-productcode="'+v.productCode+'"]').attr('disabled', 'disabled');
+                                },1500); 
                             }
                         });
                         if( $.cookie("oosProducts")){
