@@ -233,6 +233,9 @@ define([
                                     $(document).find('[mob-cart-prod-code="'+v.productCode+'"]').text(Hypr.getLabel('qtynotavailabel'));
     								oosItems.push(product);
                                 }  
+                                setTimeout(function(){
+                                    $(document).find('[data-mz-productcode="'+v.productCode+'"]').attr('disabled', 'disabled');
+                                },1500);
                             }
                         });
                         if( $.cookie("oosProducts")){
@@ -313,7 +316,7 @@ define([
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
                         var isHeatSensitive = order.get('items').models[i].get("isHeatsensitive");
-                        if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
+                        if(isHeatSensitive){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
                             order.get('items').models[i].get('product').set('futureDate',futureDate);
@@ -330,7 +333,7 @@ define([
                         }
                     }     
                 }
-                if(heat && Hypr.getThemeSetting('heatSensitive')){
+                if(heat){
                     futureDate = this.heatSensitvieDate(dates.FirstShipDate,blackoutDates).fDate? this.heatSensitvieDate(dates.FirstShipDate,blackoutDates).date:"undefined";
                 }else{
                     futureDate = this.availableDate(dates.FirstShipDate,blackoutDates).fDate?this.availableDate(dates.FirstShipDate,blackoutDates).date:"undefined";
@@ -345,7 +348,7 @@ define([
                     futureProduct = _.findWhere(dates.Items, {SKU: code});
                     if(futureProduct){
                         var isHeatSensitive = order.items[i].isHeatsensitive;  
-                        if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
+                        if(isHeatSensitive ){
                             heat = true;
                             futureDate = self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? self.heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
                             order.items[i].product.futureDate = futureDate;
@@ -362,7 +365,7 @@ define([
                         }
                     }     
                 }
-                if(heat && Hypr.getThemeSetting('heatSensitive')){
+                if(heat){
                     futureDate = this.heatSensitvieDate(dates.FirstShipDate,blackoutDates).fDate? this.heatSensitvieDate(dates.FirstShipDate,blackoutDates).date:"undefined";
                 }else{
                     futureDate = this.availableDate(dates.FirstShipDate,blackoutDates).fDate?this.availableDate(dates.FirstShipDate,blackoutDates).date:"undefined";

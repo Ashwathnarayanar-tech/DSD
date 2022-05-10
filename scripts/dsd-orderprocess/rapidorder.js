@@ -140,7 +140,7 @@ require([
                                 stockavaillabel = (productDetails.data.inventoryInfo.manageStock) ? productDetails.data.inventoryInfo.onlineStockAvailable : 4,
                                 isHeatSensitive = productDetails.data.isHeatSensitiveEnable;
                             if(productDetails.data.futureDate.FirstShipDate){  
-                                if (isHeatSensitive && Hypr.getThemeSetting('heatSensitive')) {
+                                if (isHeatSensitive) {
                                     futureDate = self.heatSensitvieDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);
                                 }else{
                                    futureDate = self.availableDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);
@@ -394,7 +394,7 @@ require([
                                 stockavaillabel = (productDetails.data.inventoryInfo.manageStock) ? productDetails.data.inventoryInfo.onlineStockAvailable : 4,
                                 isHeatSensitive = productDetails.data.isHeatSensitiveEnable;
                             if(productDetails.data.futureDate.FirstShipDate){    
-                                if (isHeatSensitive && Hypr.getThemeSetting('heatSensitive')) {
+                                if (isHeatSensitive) {
                                     futureDate = self.heatSensitvieDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);
                                 }else{
                                    futureDate = self.availableDate(productDetails.data.futureDate.FirstShipDate,productDetails.data.futureDate.BlackoutDates);
@@ -517,7 +517,7 @@ require([
                             if(stockavaillabel > 0){
                                 $('[data-mz-total][dsd-lineitemumber="' + lineItemNum + '"]').attr("value", $('[data-mz-price][dsd-lineitemumber="' + lineItemNum + '"]').attr("value") * 1);
                             }
-                            if (isHeatSensitive && Hypr.getThemeSetting('heatSensitive')) {
+                            if (isHeatSensitive ) {
                                 $('[data-mz-colditem][dsd-lineitemumber="' + lineItemNum + '"]').html('<div class="coldpack"><img src="../resources/images/coldpack-tick.png" alt="Yes"></div>');
                             } else {
                                 $('[data-mz-colditem][dsd-lineitemumber="' + lineItemNum + '"]').html("");

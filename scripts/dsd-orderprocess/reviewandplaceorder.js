@@ -215,7 +215,7 @@ define([
             },
             callback:function(res){
                 var self = this,sdate,udate,heat=false;
-                if(self.isHeatSensitive() &&  Hypr.getThemeSetting('heatSensitive')){
+                if(self.isHeatSensitive()){
                     heat=true;
                 }
                 window.cartItems = self.model.get('items').length;
@@ -830,6 +830,7 @@ define([
                     if($.cookie('userData')!== "null" && $.cookie('userData')!== undefined){
                       userEmail = JSON.parse(decodeURIComponent($.cookie('userData'))).email;
                     } 
+                    $(".overlay-full-width").hide(); 
                     api.request('get','/svc/userCapture/'+window.order.get('orderNumber')+'/'+userEmail+'/'+require.mozuData('pagecontext').ipAddress  ).then(function(resp){
                        window.location =url+"/checkout/"+ res.id +"/confirmation";
                     },function(err){

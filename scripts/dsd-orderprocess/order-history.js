@@ -514,7 +514,7 @@ require([
                     
                     if(futureProduct){
                         var isHeatSensitive = orders.items[i].items[j].product.isHeatSensitiveDatas;
-                        if(isHeatSensitive && Hypr.getThemeSetting('heatSensitive')){
+                        if(isHeatSensitive ){
                             orders.items[i].items[j].futureDate = heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).fDate? heatSensitvieDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";
                         }else{
                             orders.items[i].items[j].futureDate = availableDate(futureProduct.FirstShipDate,blackoutDates).fDate?availableDate(futureProduct.FirstShipDate,blackoutDates).date:"undefined";

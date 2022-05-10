@@ -462,7 +462,6 @@
         "wwwSiteLink":"",  
         "noOfItemsPerPage":10,
         "misc":"",
-        "heatSensitive":true,
         "useDebugScripts": false,
         "differentFromPreviousPasswords":"Sorry, but you've already used that password.  Please create one that is brand new for this system.",
         "resetPasswordEntered": "Please make sure you have entered your new Password, which must have a minimum of 6 characters with at least 1 number and 1 alphabetic character, twice.",
