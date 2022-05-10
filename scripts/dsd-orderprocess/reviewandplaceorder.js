@@ -832,6 +832,7 @@ define([
                     if($.cookie('userData')!== "null" && $.cookie('userData')!== undefined){
                       userEmail = JSON.parse(decodeURIComponent($.cookie('userData'))).email;
                     } 
+                    $(".overlay-full-width").hide(); 
                     api.request('get','/svc/userCapture/'+window.order.get('orderNumber')+'/'+userEmail+'/'+require.mozuData('pagecontext').ipAddress  ).then(function(resp){
                        window.location =url+"/checkout/"+ res.id +"/confirmation";
                     },function(err){
