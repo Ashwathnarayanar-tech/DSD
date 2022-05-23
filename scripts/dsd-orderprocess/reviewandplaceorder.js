@@ -536,7 +536,12 @@ define([
                             // };
                             // createorder.send();
                     }
+                    else{
+                        console.log("No products");
+                        location.reload();
+                    }
                });
+              
             
         },
         UpdateShipAddr: function(){
@@ -832,14 +837,17 @@ define([
                     if($.cookie('userData')!== "null" && $.cookie('userData')!== undefined){
                       userEmail = JSON.parse(decodeURIComponent($.cookie('userData'))).email;
                     } 
-                    $(".overlay-full-width").hide(); 
+                    $(".overlay-full-width").hide();
+                    $(".ponumber").val("");
+                    $('.placeorder').prop('disabled',true);
+                    cartModel.apiGet();
                     api.request('get','/svc/userCapture/'+window.order.get('orderNumber')+'/'+userEmail+'/'+require.mozuData('pagecontext').ipAddress  ).then(function(resp){
                        window.location =url+"/checkout/"+ res.id +"/confirmation";
                     },function(err){
                         console.log(err);
                         window.location =url+"/checkout/"+ res.id +"/confirmation";
                     });
-                    $(".overlay-full-width").show(); 
+                   // $(".overlay-full-width").show(); 
 
 
                     
