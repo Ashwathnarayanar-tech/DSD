@@ -35,6 +35,15 @@ require([
                 $("a[data-mz-action='logout'],.comltlogout").trigger('click');
             },1000);
         }
+
+        function checkandLogoutUser(){
+          if((window.location.pathname !=="/user/login")  || (window.location.pathname !=="/user/resetpasswordconfirm")){
+            console.log(" logout is not required ");
+          }
+          else{
+            logoutUser();
+          }
+        }
         
         var logUser = $.cookie("loggedInUser");
         if(logUser){
@@ -52,8 +61,8 @@ require([
               }
           }
           
-        }else if(window.location.pathname !=="/user/login"){
-          logoutUser();
+        }else {
+          checkandLogoutUser();
         }
         
     
