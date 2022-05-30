@@ -2,6 +2,7 @@
     <!--<div class="select-store-msg">Please select a store</div>-->
     <h3 class="store-name">
     <span class="dsdstore-name">{{ model.storeAddress.companyOrOrganization }}</span>
+    <p class="dsdacc-num">Account: {{ model.storeAddress.lastNameOrSurname }}</p>
     </h3>
     <div class="store-address">
     <p>{{ model.storeAddress.address.address1 }}</p> 
